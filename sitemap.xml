@@ -2,16 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://welqd.github.io/tags/eve-ng/</loc>
+    <lastmod>2022-09-13T20:16:17+03:00</lastmod>
+  </url><url>
+    <loc>https://welqd.github.io/post/eve-ng-arch-i3/</loc>
+    <lastmod>2022-09-13T20:16:17+03:00</lastmod>
+  </url><url>
+    <loc>https://welqd.github.io/tags/i3/</loc>
+    <lastmod>2022-09-13T20:16:17+03:00</lastmod>
+  </url><url>
+    <loc>https://welqd.github.io/tags/linux/</loc>
+    <lastmod>2022-09-13T20:16:17+03:00</lastmod>
+  </url><url>
+    <loc>https://welqd.github.io/tags/networking/</loc>
+    <lastmod>2022-09-13T20:16:17+03:00</lastmod>
+  </url><url>
+    <loc>https://welqd.github.io/post/</loc>
+    <lastmod>2022-09-13T20:16:17+03:00</lastmod>
+  </url><url>
+    <loc>https://welqd.github.io/tags/</loc>
+    <lastmod>2022-09-13T20:16:17+03:00</lastmod>
+  </url><url>
+    <loc>https://welqd.github.io/</loc>
+    <lastmod>2022-09-13T20:16:17+03:00</lastmod>
+  </url><url>
     <loc>https://welqd.github.io/_index_copy/</loc>
     <priority>0</priority>
   </url><url>
     <loc>https://welqd.github.io/categories/</loc>
   </url><url>
     <loc>https://welqd.github.io/page/</loc>
-  </url><url>
-    <loc>https://welqd.github.io/tags/</loc>
-  </url><url>
-    <loc>https://welqd.github.io/</loc>
   </url><url>
     <loc>https://welqd.github.io/page/about/</loc>
   </url>

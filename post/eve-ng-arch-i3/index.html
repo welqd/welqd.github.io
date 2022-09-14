@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ru" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>EVE-NG в Arch Linux с i3wm - Vadim Aleshin&#39;s Blog</title>
+  <meta name="description" content="Установка EVE-NG в VMware Предполагается, что уже есть установленная VMware workstation, для Arch Linux можно установить из AUR.
+Для установки EVE Community Edition Version:
+Скачиваем архив с образом с официального сайта Распаковываем архим и добавляем в VMware workstation (File -&gt; Open -&gt; EVE-COM-5.ovf) Запускаем VM и входим в ОС под пользователем root, пароль eve Задаем первичные параметры в появившемся диалоге настроек (root пароль, ip адрес и т.д.) После этого можно зайти в web-интерфейс по ip-адресу (в этой статье примеры будут с адресом 192.">
+  <meta name="author" content="Vadim Aleshin"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Vadim Aleshin\u0027s Blog",
+    
+    "url": "https:\/\/welqd.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/welqd.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/welqd.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/welqd.github.io\/post\/eve-ng-arch-i3\/",
+          "name": "Eve ng в arch linux с i3wm"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Vadim Aleshin"
+  },
+  "headline": "EVE-NG в Arch Linux с i3wm",
+  "description" : "Установка EVE-NG в VMware Предполагается, что уже есть установленная VMware workstation, для Arch Linux можно установить из AUR.\nДля установки EVE Community Edition Version:\nСкачиваем архив с образом с официального сайта Распаковываем архим и добавляем в VMware workstation (File -\u0026gt; Open -\u0026gt; EVE-COM-5.ovf) Запускаем VM и входим в ОС под пользователем root, пароль eve Задаем первичные параметры в появившемся диалоге настроек (root пароль, ip адрес и т.д.) После этого можно зайти в web-интерфейс по ip-адресу (в этой статье примеры будут с адресом 192.",
+  "inLanguage" : "ru",
+  "wordCount":  645 ,
+  "datePublished" : "2022-09-13T20:16:17",
+  "dateModified" : "2022-09-13T20:16:17",
+  "image" : "https:\/\/welqd.github.io\/img\/logo.png",
+  "keywords" : [ "networking, linux, eve-ng, i3" ],
+  "mainEntityOfPage" : "https:\/\/welqd.github.io\/post\/eve-ng-arch-i3\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/welqd.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/welqd.github.io\/img\/logo.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="EVE-NG в Arch Linux с i3wm" />
+<meta property="og:description" content="Установка EVE-NG в VMware Предполагается, что уже есть установленная VMware workstation, для Arch Linux можно установить из AUR.
+Для установки EVE Community Edition Version:
+Скачиваем архив с образом с официального сайта Распаковываем архим и добавляем в VMware workstation (File -&gt; Open -&gt; EVE-COM-5.ovf) Запускаем VM и входим в ОС под пользователем root, пароль eve Задаем первичные параметры в появившемся диалоге настроек (root пароль, ip адрес и т.д.) После этого можно зайти в web-интерфейс по ip-адресу (в этой статье примеры будут с адресом 192.">
+<meta property="og:image" content="https://welqd.github.io/img/logo.png" />
+<meta property="og:url" content="https://welqd.github.io/post/eve-ng-arch-i3/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Vadim Aleshin&#39;s Blog" />
+
+  <meta name="twitter:title" content="EVE-NG в Arch Linux с i3wm" />
+  <meta name="twitter:description" content="Установка EVE-NG в VMware Предполагается, что уже есть установленная VMware workstation, для Arch Linux можно установить из AUR.
+Для установки EVE Community Edition Version:
+Скачиваем архив с образом …">
+  <meta name="twitter:image" content="https://welqd.github.io/img/logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href='https://welqd.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.102.3" />
+  <link rel="alternate" href="https://welqd.github.io/index.xml" type="application/rss+xml" title="Vadim Aleshin&#39;s Blog"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://welqd.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://welqd.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://welqd.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Навигация</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://welqd.github.io">Vadim Aleshin&#39;s Blog</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Vadim Aleshin&#39;s Blog" href="https://welqd.github.io">
+            <img class="avatar-img" src="https://welqd.github.io/img/logo.png" alt="Vadim Aleshin&#39;s Blog" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>EVE-NG в Arch Linux с i3wm</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Опубликовано September 13, 2022
+  
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;Vadim Aleshin
+    
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <h2 id="установка-eve-ng-в-vmware">Установка EVE-NG в VMware</h2>
+<p>Предполагается, что уже есть установленная VMware workstation, для Arch Linux можно установить из <a href="https://aur.archlinux.org/packages/vmware-workstation">AUR</a>.<br>
+Для установки EVE Community Edition Version:</p>
+<ol>
+<li>Скачиваем архив с образом с официального <a href="https://www.eve-ng.net/index.php/download/">сайта</a></li>
+<li>Распаковываем архим и добавляем в VMware workstation (File -&gt; Open -&gt; EVE-COM-5.ovf)</li>
+<li>Запускаем VM и входим в ОС под пользователем root, пароль eve</li>
+<li>Задаем первичные параметры в появившемся диалоге настроек (root пароль, ip адрес и т.д.)</li>
+</ol>
+<p>После этого можно зайти в web-интерфейс по ip-адресу (в этой статье примеры будут с адресом 192.168.22.71), стандартный логин - admin, пароль - eve.</p>
+<h2 id="добавление-образов">Добавление образов</h2>
+<p>В EVE-NG можно использовать разные типы образов: dynamips, iol, qemu.<br>
+Для примера будем использовать образы Cisco (iol), а после добавим custom linux образ.<br>
+IOL-образы необходимо добавлять по пути: <strong>/opt/unetlab/addons/iol/bin/</strong></p>
+<ol>
+<li>Перейдем в директорию на локальной машине, где располагаются образы<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</li>
+</ol>
+<ol start="2">
+<li>Используя scp добавим их на виртуальную машину с EVE-NG:</li>
+</ol>
+<blockquote>
+<p><strong>scp * <a href="mailto:root@192.168.22.71">root@192.168.22.71</a>:/opt/unetlab/addons/iol/bin/</strong><sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
+</blockquote>
+<ol start="3">
+<li>Также в директории с IOL-образами должен быть файл с лицензией, который должен называться iourc, содержащий данные о лицензии:</li>
+</ol>
+<blockquote>
+<p>[license]<br>
+eve-ng = &lt;ключ&gt;;</p>
+</blockquote>
+<p>Скрипт для генерации ключа можно найти <a href="https://www.ipvanquish.com/2016/09/25/how-to-generate-cisco-iou-licence-on-gns3-vm-with-python-3/">здесь</a>.</p>
+<p>После этого при добавление новой Node можно будет выбрать пункт Cisco IOL, который содержит L2 и L3 образы.</p>
+<h2 id="отображать-только-устройства-для-которых-есть-образ">Отображать только устройства для которых есть образ</h2>
+<p>По умолчанию при добавлении нового устройства в лабораторную, появляется список всех устройств (даже если нет установленного образа), что очень неудобно.<br>
+Для исправления ситуации в файле <strong>/opt/unetlab/html/includes/init.php</strong> найти блок кода:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span> <span class="nv">$found</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">)</span>  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//$node_templates[$templ] = $desc.&#39;.missing&#39;  ;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//$node_templates[$templ] = $desc.TEMPLATE_DISABLED  ;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">unset</span><span class="p">(</span><span class="nv">$node_templates</span><span class="p">[</span><span class="nv">$templ</span><span class="p">])</span> <span class="p">;</span>
+</span></span></code></pre></div><p>Закоментировать строчку <strong>$node_templates[$templ] = $desc.TEMPLATE_DISABLED</strong> и добавить <strong>unset($node_templates[$templ])</strong>, после чего при добавлении устройства будет выбор только тех, чей образ добавлен, как на изображении ниже.</p>
+<p><img src="/img/eve-ng-new-node.png" alt="Добавление нового устройства"></p>
+<h2 id="интеграция-с-arch-linux">Интеграция с Arch Linux</h2>
+<p>Прежде всего стоит установить пакет <strong>eve-ng-integration</strong>, который находится в <a href="https://aur.archlinux.org/packages/eve-ng-integration">AUR</a>.</p>
+<p>Если посмотреть внуть скрипта <strong>/usr/bin/eve-ng-integration</strong>, то видно, что эмулятор терминала выбирается на основе значения переменной окружения <strong>XDG_CURRENT_DESKTOP</strong>.<br>
+Причем по умолчанию в списке графических окруженений есть: gnome, kde, xfce4 и т.д.<br>
+В случае, если используется одно из &ldquo;стандартных&rdquo; графических окружений, то терминал должен открываться &ldquo;из коробки&rdquo;.</p>
+<h3 id="использование-i3wm-и-терминала-alacritty">Использование i3wm и терминала alacritty</h3>
+<p>В случае использования i3wm <strong>echo $XDG_CURRENT_DESKTOP</strong> будет возвращать значение <strong>i3</strong> и по умолчанию будет пытаться запуститься терминал <strong>xterm</strong>, что, скорее всего, не является ожидаемым поведением.</p>
+<h3 id="изменение-эмулятора-терминала">Изменение эмулятора терминала:</h3>
+<ol>
+<li>Для большинства терминалов (к примеру, xfce4-terminal) в файле /usr/bin/eve-ng-integration необходимо найти функцию <strong>terminal_emulator_cmd</strong> и в последнем else закоментировать <strong>return [&lsquo;xterm&rsquo;, &lsquo;-e&rsquo;]</strong> и добавить нужный терминал, как в примере ниже.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#return [&#39;xterm&#39;, &#39;-e&#39;]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;xfce4-terminal&#39;</span><span class="p">,</span> <span class="s1">&#39;-e&#39;</span><span class="p">]</span>
+</span></span></code></pre></div><ol start="2">
+<li>В случае использования терминала alacritty, описанных выше действий недостаточно, т.к. при выполнении этого скрипта на python, будет передаваться конструкция <strong>alacritty -e &rsquo;telnet 192.168.22.71 32769&rsquo;</strong>, которая работать <a href="https://github.com/alacritty/alacritty/issues/1266">не будет</a>.<br>
+Необходимо передавать терминалу программу и значения не в виде строки (без кавычек), т.е. <strong>alacritty -e telnet 192.168.22.71 32769</strong>.<br>
+Для исправления необходимо в файле <strong>/usr/bin/eve-ng-integration</strong> найти функцию <strong>execute</strong>, закоментировать переменную <strong>command</strong> и добавить такую же, но без <em>&rsquo;/n&rsquo;</em>, как указано ниже. Теперь терминал, при клике на устройство в eve-ng, должен открываться<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#command = command.split(&#39;\n&#39;)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">command</span> <span class="o">=</span> <span class="n">command</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+</span></span></code></pre></div><h3 id="использование-вкладок">Использование вкладок:</h3>
+<p>Т.к. для работы с большим количеством устройств удобнее работать с вкладками внутри терминала, а не с каждым окном отдельно, то есть 2 пути:</p>
+<ul>
+<li>Использовать терминал, который поддерживает вкладки (xfce4-terminal, konsole)</li>
+</ul>
+<blockquote>
+<p>Необходимо учитывать, что по умолчанию, к примеру, xfce4-terminal не будет использовать вкладки.<br>
+Для их активации необходимо вернуться в предыдущий пункт этой публикации и в строку return [&lsquo;xfce4-terminal&rsquo;, &lsquo;-e&rsquo;] добавить значение &lsquo;&ndash;tab&rsquo; перед &lsquo;-e&rsquo;.<br>
+Т.е. строка должна выглядеть так: <strong>return [&lsquo;xfce4-terminal&rsquo;, &lsquo;&ndash;tab&rsquo;, &lsquo;-e&rsquo;]</strong> (в &ndash;tab два знака -)</p>
+</blockquote>
+<ul>
+<li>Если используется оконный менеджер (в моем случае i3), то использовать tabbed layout (по умолчанию это mod+w, в конфиге i3 строка bindsym $mod+w layout tabbed)<br>
+Можно отправлять каждый открытый терминал на какое-либо рабочее пространство (к примеру, на второй экран) и там уже использовать tabbed layout.</li>
+</ul>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Необходимо либо использовать официальные образы, к примеру из Cisco CML, либо &ldquo;нагуглить&rdquo; не совсем официальные&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>scp * копирует все файлы из директории, где находятся образы&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>При смене терминала с alacritty на другой, не забыть это исправление в коде&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://welqd.github.io/tags/networking/">networking</a>&nbsp;
+            
+              <a href="https://welqd.github.io/tags/linux/">linux</a>&nbsp;
+            
+              <a href="https://welqd.github.io/tags/eve-ng/">eve-ng</a>&nbsp;
+            
+              <a href="https://welqd.github.io/tags/i3/">i3</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+          
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:w3lqd@yandex.ru" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/welqd" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="welqd.ru">Vadim Aleshin</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2022
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://welqd.github.io">Vadim Aleshin&#39;s Blog</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          На базе <a href="https://gohugo.io">Hugo v0.102.3</a> &nbsp;&bull;&nbsp; Тема <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> на базе <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://welqd.github.io/js/main.js"></script>
+<script src="https://welqd.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://welqd.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+
