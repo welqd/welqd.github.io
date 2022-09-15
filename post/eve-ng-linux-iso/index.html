@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Образ роутера на linux для EVE-NG - Vadim Aleshin&#39;s Blog</title>
+  <meta name="description" content="В прерыдущей публикации был установлен образ EVE-NG и настроена базовая конфигурация.Теперь создадим образ Linux-роутера на основе Debian 11 для экспериментов и добавим его в EVE-NG.
+Создание вируальной машины Скачиваем образ с официального сайта.
+Необходимо создать виртуальную машину, для этих целей будет использоваться VMware Workstation. В процессе настройки ВМ на этапе указания объема диска обязательно выбрать Store virtual disk as a single file.
+Т.к. необходим наиболее минимальный образ, то объем диска указываем 4 Гб, этого достаточно.">
+  <meta name="author" content="Vadim Aleshin"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Vadim Aleshin\u0027s Blog",
+    
+    "url": "https:\/\/welqd.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/welqd.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/welqd.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/welqd.github.io\/post\/eve-ng-linux-iso\/",
+          "name": "Образ роутера на linux для eve ng"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "Vadim Aleshin"
+  },
+  "headline": "Образ роутера на linux для EVE-NG",
+  "description" : "В прерыдущей публикации был установлен образ EVE-NG и настроена базовая конфигурация.Теперь создадим образ Linux-роутера на основе Debian 11 для экспериментов и добавим его в EVE-NG.\nСоздание вируальной машины Скачиваем образ с официального сайта.\nНеобходимо создать виртуальную машину, для этих целей будет использоваться VMware Workstation. В процессе настройки ВМ на этапе указания объема диска обязательно выбрать Store virtual disk as a single file.\nТ.к. необходим наиболее минимальный образ, то объем диска указываем 4 Гб, этого достаточно.",
+  "inLanguage" : "en",
+  "wordCount":  711 ,
+  "datePublished" : "2022-09-15T14:46:00",
+  "dateModified" : "2022-09-15T14:46:00",
+  "image" : "https:\/\/welqd.github.io\/img\/logo.png",
+  "keywords" : [ "" ],
+  "mainEntityOfPage" : "https:\/\/welqd.github.io\/post\/eve-ng-linux-iso\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/welqd.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/welqd.github.io\/img\/logo.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Образ роутера на linux для EVE-NG" />
+<meta property="og:description" content="В прерыдущей публикации был установлен образ EVE-NG и настроена базовая конфигурация.Теперь создадим образ Linux-роутера на основе Debian 11 для экспериментов и добавим его в EVE-NG.
+Создание вируальной машины Скачиваем образ с официального сайта.
+Необходимо создать виртуальную машину, для этих целей будет использоваться VMware Workstation. В процессе настройки ВМ на этапе указания объема диска обязательно выбрать Store virtual disk as a single file.
+Т.к. необходим наиболее минимальный образ, то объем диска указываем 4 Гб, этого достаточно.">
+<meta property="og:image" content="https://welqd.github.io/img/logo.png" />
+<meta property="og:url" content="https://welqd.github.io/post/eve-ng-linux-iso/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Vadim Aleshin&#39;s Blog" />
+
+  <meta name="twitter:title" content="Образ роутера на linux для EVE-NG" />
+  <meta name="twitter:description" content="В прерыдущей публикации был установлен образ EVE-NG и настроена базовая конфигурация.Теперь создадим образ Linux-роутера на основе Debian 11 для экспериментов и добавим его в EVE-NG.
+Создание …">
+  <meta name="twitter:image" content="https://welqd.github.io/img/logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href='https://welqd.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.102.3" />
+  <link rel="alternate" href="https://welqd.github.io/index.xml" type="application/rss+xml" title="Vadim Aleshin&#39;s Blog"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://welqd.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://welqd.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://welqd.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://welqd.github.io">Vadim Aleshin&#39;s Blog</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Vadim Aleshin&#39;s Blog" href="https://welqd.github.io">
+            <img class="avatar-img" src="https://welqd.github.io/img/logo.png" alt="Vadim Aleshin&#39;s Blog" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>Образ роутера на linux для EVE-NG</h1>
+              
+              
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on September 15, 2022
+  
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;Vadim Aleshin
+    
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>В <a href="https://welqd.github.io/post/eve-ng-arch-i3/">прерыдущей</a> публикации был установлен образ EVE-NG и настроена базовая конфигурация.Теперь создадим образ Linux-роутера на основе Debian 11 для экспериментов и добавим его в EVE-NG.</p>
+<h2 id="создание-вируальной-машины">Создание вируальной машины</h2>
+<p><a href="https://cdimage.debian.org/debian-cd/current/amd64/bt-cd/">Скачиваем</a> образ с официального сайта.<br>
+Необходимо создать виртуальную машину, для этих целей будет использоваться VMware Workstation.
+В процессе настройки ВМ на этапе указания объема диска <strong>обязательно</strong> выбрать <strong>Store virtual disk as a single file</strong>.<br>
+Т.к. необходим наиболее минимальный образ, то объем диска указываем 4 Гб, этого достаточно.<br>
+Также, для удобства, на заключительном этапе установки делаем настройку сетевой карты мостом, для этого выбираем <strong>Customize Hardware&hellip;</strong>, выбираем <strong>Network adapter</strong> -&gt; <strong>Bridged</strong>, как на изображении ниже.</p>
+<p><img src="/img/vmware-bridge.png" alt="Настройка bridge"></p>
+<p>После этого запускаем ВМ и устанавливаем операционную систему.<br>
+На этапе установки стоит обратить внимание на то, что графическое окружение устанавливать <strong>не нужно</strong>, поэтому на шаге <strong>software selection</strong> оставляем отмеченными только пункты <strong>SSH server</strong> и <strong>standart system utilities</strong>.</p>
+<p>После установки ОС добавим возможность подключения по ssh, для удобства конфигурации. Для этого в файле <strong>/etc/ssh/ssdh_config</strong> в секцию <strong>Authentication</strong> добавим строку <strong>PermitRootLogin yes</strong>, перезапустим сервис ssh <strong>systemctl restart ssh</strong>.</p>
+<h2 id="установка-по-на-виртуальную-машину">Установка ПО на виртуальную машину</h2>
+<p>Подключаемся по ssh к ВМ для установки и настройки необходимых сервисов:</p>
+<ol>
+<li>Обновляем ОС</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">apt update &amp;&amp; apt upgrade
+</span></span></code></pre></div><ol start="2">
+<li>Для дальнейшего подключения к роутеру в EVE-NG необходимо:</li>
+</ol>
+<ul>
+<li>Установить telnet</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">apt install telnetd
+</span></span></code></pre></div><ul>
+<li>Проверить, что сервис включен и запущен (после установки он самостоятельно включается):</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">systemctl status inetd.service
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">● inetd.service - Internet superserver
+</span></span><span class="line"><span class="cl">Loaded: loaded (/lib/systemd/system/inetd.service; enabled; vendor preset: enabled)
+</span></span><span class="line"><span class="cl">Active: active (running) since Thu 2022-09-15 17:11:40 MSK; 1min 4s ago
+</span></span></code></pre></div><ul>
+<li>Также необходимо включить доступ по консольному интерфейсу (т.к. EVE-NG использует его, при отсутствии VNC):</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">systemctl start serial-getty@ttyS0.service  
+</span></span><span class="line"><span class="cl">systemctl enable serial-getty@ttyS0.service
+</span></span></code></pre></div><ol start="3">
+<li>Установим программы для работы с сетью:</li>
+</ol>
+<ul>
+<li><a href="https://frrouting.org/">FRR</a> - набор утилит для работы с протоколами маршрутизации</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">apt install frr
+</span></span></code></pre></div><ul>
+<li>Установим программы для диагностики:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">apt install traceroute tcpdump dnsutils
+</span></span></code></pre></div><ol start="3">
+<li>Выключаем вирутальную машину.</li>
+</ol>
+<h2 id="добавление-образа-в-eve-ng1">Добавление образа в EVE-NG<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></h2>
+<p>Созданный ранее образ загружаем на виртуальную машину с EVE-NG, для этого:</p>
+<ol>
+<li>Заходим по ssh на сервер с EVE-NG и создаем там директорию для образа:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">mkdir /opt/unetlab/addons/qemu/linuxrouter-1.0
+</span></span></code></pre></div><p>Необходимо учитывать <a href="https://www.eve-ng.net/index.php/documentation/qemu-image-namings/">схему именования qemu устройств</a>, сначала название папки с образом, а через дефис название образа и версия, либо просто версия. Это имя будет использоваться в шаблоне, для создания устройства.</p>
+<ol start="2">
+<li>На машине, где создавали образ, переходим в директорию с ним и загружаем .vmdk файл на сервер:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">scp linuxrouter.vmdk root@192.168.22.71:/opt/unetlab/addons/qemu/linuxrouter-1.0/
+</span></span></code></pre></div><ol start="3">
+<li>На сервере с EVE-NG перейдем в директорию, куда копировали образ, переконвертируем его в формат .qcow2, после чего удалим .vmdk файл:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cd /opt/unetlab/addons/qemu/linuxrouter-1.0/  
+</span></span><span class="line"><span class="cl">/opt/qemu/bin/qemu-img convert -f vmdk -O qcow2 linuxrouter.vmdk hda.qcow2  
+</span></span><span class="line"><span class="cl">rm linuxrouter.vmdk
+</span></span><span class="line"><span class="cl">/opt/unetlab/wrappers/unl_wrapper -a fixpermissions
+</span></span></code></pre></div><ol start="4">
+<li>Создадим шаблон для образа, для этого:</li>
+</ol>
+<ul>
+<li>Перейдем в директорию /opt/unetlab/html/templates/{тип процессора}</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cd /opt/unetlab/html/templates/amd
+</span></span></code></pre></div><ul>
+<li>Скопируем существующий шаблон linux.yml в новый linuxrouter.yml</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">cp linux.yml linuxrouter.yml
+</span></span></code></pre></div><ul>
+<li>Отредактируем файл linuxrouter.yml и приведем его к следующему виду:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">---
+</span></span><span class="line"><span class="cl">type: qemu
+</span></span><span class="line"><span class="cl">description: LinuxRouter
+</span></span><span class="line"><span class="cl">name: LinuxRouter
+</span></span><span class="line"><span class="cl">cpulimit: 1
+</span></span><span class="line"><span class="cl">icon: Router.png
+</span></span><span class="line"><span class="cl">cpu: 1
+</span></span><span class="line"><span class="cl">ram: 1024
+</span></span><span class="line"><span class="cl">ethernet: 4
+</span></span><span class="line"><span class="cl">console: telnet
+</span></span><span class="line"><span class="cl">shutdown: 1
+</span></span><span class="line"><span class="cl">qemu_arch: x86_64
+</span></span><span class="line"><span class="cl">qemu_nic: virtio-net-pci
+</span></span><span class="line"><span class="cl">qemu_options: -machine type=pc,accel=kvm -serial mon:stdio -nographic -boot order=c
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></div><p>Здесь мы указали: описание, имя, количество CPU и RAM, количество портов, telnet в качестве консоли и в параметрах qemu использование serial интерфейса</p>
+<h2 id="проверка-работы-образа">Проверка работы образа</h2>
+<p>Теперь при добавлении новой Node появляется выбор образа<br>
+<img src="/img/eve-ng-add-linuxrouter.png" alt="Новая Node"></p>
+<p>Также видно, что параметры по умолчанию те, которые задавали ранее в шаблоне
+<img src="/img/eve-ng-linuxrouter-template.png" alt="Параметры"></p>
+<p>Соберем простую топологию, с первое устройство будет роутер Cisco, второе - роутер на Linux
+<img src="/img/eve-ng-linuxrouter-topology.png" alt="Топология"></p>
+<p>Настроим ip-адреса на обоих устройствах и сделаем ping друг до друга</p>
+<ol>
+<li>Конфиг Cisco</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Router&gt;enable
+</span></span><span class="line"><span class="cl">Router#conf t
+</span></span><span class="line"><span class="cl">Router(config)#hostname CiscoRouter
+</span></span><span class="line"><span class="cl">CiscoRouter(config)#int e0/0
+</span></span><span class="line"><span class="cl">CiscoRouter(config-if)#no sh
+</span></span><span class="line"><span class="cl">CiscoRouter(config-if)#ip add 1.1.1.1 255.255.255.0
+</span></span></code></pre></div><ol start="2">
+<li>Конфиг роутера на Linux</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">root@linuxrouter:~# vtysh
+</span></span><span class="line"><span class="cl">linuxrouter# configure terminal
+</span></span><span class="line"><span class="cl">linuxrouter(config)# interface ens3
+</span></span><span class="line"><span class="cl">linuxrouter(config-if)# ip address 1.1.1.2/24
+</span></span></code></pre></div><ol start="3">
+<li>Проверим ping с двух сторон</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">CiscoRouter#ping 1.1.1.2
+</span></span><span class="line"><span class="cl">Type escape sequence to abort.
+</span></span><span class="line"><span class="cl">Sending 5, 100-byte ICMP Echos to 1.1.1.2, timeout is 2 seconds:
+</span></span><span class="line"><span class="cl">!!!!!
+</span></span><span class="line"><span class="cl">Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">linuxrouter# ping 1.1.1.1
+</span></span><span class="line"><span class="cl">PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.
+</span></span><span class="line"><span class="cl">64 bytes from 1.1.1.1: icmp_seq=1 ttl=255 time=0.940 ms
+</span></span><span class="line"><span class="cl">64 bytes from 1.1.1.1: icmp_seq=2 ttl=255 time=0.655 ms
+</span></span><span class="line"><span class="cl">64 bytes from 1.1.1.1: icmp_seq=3 ttl=255 time=0.954 ms
+</span></span><span class="line"><span class="cl">--- 1.1.1.1 ping statistics ---
+</span></span><span class="line"><span class="cl">3 packets transmitted, 3 received, 0% packet loss, time 2004ms
+</span></span><span class="line"><span class="cl">rtt min/avg/max/mdev = 0.655/0.849/0.954/0.137 ms
+</span></span></code></pre></div><p>Как видим образ работает. В будущих статьях установим ipsec туннель между Cisco и Linux роутером и настроим OSPF.</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>В качестве основы для данной публикации использовалась <a href="https://www.brianlinkletter.com/2017/03/build-custom-linux-router-image-unetlab-eve-ng-network-emulators/">данная</a> статья, с необходимыми изменениями в программах образа (к примеру, использование frr) и исправлениями в шаблонах (ранее EVE-NG использовали php, в момент написания статьи - yaml)&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+
+        
+
+        
+
+        
+          
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://welqd.github.io/post/eve-ng-arch-i3/" data-toggle="tooltip" data-placement="top" title="EVE-NG в Arch Linux с i3wm">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:w3lqd@yandex.ru" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/welqd" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="welqd.ru">Vadim Aleshin</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2022
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://welqd.github.io">Vadim Aleshin&#39;s Blog</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="https://gohugo.io">Hugo v0.102.3</a> powered &nbsp;&bull;&nbsp; Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapted from <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://welqd.github.io/js/main.js"></script>
+<script src="https://welqd.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://welqd.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+

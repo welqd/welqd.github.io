@@ -7,7 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>w3lqd@yandex.ru (Vadim Aleshin)</managingEditor>
     <webMaster>w3lqd@yandex.ru (Vadim Aleshin)</webMaster>
-    <lastBuildDate>Tue, 13 Sep 2022 20:16:17 +0300</lastBuildDate><atom:link href="https://welqd.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 15 Sep 2022 14:46:00 +0300</lastBuildDate><atom:link href="https://welqd.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Образ роутера на linux для EVE-NG</title>
+      <link>https://welqd.github.io/post/eve-ng-linux-iso/</link>
+      <pubDate>Thu, 15 Sep 2022 14:46:00 +0300</pubDate>
+      <author>w3lqd@yandex.ru (Vadim Aleshin)</author>
+      <guid>https://welqd.github.io/post/eve-ng-linux-iso/</guid>
+      <description>В прерыдущей публикации был установлен образ EVE-NG и настроена базовая конфигурация.Теперь создадим образ Linux-роутера на основе Debian 11 для экспериментов и добавим его в EVE-NG.
+Создание вируальной машины Скачиваем образ с официального сайта.
+Необходимо создать виртуальную машину, для этих целей будет использоваться VMware Workstation. В процессе настройки ВМ на этапе указания объема диска обязательно выбрать Store virtual disk as a single file.
+Т.к. необходим наиболее минимальный образ, то объем диска указываем 4 Гб, этого достаточно.</description>
+    </item>
+    
     <item>
       <title>EVE-NG в Arch Linux с i3wm</title>
       <link>https://welqd.github.io/post/eve-ng-arch-i3/</link>
@@ -16,7 +28,7 @@
       <guid>https://welqd.github.io/post/eve-ng-arch-i3/</guid>
       <description>Установка EVE-NG в VMware Предполагается, что уже есть установленная VMware workstation, для Arch Linux можно установить из AUR.
 Для установки EVE Community Edition Version:
-Скачиваем архив с образом с официального сайта Распаковываем архим и добавляем в VMware workstation (File -&amp;gt; Open -&amp;gt; EVE-COM-5.ovf) Запускаем VM и входим в ОС под пользователем root, пароль eve Задаем первичные параметры в появившемся диалоге настроек (root пароль, ip адрес и т.д.) После этого можно зайти в web-интерфейс по ip-адресу (в этой статье примеры будут с адресом 192.</description>
+Скачиваем архив с образом с официального сайта Распаковываем архив и добавляем в VMware workstation (File -&amp;gt; Open -&amp;gt; EVE-COM-5.ovf) Запускаем VM и входим в ОС под пользователем root, пароль eve Задаем первичные параметры в появившемся диалоге настроек (root пароль, ip адрес и т.д.) После этого можно зайти в web-интерфейс по ip-адресу (в этой статье примеры будут с адресом 192.</description>
     </item>
     
     <item>
