@@ -7,7 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>w3lqd@yandex.ru (Vadim Aleshin)</managingEditor>
     <webMaster>w3lqd@yandex.ru (Vadim Aleshin)</webMaster>
-    <lastBuildDate>Tue, 13 Sep 2022 20:16:17 +0300</lastBuildDate><atom:link href="https://welqd.github.io/tags/networking/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 15 Sep 2022 14:46:00 +0300</lastBuildDate><atom:link href="https://welqd.github.io/tags/networking/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Образ роутера на linux для EVE-NG</title>
+      <link>https://welqd.github.io/post/eve-ng-linux-iso/</link>
+      <pubDate>Thu, 15 Sep 2022 14:46:00 +0300</pubDate>
+      <author>w3lqd@yandex.ru (Vadim Aleshin)</author>
+      <guid>https://welqd.github.io/post/eve-ng-linux-iso/</guid>
+      <description>В прерыдущей публикации был установлен образ EVE-NG и настроена базовая конфигурация. Теперь создадим образ Linux-роутера на основе Debian 11 и добавим его в EVE-NG.
+Создание вируальной машины Скачиваем образ с официального сайта.
+Cоздаем виртуальную машину, для этих целей будет использоваться VMware Workstation. В процессе настройки ВМ на этапе указания объема диска обязательно выбрать Store virtual disk as a single file.
+Т.к. необходим наиболее минимальный образ, то объем диска указываем 3-4 Гб, этого достаточно.</description>
+    </item>
+    
     <item>
       <title>EVE-NG в Arch Linux с i3wm</title>
       <link>https://welqd.github.io/post/eve-ng-arch-i3/</link>

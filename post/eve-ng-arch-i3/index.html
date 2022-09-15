@@ -61,7 +61,7 @@
   "headline": "EVE-NG в Arch Linux с i3wm",
   "description" : "Установка EVE-NG в VMware Предполагается, что уже есть установленная VMware workstation, для Arch Linux можно установить из AUR.\nДля установки EVE Community Edition Version:\nСкачиваем архив с образом с официального сайта Распаковываем архив и добавляем в VMware workstation (File -\u0026gt; Open -\u0026gt; EVE-COM-5.ovf) Запускаем VM и входим в ОС под пользователем root, пароль eve Задаем первичные параметры в появившемся диалоге настроек (root пароль, ip адрес и т.д.) После этого можно зайти в web-интерфейс по ip-адресу (в этой статье примеры будут с адресом 192.",
   "inLanguage" : "en",
-  "wordCount":  645 ,
+  "wordCount":  638 ,
   "datePublished" : "2022-09-13T20:16:17",
   "dateModified" : "2022-09-13T20:16:17",
   "image" : "https:\/\/welqd.github.io\/img\/logo.png",
@@ -287,10 +287,8 @@ IOL-образы необходимо добавлять по пути: <strong>
 <ol start="2">
 <li>Используя scp добавим их на виртуальную машину с EVE-NG:</li>
 </ol>
-<blockquote>
-<p><strong>scp * <a href="mailto:root@192.168.22.71">root@192.168.22.71</a>:/opt/unetlab/addons/iol/bin/</strong><sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
-</blockquote>
-<ol start="3">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">scp * root@192.168.22.71:/opt/unetlab/addons/iol/bin/
+</span></span></code></pre></div><ol start="3">
 <li>Также в директории с IOL-образами должен быть файл с лицензией, который должен называться iourc, содержащий данные о лицензии:</li>
 </ol>
 <blockquote>
@@ -325,7 +323,7 @@ eve-ng = &lt;ключ&gt;;</p>
 </span></span></code></pre></div><ol start="2">
 <li>В случае использования терминала alacritty, описанных выше действий недостаточно, т.к. при выполнении этого скрипта на python, будет передаваться конструкция <strong>alacritty -e &rsquo;telnet 192.168.22.71 32769&rsquo;</strong>, которая работать <a href="https://github.com/alacritty/alacritty/issues/1266">не будет</a>.<br>
 Необходимо передавать терминалу программу и значения не в виде строки (без кавычек), т.е. <strong>alacritty -e telnet 192.168.22.71 32769</strong>.<br>
-Для исправления необходимо в файле <strong>/usr/bin/eve-ng-integration</strong> найти функцию <strong>execute</strong>, закоментировать переменную <strong>command</strong> и добавить такую же, но без <em>&rsquo;/n&rsquo;</em>, как указано ниже. Теперь терминал, при клике на устройство в eve-ng, должен открываться<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>.</li>
+Для исправления необходимо в файле <strong>/usr/bin/eve-ng-integration</strong> найти функцию <strong>execute</strong>, закоментировать переменную <strong>command</strong> и добавить такую же, но без <em>&rsquo;/n&rsquo;</em>, как указано ниже. Теперь терминал, при клике на устройство в eve-ng, должен открываться<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</li>
 </ol>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">)):</span>
@@ -343,7 +341,7 @@ eve-ng = &lt;ключ&gt;;</p>
 </blockquote>
 <ul>
 <li>Если используется оконный менеджер (в моем случае i3), то использовать tabbed layout (по умолчанию это mod+w, в конфиге i3 строка bindsym $mod+w layout tabbed)<br>
-Можно отправлять каждый открытый терминал на какое-либо рабочее пространство (к примеру, на второй экран) и там уже использовать tabbed layout.</li>
+Самый простой способ - отправлять каждый открытый терминал на какое-либо рабочее пространство (к примеру, на второй экран) и там уже использовать tabbed layout.</li>
 </ul>
 <div class="footnotes" role="doc-endnotes">
 <hr>
@@ -352,10 +350,7 @@ eve-ng = &lt;ключ&gt;;</p>
 <p>Необходимо либо использовать официальные образы, к примеру из Cisco CML, либо &ldquo;нагуглить&rdquo; не совсем официальные&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2">
-<p>scp * копирует все файлы из директории, где находятся образы&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:3">
-<p>При смене терминала с alacritty на другой, не забыть это исправление в коде&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p>При смене терминала с alacritty на другой, не забыть это исправление в коде&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </div>
@@ -379,6 +374,17 @@ eve-ng = &lt;ключ&gt;;</p>
 
         
           
+            
+          
+
+          
+                  <h4 class="see-also">See also</h4>
+                  <ul>
+                
+                
+                    <li><a href="/post/eve-ng-linux-iso/">Образ роутера на linux для EVE-NG</a></li>
+                
+              </ul>
 
           
         
@@ -396,9 +402,6 @@ eve-ng = &lt;ключ&gt;;</p>
       
 
 
-      
-        
-        
       
 
     </div>
@@ -428,15 +431,6 @@ eve-ng = &lt;ключ&gt;;</p>
                   </span>
                 </a>
               </li>
-          
-          <li>
-            <a href="" title="RSS">
-              <span class="fa-stack fa-lg">
-                <i class="fas fa-circle fa-stack-2x"></i>
-                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
           
         </ul>
         <p class="credits copyright text-muted">
