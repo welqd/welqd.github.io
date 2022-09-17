@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Pages - Vadim Aleshin&#39;s Blog</title>
+  <title>cisco - Vadim Aleshin&#39;s Blog</title>
   <meta name="author" content="Vadim Aleshin"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -29,13 +29,13 @@
 }
 </script>
 
-<meta property="og:title" content="Pages" />
+<meta property="og:title" content="cisco" />
 <meta property="og:image" content="https://welqd.github.io/img/logo.png" />
-<meta property="og:url" content="https://welqd.github.io/page/" />
+<meta property="og:url" content="https://welqd.github.io/tags/cisco/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Vadim Aleshin&#39;s Blog" />
 
-  <meta name="twitter:title" content="Pages" />
+  <meta name="twitter:title" content="cisco" />
   <meta name="twitter:image" content="https://welqd.github.io/img/logo.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <link href='https://welqd.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -172,9 +172,9 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div class="page-heading">
+            <div class="tags-heading">
               
-                <h1>Pages</h1>
+                <h1>cisco</h1>
               
               
                 <hr class="small">
@@ -198,12 +198,8 @@
         <div class="posts-list">
           
             <article class="post-preview">
-    <a href="https://welqd.github.io/page/about/">
-        <h2 class="post-title">Обо мне</h2>
-        
-        <h3 class="post-subtitle">
-            Немного бесполезной информации
-        </h3>
+    <a href="https://welqd.github.io/post/linux-cisco-vti-ipsec/">
+        <h2 class="post-title">IPSec между Cisco и Linux, при помощи systemd-networkd и VTI</h2>
         
         
         
@@ -213,10 +209,10 @@
         <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;Posted on January 1, 0001
+  <i class="fas fa-calendar"></i>&nbsp;Posted on September 17, 2022
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;8&nbsp;minutes
   
   
   
@@ -231,13 +227,23 @@
     </p>
     <div class="post-entry">
         
-        <p>Всем привет. Меня зовут Вадим, интересуюсь компьютерными сетями, linux и в целом сферой информационных технологий.<br>
-Этот блог, в первую очередь, является моими заметками в процессе изучения чего-либо, но возможно кто-нибудь найдет полезную для себя информацию.<br>
-Публикации абсолютно не претендуют на best practice решения, т.к. написаны в процессе изучения и/или персонального использования.</p>
-
+        В предыдущей статье был создан образ роутера на Linux для EVE-NG на основе Debian 11. Теперь, используя данный образ, настроим популярный сценарий - IPSec между роутером Cisco и роутером с Linux.
+Существуют несколько методов организации IPSec туннеля между двумя точками:
+Policy-based - трафик, который должен отправляться в туннель, определяется на основе политик в процессе конфигурации IPSec&rsquo;а. Route-based - трафик, который должен отправляться в туннель, определяется с помощью маршрута по адресу назначения и конфигурируется с помощью протоколов маршрутизации (либо статических маршрутов), обычно поверх VTI или GRE туннельных интерфейсов.
+        <a href="https://welqd.github.io/post/linux-cisco-vti-ipsec/" class="post-read-more">[Read More]</a>
         
     </div>
 
+    
+    <div class="blog-tags">
+        
+        <a href="https://welqd.github.io/tags/networking/">networking</a>&nbsp;
+        
+        <a href="https://welqd.github.io/tags/linux/">linux</a>&nbsp;
+        
+        <a href="https://welqd.github.io/tags/cisco/">cisco</a>&nbsp;
+        
+    </div>
     
 
 </article>
@@ -249,14 +255,6 @@
   </div>
 
       
-    <div class="page-meta">
-  
-  
-  
-</div>
-
-
-  
 <footer>
   <div class="container">
     <div class="row">

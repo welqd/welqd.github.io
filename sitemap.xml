@@ -2,22 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://welqd.github.io/tags/eve-ng/</loc>
-    <lastmod>2022-09-15T14:46:00+03:00</lastmod>
+    <loc>https://welqd.github.io/tags/cisco/</loc>
+    <lastmod>2022-09-17T17:41:36+03:00</lastmod>
+  </url><url>
+    <loc>https://welqd.github.io/post/linux-cisco-vti-ipsec/</loc>
+    <lastmod>2022-09-17T17:41:36+03:00</lastmod>
   </url><url>
     <loc>https://welqd.github.io/tags/linux/</loc>
-    <lastmod>2022-09-15T14:46:00+03:00</lastmod>
+    <lastmod>2022-09-17T17:41:36+03:00</lastmod>
   </url><url>
     <loc>https://welqd.github.io/tags/networking/</loc>
-    <lastmod>2022-09-15T14:46:00+03:00</lastmod>
+    <lastmod>2022-09-17T17:41:36+03:00</lastmod>
   </url><url>
     <loc>https://welqd.github.io/post/</loc>
-    <lastmod>2022-09-15T14:46:00+03:00</lastmod>
+    <lastmod>2022-09-17T17:41:36+03:00</lastmod>
   </url><url>
     <loc>https://welqd.github.io/tags/</loc>
-    <lastmod>2022-09-15T14:46:00+03:00</lastmod>
+    <lastmod>2022-09-17T17:41:36+03:00</lastmod>
   </url><url>
     <loc>https://welqd.github.io/</loc>
+    <lastmod>2022-09-17T17:41:36+03:00</lastmod>
+  </url><url>
+    <loc>https://welqd.github.io/tags/eve-ng/</loc>
     <lastmod>2022-09-15T14:46:00+03:00</lastmod>
   </url><url>
     <loc>https://welqd.github.io/post/eve-ng-linux-iso/</loc>

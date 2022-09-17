@@ -242,6 +242,8 @@
   <i class="fas fa-calendar"></i>&nbsp;Posted on September 13, 2022
   
   
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+  
   
   
     
@@ -296,7 +298,7 @@ IOL-образы необходимо добавлять по пути: <strong>
 eve-ng = &lt;ключ&gt;;</p>
 </blockquote>
 <p>Скрипт для генерации ключа можно найти <a href="https://www.ipvanquish.com/2016/09/25/how-to-generate-cisco-iou-licence-on-gns3-vm-with-python-3/">здесь</a>.</p>
-<p>После этого при добавление новой Node можно будет выбрать пункт Cisco IOL, который содержит L2 и L3 образы.</p>
+<p>После этого при добавлении новой Node можно будет выбрать пункт Cisco IOL, который содержит L2 и L3 образы.</p>
 <h2 id="отображать-только-устройства-для-которых-есть-образ">Отображать только устройства для которых есть образ</h2>
 <p>По умолчанию при добавлении нового устройства в лабораторную, появляется список всех устройств (даже если нет установленного образа), что очень неудобно.<br>
 Для исправления ситуации в файле <strong>/opt/unetlab/html/includes/init.php</strong> найти блок кода:</p>
@@ -304,18 +306,18 @@ eve-ng = &lt;ключ&gt;;</p>
 </span></span><span class="line"><span class="cl">        <span class="c1">//$node_templates[$templ] = $desc.&#39;.missing&#39;  ;
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//$node_templates[$templ] = $desc.TEMPLATE_DISABLED  ;
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">unset</span><span class="p">(</span><span class="nv">$node_templates</span><span class="p">[</span><span class="nv">$templ</span><span class="p">])</span> <span class="p">;</span>
-</span></span></code></pre></div><p>Закоментировать строчку <strong>$node_templates[$templ] = $desc.TEMPLATE_DISABLED</strong> и добавить <strong>unset($node_templates[$templ])</strong>, после чего при добавлении устройства будет выбор только тех, чей образ добавлен, как на изображении ниже.</p>
+</span></span></code></pre></div><p>Закомментировать строчку <strong>$node_templates[$templ] = $desc.TEMPLATE_DISABLED</strong> и добавить <strong>unset($node_templates[$templ])</strong>, после чего при добавлении устройства будет выбор только тех, чей образ добавлен, как на изображении ниже.</p>
 <p><img src="/img/eve-ng-new-node.png" alt="Добавление нового устройства"></p>
 <h2 id="интеграция-с-arch-linux">Интеграция с Arch Linux</h2>
 <p>Прежде всего стоит установить пакет <strong>eve-ng-integration</strong>, который находится в <a href="https://aur.archlinux.org/packages/eve-ng-integration">AUR</a>.</p>
-<p>Если посмотреть внуть скрипта <strong>/usr/bin/eve-ng-integration</strong>, то видно, что эмулятор терминала выбирается на основе значения переменной окружения <strong>XDG_CURRENT_DESKTOP</strong>.<br>
-Причем по умолчанию в списке графических окруженений есть: gnome, kde, xfce4 и т.д.<br>
+<p>Если посмотреть внутрь скрипта <strong>/usr/bin/eve-ng-integration</strong>, то видно, что эмулятор терминала выбирается на основе значения переменной окружения <strong>XDG_CURRENT_DESKTOP</strong>.<br>
+Причем по умолчанию в списке графических окружений есть: gnome, kde, xfce4 и т.д.<br>
 В случае, если используется одно из &ldquo;стандартных&rdquo; графических окружений, то терминал должен открываться &ldquo;из коробки&rdquo;.</p>
 <h3 id="использование-i3wm-и-терминала-alacritty">Использование i3wm и терминала alacritty</h3>
 <p>В случае использования i3wm <strong>echo $XDG_CURRENT_DESKTOP</strong> будет возвращать значение <strong>i3</strong> и по умолчанию будет пытаться запуститься терминал <strong>xterm</strong>, что, скорее всего, не является ожидаемым поведением.</p>
 <h3 id="изменение-эмулятора-терминала">Изменение эмулятора терминала:</h3>
 <ol>
-<li>Для большинства терминалов (к примеру, xfce4-terminal) в файле /usr/bin/eve-ng-integration необходимо найти функцию <strong>terminal_emulator_cmd</strong> и в последнем else закоментировать <strong>return [&lsquo;xterm&rsquo;, &lsquo;-e&rsquo;]</strong> и добавить нужный терминал, как в примере ниже.</li>
+<li>Для большинства терминалов (к примеру, xfce4-terminal) в файле /usr/bin/eve-ng-integration необходимо найти функцию <strong>terminal_emulator_cmd</strong> и в последнем else закомментировать <strong>return [&lsquo;xterm&rsquo;, &lsquo;-e&rsquo;]</strong> и добавить нужный терминал, как в примере ниже.</li>
 </ol>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">#return [&#39;xterm&#39;, &#39;-e&#39;]</span>
@@ -323,7 +325,7 @@ eve-ng = &lt;ключ&gt;;</p>
 </span></span></code></pre></div><ol start="2">
 <li>В случае использования терминала alacritty, описанных выше действий недостаточно, т.к. при выполнении этого скрипта на python, будет передаваться конструкция <strong>alacritty -e &rsquo;telnet 192.168.22.71 32769&rsquo;</strong>, которая работать <a href="https://github.com/alacritty/alacritty/issues/1266">не будет</a>.<br>
 Необходимо передавать терминалу программу и значения не в виде строки (без кавычек), т.е. <strong>alacritty -e telnet 192.168.22.71 32769</strong>.<br>
-Для исправления необходимо в файле <strong>/usr/bin/eve-ng-integration</strong> найти функцию <strong>execute</strong>, закоментировать переменную <strong>command</strong> и добавить такую же, но без <em>&rsquo;/n&rsquo;</em>, как указано ниже. Теперь терминал, при клике на устройство в eve-ng, должен открываться<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</li>
+Для исправления необходимо в файле <strong>/usr/bin/eve-ng-integration</strong> найти функцию <strong>execute</strong>, закомментировать переменную <strong>command</strong> и добавить такую же, но без <em>&rsquo;/n&rsquo;</em>, как указано ниже. Теперь терминал, при клике на устройство в eve-ng, должен открываться<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</li>
 </ol>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">)):</span>
@@ -382,7 +384,9 @@ eve-ng = &lt;ключ&gt;;</p>
                   <ul>
                 
                 
-                    <li><a href="/post/eve-ng-linux-iso/">Образ роутера на linux для EVE-NG</a></li>
+                    <li><a href="/post/linux-cisco-vti-ipsec/">IPSec между Cisco и Linux, при помощи systemd-networkd и VTI</a></li>
+                
+                    <li><a href="/post/eve-ng-linux-iso/">Образ роутера на Linux для EVE-NG</a></li>
                 
               </ul>
 
@@ -395,7 +399,7 @@ eve-ng = &lt;ключ&gt;;</p>
           
           
             <li class="next">
-              <a href="https://welqd.github.io/post/eve-ng-linux-iso/" data-toggle="tooltip" data-placement="top" title="Образ роутера на linux для EVE-NG">Next Post &rarr;</a>
+              <a href="https://welqd.github.io/post/eve-ng-linux-iso/" data-toggle="tooltip" data-placement="top" title="Образ роутера на Linux для EVE-NG">Next Post &rarr;</a>
             </li>
           
         </ul>

@@ -182,8 +182,10 @@
                 <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;Posted on September 15, 2022
+  <i class="fas fa-calendar"></i>&nbsp;Posted on September 17, 2022
   
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;0&nbsp;minutes
   
   
   
@@ -213,8 +215,8 @@
         <div class="posts-list">
           
             <article class="post-preview">
-    <a href="https://welqd.github.io/post/eve-ng-linux-iso/">
-        <h2 class="post-title">Образ роутера на linux для EVE-NG</h2>
+    <a href="https://welqd.github.io/post/linux-cisco-vti-ipsec/">
+        <h2 class="post-title">IPSec между Cisco и Linux, при помощи systemd-networkd и VTI</h2>
         
         
         
@@ -224,8 +226,10 @@
         <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;Posted on September 15, 2022
+  <i class="fas fa-calendar"></i>&nbsp;Posted on September 17, 2022
   
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;8&nbsp;minutes
   
   
   
@@ -240,9 +244,60 @@
     </p>
     <div class="post-entry">
         
-        В прерыдущей публикации был установлен образ EVE-NG и настроена базовая конфигурация. Теперь создадим образ Linux-роутера на основе Debian 11 и добавим его в EVE-NG.
-Создание вируальной машины Скачиваем образ с официального сайта.
-Cоздаем виртуальную машину, для этих целей будет использоваться VMware Workstation. В процессе настройки ВМ на этапе указания объема диска обязательно выбрать Store virtual disk as a single file.
+        В предыдущей статье был создан образ роутера на Linux для EVE-NG на основе Debian 11. Теперь, используя данный образ, настроим популярный сценарий - IPSec между роутером Cisco и роутером с Linux.
+Существуют несколько методов организации IPSec туннеля между двумя точками:
+Policy-based - трафик, который должен отправляться в туннель, определяется на основе политик в процессе конфигурации IPSec&rsquo;а. Route-based - трафик, который должен отправляться в туннель, определяется с помощью маршрута по адресу назначения и конфигурируется с помощью протоколов маршрутизации (либо статических маршрутов), обычно поверх VTI или GRE туннельных интерфейсов.
+        <a href="https://welqd.github.io/post/linux-cisco-vti-ipsec/" class="post-read-more">[Read More]</a>
+        
+    </div>
+
+    
+    <div class="blog-tags">
+        
+        <a href="https://welqd.github.io/tags/networking/">networking</a>&nbsp;
+        
+        <a href="https://welqd.github.io/tags/linux/">linux</a>&nbsp;
+        
+        <a href="https://welqd.github.io/tags/cisco/">cisco</a>&nbsp;
+        
+    </div>
+    
+
+</article>
+          
+            <article class="post-preview">
+    <a href="https://welqd.github.io/post/eve-ng-linux-iso/">
+        <h2 class="post-title">Образ роутера на Linux для EVE-NG</h2>
+        
+        
+        
+    </a>
+
+    <p class="post-meta">
+        <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on September 15, 2022
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;4&nbsp;minutes
+  
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;Vadim Aleshin
+    
+  
+  
+</span>
+
+
+    </p>
+    <div class="post-entry">
+        
+        В предыдущей публикации был установлен образ EVE-NG и настроена базовая конфигурация. Теперь создадим образ Linux-роутера на основе Debian 11 и добавим его в EVE-NG.
+Создание виртуальной машины Скачиваем образ с официального сайта.
+Создаем виртуальную машину, для этих целей будет использоваться VMware Workstation. В процессе настройки ВМ на этапе указания объема диска обязательно выбрать Store virtual disk as a single file.
 Т.к. необходим наиболее минимальный образ, то объем диска указываем 3-4 Гб, этого достаточно.
         <a href="https://welqd.github.io/post/eve-ng-linux-iso/" class="post-read-more">[Read More]</a>
         
@@ -276,6 +331,8 @@ Cоздаем виртуальную машину, для этих целей б
   
   <i class="fas fa-calendar"></i>&nbsp;Posted on September 13, 2022
   
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
   
   
   
