@@ -61,7 +61,7 @@
   "headline": "EVE-NG установка \u002b интеграция в Arch Linux с i3wm",
   "description" : "Установка EVE-NG в VMware Предполагается, что уже есть установленная VMware workstation, для Arch Linux можно установить из AUR.\nДля установки EVE Community Edition Version:\nСкачиваем архив с образом с официального сайта Распаковываем архив и добавляем в VMware workstation (File -\u0026gt; Open -\u0026gt; EVE-COM-5.ovf) Запускаем VM и входим в ОС под пользователем root, пароль eve Задаем первичные параметры в появившемся диалоге настроек (root пароль, ip адрес и т.д.) После этого можно зайти в web-интерфейс по ip-адресу (в этой статье примеры будут с адресом 192.",
   "inLanguage" : "en",
-  "wordCount":  716 ,
+  "wordCount":  718 ,
   "datePublished" : "2022-09-13T20:16:17",
   "dateModified" : "2022-09-13T20:16:17",
   "image" : "https:\/\/welqd.github.io\/img\/logo-1.png",
@@ -362,10 +362,10 @@ eve-ng = &lt;ключ&gt;;</p>
 Т.е. строка должна выглядеть так: <strong>return [&lsquo;xfce4-terminal&rsquo;, &lsquo;&ndash;tab&rsquo;, &lsquo;-e&rsquo;]</strong> (в &ndash;tab два знака -)</p>
 </blockquote>
 <ol start="2">
-<li>Если используется оконный менеджер (в моем случае i3) и , то использовать tabbed layout (по умолчанию это mod+w, в конфиге i3 строка bindsym $mod+w layout tabbed).</li>
+<li>Если используется оконный менеджер (в моем случае i3), то использовать tabbed layout (по умолчанию это mod+w, в конфиге i3 строка bindsym $mod+w layout tabbed).</li>
 </ol>
 <p>Для того, чтобы &ldquo;отловить&rdquo; терминалы, созданные из EVE-NG можно воспользоваться способностью alacritty менять class создаваемого окна.<br>
-В файле <strong>/usr/bin/eve-ng-integration</strong> в строке return с терминалом приводим ее к виду <strong>return [&lsquo;alacritty&rsquo;, &lsquo;&ndash;class&rsquo;, &rsquo;eve-ng&rsquo;, &lsquo;-e&rsquo;]</strong><br>
+В файле <strong>/usr/bin/eve-ng-integration</strong> в строке return с терминалом приводим ее к виду <strong>return [&lsquo;alacritty&rsquo;, &lsquo;&ndash;class&rsquo;, &rsquo;eve-ng&rsquo;, &lsquo;-e&rsquo;]</strong>(в &ndash;class два знака -)<br>
 Теперь мы можем это использовать для отправки терминалов, открытых из интерфейса EVE-NG на отдельньный workspace (к примеру, на втором мониторе) и помещать их в tabbed layout.<br>
 Для этого в конфигурационном файле i3 добавим правило:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">for_window [class=&#34;eve-ng&#34;] move to workspace $ws7 layout tabbed border pixel 0
