@@ -1,66 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
     <title>welqd&#39;s blog</title>
     <link>https://welqd.github.io/</link>
-    <description>Recent content on welqd&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <managingEditor>w3lqd@yandex.ru (Vadim Aleshin)</managingEditor>
-    <webMaster>w3lqd@yandex.ru (Vadim Aleshin)</webMaster>
-    <lastBuildDate>Sat, 17 Sep 2022 17:41:36 +0300</lastBuildDate><atom:link href="https://welqd.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <description>welqd&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 17 Sep 2022 17:41:36 &#43;0300</lastBuildDate>
+      <atom:link href="https://welqd.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>IPSec между Cisco и Linux, при помощи systemd-networkd и VTI</title>
-      <link>https://welqd.github.io/post/linux-cisco-vti-ipsec/</link>
-      <pubDate>Sat, 17 Sep 2022 17:41:36 +0300</pubDate>
-      <author>w3lqd@yandex.ru (Vadim Aleshin)</author>
-      <guid>https://welqd.github.io/post/linux-cisco-vti-ipsec/</guid>
-      <description>В предыдущей статье был создан образ роутера на Linux для EVE-NG на основе Debian 11. Теперь, используя данный образ, настроим популярный сценарий - IPSec между роутером Cisco и роутером с Linux.
+  <title>IPSec между Cisco и Linux, при помощи systemd-networkd и VTI</title>
+  <link>https://welqd.github.io/posts/linux-cisco-vti-ipsec/</link>
+  <pubDate>Sat, 17 Sep 2022 17:41:36 &#43;0300</pubDate>
+  <author>Vadim Aleshin</author>
+  <guid>https://welqd.github.io/posts/linux-cisco-vti-ipsec/</guid>
+  <description><![CDATA[В предыдущей статье был создан образ роутера на Linux для EVE-NG на основе Debian 11. Теперь, используя данный образ, настроим популярный сценарий - IPSec между роутером Cisco и роутером с Linux.
 Существуют несколько методов организации IPSec туннеля между двумя точками:
-Policy-based - трафик, который должен отправляться в туннель, определяется на основе политик в процессе конфигурации IPSec&amp;rsquo;а. Route-based - трафик, который должен отправляться в туннель, определяется с помощью маршрута по адресу назначения и конфигурируется с помощью протоколов маршрутизации (либо статических маршрутов), обычно поверх VTI или GRE туннельных интерфейсов.</description>
-    </item>
-    
-    <item>
-      <title>Образ роутера на Linux для EVE-NG</title>
-      <link>https://welqd.github.io/post/eve-ng-linux-iso/</link>
-      <pubDate>Thu, 15 Sep 2022 14:46:00 +0300</pubDate>
-      <author>w3lqd@yandex.ru (Vadim Aleshin)</author>
-      <guid>https://welqd.github.io/post/eve-ng-linux-iso/</guid>
-      <description>В предыдущей публикации был установлен образ EVE-NG и настроена базовая конфигурация. Теперь создадим образ Linux-роутера на основе Debian 11 и добавим его в EVE-NG.
+Policy-based - трафик, который должен отправляться в туннель, определяется на основе политик в процессе конфигурации IPSec&rsquo;а. Route-based - трафик, который должен отправляться в туннель, определяется с помощью маршрута по адресу назначения и конфигурируется с помощью протоколов маршрутизации (либо статических маршрутов), обычно поверх VTI или GRE туннельных интерфейсов.]]></description>
+</item>
+<item>
+  <title>Образ роутера на Linux для EVE-NG</title>
+  <link>https://welqd.github.io/posts/eve-ng-linux-iso/</link>
+  <pubDate>Thu, 15 Sep 2022 14:46:00 &#43;0300</pubDate>
+  <author>Vadim Aleshin</author>
+  <guid>https://welqd.github.io/posts/eve-ng-linux-iso/</guid>
+  <description><![CDATA[В предыдущей публикации был установлен образ EVE-NG и настроена базовая конфигурация. Теперь создадим образ Linux-роутера на основе Debian 11 и добавим его в EVE-NG.
 Создание виртуальной машины Скачиваем образ с официального сайта.
 Создаем виртуальную машину, для этих целей будет использоваться VMware Workstation. В процессе настройки ВМ на этапе указания объема диска обязательно выбрать Store virtual disk as a single file.
-Т.к. необходим наиболее минимальный образ, то объем диска указываем 3-4 Гб, этого достаточно.</description>
-    </item>
-    
-    <item>
-      <title>EVE-NG установка &#43; интеграция в Arch Linux с i3wm</title>
-      <link>https://welqd.github.io/post/eve-ng-arch-i3/</link>
-      <pubDate>Tue, 13 Sep 2022 20:16:17 +0300</pubDate>
-      <author>w3lqd@yandex.ru (Vadim Aleshin)</author>
-      <guid>https://welqd.github.io/post/eve-ng-arch-i3/</guid>
-      <description>Установка EVE-NG в VMware Предполагается, что уже есть установленная VMware workstation, для Arch Linux можно установить из AUR.
+Т.к. необходим наиболее минимальный образ, то объем диска указываем 3-4 Гб, этого достаточно.]]></description>
+</item>
+<item>
+  <title>EVE-NG установка &#43; интеграция в Arch Linux с i3wm</title>
+  <link>https://welqd.github.io/posts/eve-ng-arch-i3/</link>
+  <pubDate>Tue, 13 Sep 2022 20:16:17 &#43;0300</pubDate>
+  <author>Vadim Aleshin</author>
+  <guid>https://welqd.github.io/posts/eve-ng-arch-i3/</guid>
+  <description><![CDATA[Установка EVE-NG в VMware Предполагается, что уже есть установленная VMware workstation, для Arch Linux можно установить из AUR.
 Для установки EVE Community Edition Version:
-Скачиваем архив с образом с официального сайта Распаковываем архив и добавляем в VMware workstation (File -&amp;gt; Open -&amp;gt; EVE-COM-5.ovf) Запускаем VM и входим в ОС под пользователем root, пароль eve Задаем первичные параметры в появившемся диалоге настроек (root пароль, ip адрес и т.д.) После этого можно зайти в web-интерфейс по ip-адресу (в этой статье примеры будут с адресом 192.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://welqd.github.io/_index_copy/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>w3lqd@yandex.ru (Vadim Aleshin)</author>
-      <guid>https://welqd.github.io/_index_copy/</guid>
-      <description>Front Page Content beautifulhugo supports content on your front page. Edit /content/_index.md to change what appears here. Delete /content/_index.md if you don&amp;rsquo;t want any content here.</description>
-    </item>
-    
-    <item>
-      <title>Обо мне</title>
-      <link>https://welqd.github.io/page/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>w3lqd@yandex.ru (Vadim Aleshin)</author>
-      <guid>https://welqd.github.io/page/about/</guid>
-      <description>Всем привет. Меня зовут Вадим, интересуюсь компьютерными сетями, linux и в целом сферой информационных технологий.
-Этот блог, в первую очередь, является моими заметками в процессе изучения чего-либо, но возможно кто-нибудь найдет полезную для себя информацию.
-Публикации абсолютно не претендуют на best practice, т.к. написаны в процессе изучения и/или персонального использования.</description>
-    </item>
-    
-  </channel>
+Скачиваем архив с образом с официального сайта Распаковываем архив и добавляем в VMware workstation (File -&gt; Open -&gt; EVE-COM-5.ovf) Запускаем VM и входим в ОС под пользователем root, пароль eve Задаем первичные параметры в появившемся диалоге настроек (root пароль, ip адрес и т.д.) После этого можно зайти в web-интерфейс по ip-адресу (в этой статье примеры будут с адресом 192.]]></description>
+</item>
+</channel>
 </rss>
