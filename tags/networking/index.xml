@@ -3,7 +3,19 @@
     <title>networking - Tag - welqd&#39;s blog</title>
     <link>https://welqd.github.io/tags/networking/</link>
     <description>networking - Tag - welqd&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 17 Sep 2022 17:41:36 &#43;0300</lastBuildDate><atom:link href="https://welqd.github.io/tags/networking/" rel="self" type="application/rss+xml" /><item>
+    <generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 16 Apr 2023 12:11:11 &#43;0300</lastBuildDate><atom:link href="https://welqd.github.io/tags/networking/" rel="self" type="application/rss+xml" /><item>
+  <title>Proxmox. Организация доступа лабы в EVE-NG в локальную сеть и/или Интернет</title>
+  <link>https://welqd.github.io/posts/eve-ng-to-external-network/</link>
+  <pubDate>Sun, 16 Apr 2023 12:11:11 &#43;0300</pubDate>
+  <author>Vadim Aleshin</author>
+  <guid>https://welqd.github.io/posts/eve-ng-to-external-network/</guid>
+  <description><![CDATA[Нередко необходимо иметь доступ к устройствам внутри лабораторной EVE-NG из домашней сети. К примеру: для использования локального DHCP или DNS сервера, либо для тестирования автоматизации/скриптов с рабочего ПК.
+Существует несколько вариантов добиться данной цели, рассмотрю, как по мне, наиболее удобный.
+Топология локальной сети Все виртуальные девайсы в EVE-NG будут в отдельной VLAN&rsquo;е 69 и подсети 10.69.69.0/24, для удобства.
+Идея в том, чтобы &ldquo;дотянуть&rdquo; VLAN 69 до виртуалки с EVE.
+В качестве VE у меня выступает Proxmox, но в VMware логика такая же.]]></description>
+</item>
+<item>
   <title>IPSec между Cisco и Linux, при помощи systemd-networkd и VTI</title>
   <link>https://welqd.github.io/posts/linux-cisco-vti-ipsec/</link>
   <pubDate>Sat, 17 Sep 2022 17:41:36 &#43;0300</pubDate>

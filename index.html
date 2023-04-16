@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html itemscope itemtype="http://schema.org/WebPage" lang="">
   <head>
-	<meta name="generator" content="Hugo 0.110.0">
+	<meta name="generator" content="Hugo 0.111.3">
     
       <meta name="theme" content='FixIt v0.2.18-RC'>
     
@@ -86,6 +86,16 @@
     </a><a href="mailto:w3lqd@yandex.ru" title="Email" rel=" me"><i class="fa-regular fa-envelope fa-fw" aria-hidden="true"></i>
     </a><a href="/index.xml" title="RSS"target="_blank" rel="external nofollow noopener noreferrer me"><i class="fa-solid fa-rss fa-fw" aria-hidden="true"></i>
     </a></div></div>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+    <a href="/posts/eve-ng-to-external-network/">Proxmox. Организация доступа лабы в EVE-NG в локальную сеть и/или Интернет</a>
+  </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      Vadim Aleshin</span></span>&nbsp;<span class="post-publish" title='2023-04-16 12:11:11'>published on <time datetime="2023-04-16">2023-04-16</time></span></div><div class="content">Нередко необходимо иметь доступ к устройствам внутри лабораторной EVE-NG из домашней сети. К примеру: для использования локального DHCP или DNS сервера, либо для тестирования автоматизации/скриптов с рабочего ПК.
+Существует несколько вариантов добиться данной цели, рассмотрю, как по мне, наиболее удобный.
+Топология локальной сети Все виртуальные девайсы в EVE-NG будут в отдельной VLAN&rsquo;е 69 и подсети 10.69.69.0/24, для удобства.
+Идея в том, чтобы &ldquo;дотянуть&rdquo; VLAN 69 до виртуалки с EVE.
+В качестве VE у меня выступает Proxmox, но в VMware логика такая же.</div><div class="post-footer">
+    <a href="/posts/eve-ng-to-external-network/">Read More</a><div class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/networking/' class="post-tag">networking</a><a href='/tags/linux/' class="post-tag">linux</a><a href='/tags/eve-ng/' class="post-tag">eve-ng</a><a href='/tags/proxmox/' class="post-tag">proxmox</a></div></div>
+</article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
     <a href="/posts/linux-cisco-vti-ipsec/">IPSec между Cisco и Linux, при помощи systemd-networkd и VTI</a>
   </h1><div class="post-meta"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
