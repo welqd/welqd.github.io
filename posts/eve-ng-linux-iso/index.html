@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html itemscope itemtype="http://schema.org/WebPage" lang="">
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
   <head>
     
     <meta charset="utf-8">
@@ -16,7 +16,7 @@
 Создаем виртуальную машину, для этих целей будет использоваться VMware Workstation. В процессе настройки ВМ на этапе указания объема диска обязательно выбрать Store virtual disk as a single file.
 Т.к. необходим наиболее минимальный образ, то объем диска указываем 3-4 Гб, этого достаточно."><meta itemprop="datePublished" content="2022-09-15T14:46:00+03:00" />
 <meta itemprop="dateModified" content="2022-09-15T14:46:00+03:00" />
-<meta itemprop="wordCount" content="694">
+<meta itemprop="wordCount" content="689">
 <meta itemprop="keywords" content="networking,linux,eve-ng," /><meta property="og:title" content="Образ роутера на Linux для EVE-NG" />
 <meta property="og:description" content="В предыдущей публикации был установлен образ EVE-NG и настроена базовая конфигурация. Теперь создадим образ Linux-роутера на основе Debian 11 и добавим его в EVE-NG.
 Создание виртуальной машины Скачиваем образ с официального сайта.
@@ -40,11 +40,11 @@
     "@context": "http://schema.org",
     "@type": "BlogPosting",
     "headline": "Образ роутера на Linux для EVE-NG",
-    "inLanguage": "",
+    "inLanguage": "en",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/welqd.github.io\/posts\/eve-ng-linux-iso\/"
-    },"genre": "posts","keywords": "networking, linux, eve-ng","wordcount":  694 ,
+    },"genre": "posts","keywords": "networking, linux, eve-ng","wordcount":  689 ,
     "url": "https:\/\/welqd.github.io\/posts\/eve-ng-linux-iso\/","datePublished": "2022-09-15T14:46:00+03:00","dateModified": "2022-09-15T14:46:00+03:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -69,7 +69,7 @@
 <noscript><div><img src="https://mc.yandex.ru/watch/90794846" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 
 </head>
-  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
   <div class="header-wrapper">
     <div class="header-title">
       <a href="/" title="welqd&#39;s blog"><span class="header-title-text">Блог о сетях, Linux и о чем-нибудь ещё</span></a><span class="header-subtitle"></span></div>
@@ -80,16 +80,21 @@
                 href="/posts/"
                 
                 
-              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Posts</a></li><li class="menu-item">
+              ><i class="fa-solid fa-newspaper fa-fw fa-sm" aria-hidden="true"></i> Все статьи</a></li><li class="menu-item">
               <a
                 class="menu-link"
                 href="/tags/"
                 
                 
-              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme">
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Тeги</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> Обо мне</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme">
           <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
-        </li>
-      </ul>
+        </li></ul>
     </nav>
   </div>
 </header><header class="mobile animate__faster" id="header-mobile">
@@ -109,31 +114,37 @@
                   href="/posts/"
                   
                   
-                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Posts</a></li><li
+                ><i class="fa-solid fa-newspaper fa-fw fa-sm" aria-hidden="true"></i> Все статьи</a></li><li
               class="menu-item"
             ><a
                   class="menu-link"
                   href="/tags/"
                   
                   
-                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li class="menu-item theme-switch" title="Switch Theme">
-          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
-        </li></ul>
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Тeги</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> Обо мне</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
     </nav>
   </div>
-</header><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+</header><main class="container"><aside class="toc" id="toc-auto"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
       <div class="toc-content" id="toc-content-auto"></div></aside>
 
   <aside class="aside-custom">
     </aside>
 
   <article class="page single">
-    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
-        <span>Образ роутера на Linux для EVE-NG</span>
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>Образ роутера на Linux для EVE-NG</span>
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       Vadim Aleshin</span></span></div>
-      <div class="post-meta-line"><span title=2022-09-15&#32;14:46:00><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-09-15">2022-09-15</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 694 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 4 minutes</span>&nbsp;</div>
+      <div class="post-meta-line"><span title="published on 2022-09-15 14:46:00"><i class="fa-regular fa-calendar-alt fa-fw me-1" aria-hidden="true"></i><time datetime="2022-09-15">2022-09-15</time></span>&nbsp;<span title="Updated on 2022-09-15 14:46:00"><i class="fa-regular fa-edit fa-fw me-1" aria-hidden="true"></i><time datetime="2022-09-15">2022-09-15</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>689 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>4 minutes</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>Contents</span>
@@ -163,42 +174,34 @@
 <ol>
 <li>Обновляем ОС</li>
 </ol>
-<pre tabindex="0"><code>apt update &amp;&amp; apt upgrade
-</code></pre><ol start="2">
+<pre tabindex="0"><code>apt update &amp;&amp; apt upgrade</code></pre><ol start="2">
 <li>Для дальнейшего подключения к роутеру в EVE-NG необходимо:</li>
 </ol>
 <ul>
 <li>Установить telnet</li>
 </ul>
-<pre tabindex="0"><code>apt install telnetd
-</code></pre><ul>
+<pre tabindex="0"><code>apt install telnetd</code></pre><ul>
 <li>Проверить, что сервис включен и запущен (после установки он самостоятельно включается):</li>
 </ul>
-<pre tabindex="0"><code>systemctl status inetd.service
-</code></pre><pre tabindex="0"><code>● inetd.service - Internet superserver
+<pre tabindex="0"><code>systemctl status inetd.service</code></pre><pre tabindex="0"><code>● inetd.service - Internet superserver
 Loaded: loaded (/lib/systemd/system/inetd.service; enabled; vendor preset: enabled)
-Active: active (running) since Thu 2022-09-15 17:11:40 MSK; 1min 4s ago
-</code></pre><ul>
+Active: active (running) since Thu 2022-09-15 17:11:40 MSK; 1min 4s ago</code></pre><ul>
 <li>Также необходимо включить доступ по консольному интерфейсу (т.к. EVE-NG использует его, при отсутствии VNC):</li>
 </ul>
 <pre tabindex="0"><code>systemctl start serial-getty@ttyS0.service  
-systemctl enable serial-getty@ttyS0.service
-</code></pre><ol start="3">
+systemctl enable serial-getty@ttyS0.service</code></pre><ol start="3">
 <li>Установим программы для работы с сетью:</li>
 </ol>
 <ul>
 <li><a href="https://frrouting.org/"target="_blank" rel="external nofollow noopener noreferrer">FRR</a> - набор утилит для работы с протоколами маршрутизации</li>
 </ul>
-<pre tabindex="0"><code>apt install frr
-</code></pre><ul>
+<pre tabindex="0"><code>apt install frr</code></pre><ul>
 <li>Strongswan - для работы с IPSec</li>
 </ul>
-<pre tabindex="0"><code>apt install strongswan
-</code></pre><ul>
+<pre tabindex="0"><code>apt install strongswan</code></pre><ul>
 <li>Программы для диагностики:</li>
 </ul>
-<pre tabindex="0"><code>apt install traceroute tcpdump dnsutils
-</code></pre><ol start="3">
+<pre tabindex="0"><code>apt install traceroute tcpdump dnsutils</code></pre><ol start="3">
 <li>Выключаем виртуальную машину.</li>
 </ol>
 <h2 id="добавление-образа-в-eve-ng1">Добавление образа в EVE-NG<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></h2>
@@ -206,31 +209,26 @@ systemctl enable serial-getty@ttyS0.service
 <ol>
 <li>Заходим по ssh на сервер с EVE-NG и создаем там директорию для образа:</li>
 </ol>
-<pre tabindex="0"><code>mkdir /opt/unetlab/addons/qemu/linuxrouter-1.0
-</code></pre><p>Необходимо учитывать <a href="https://www.eve-ng.net/index.php/documentation/qemu-image-namings/"target="_blank" rel="external nofollow noopener noreferrer">схему именования qemu устройств</a>, сначала название папки с образом, а через дефис название образа и версия, либо просто версия. Это имя будет использоваться в шаблоне, для создания устройства.</p>
+<pre tabindex="0"><code>mkdir /opt/unetlab/addons/qemu/linuxrouter-1.0</code></pre><p>Необходимо учитывать <a href="https://www.eve-ng.net/index.php/documentation/qemu-image-namings/"target="_blank" rel="external nofollow noopener noreferrer">схему именования qemu устройств</a>, сначала название папки с образом, а через дефис название образа и версия, либо просто версия. Это имя будет использоваться в шаблоне, для создания устройства.</p>
 <ol start="2">
 <li>На машине, где создавали образ, переходим в директорию с ним и загружаем .vmdk файл на сервер:</li>
 </ol>
-<pre tabindex="0"><code>scp linuxrouter.vmdk root@192.168.22.71:/opt/unetlab/addons/qemu/linuxrouter-1.0/
-</code></pre><ol start="3">
+<pre tabindex="0"><code>scp linuxrouter.vmdk root@192.168.22.71:/opt/unetlab/addons/qemu/linuxrouter-1.0/</code></pre><ol start="3">
 <li>На сервере с EVE-NG перейдем в директорию, куда копировали образ, переконвертируем его в формат .qcow2, после чего удалим .vmdk файл:</li>
 </ol>
 <pre tabindex="0"><code>cd /opt/unetlab/addons/qemu/linuxrouter-1.0/  
 /opt/qemu/bin/qemu-img convert -f vmdk -O qcow2 linuxrouter.vmdk hda.qcow2  
 rm linuxrouter.vmdk
-/opt/unetlab/wrappers/unl_wrapper -a fixpermissions
-</code></pre><ol start="4">
+/opt/unetlab/wrappers/unl_wrapper -a fixpermissions</code></pre><ol start="4">
 <li>Создадим шаблон для образа, для этого:</li>
 </ol>
 <ul>
 <li>Перейдем в директорию /opt/unetlab/html/templates/{тип процессора}</li>
 </ul>
-<pre tabindex="0"><code>cd /opt/unetlab/html/templates/amd
-</code></pre><ul>
+<pre tabindex="0"><code>cd /opt/unetlab/html/templates/amd</code></pre><ul>
 <li>Скопируем существующий шаблон linux.yml в новый linuxrouter.yml</li>
 </ul>
-<pre tabindex="0"><code>cp linux.yml linuxrouter.yml
-</code></pre><ul>
+<pre tabindex="0"><code>cp linux.yml linuxrouter.yml</code></pre><ul>
 <li>Отредактируем файл linuxrouter.yml и приведем его к следующему виду:</li>
 </ul>
 <pre tabindex="0"><code>---
@@ -247,8 +245,7 @@ shutdown: 1
 qemu_arch: x86_64
 qemu_nic: virtio-net-pci
 qemu_options: -machine type=pc,accel=kvm -serial mon:stdio -nographic -boot order=c
-...
-</code></pre><p>Здесь мы указали: описание, имя, количество CPU и RAM, количество портов, telnet в качестве консоли и в параметрах qemu использование serial интерфейса</p>
+...</code></pre><p>Здесь мы указали: описание, имя, количество CPU и RAM, количество портов, telnet в качестве консоли и в параметрах qemu использование serial интерфейса</p>
 <h2 id="проверка-работы-образа">Проверка работы образа</h2>
 <p>Теперь при добавлении новой Node появляется выбор образа<br>
 <img loading="lazy" src="/img/eve-ng-add-linuxrouter.png" srcset="/img/eve-ng-add-linuxrouter.png, /img/eve-ng-add-linuxrouter.png 1.5x, /img/eve-ng-add-linuxrouter.png 2x" sizes="auto" data-title="Новая Node" data-alt="Новая Node" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
@@ -265,31 +262,27 @@ Router#conf t
 Router(config)#hostname CiscoRouter
 CiscoRouter(config)#int e0/0
 CiscoRouter(config-if)#no sh
-CiscoRouter(config-if)#ip add 1.1.1.1 255.255.255.0
-</code></pre><ol start="2">
+CiscoRouter(config-if)#ip add 1.1.1.1 255.255.255.0</code></pre><ol start="2">
 <li>Конфиг роутера на Linux</li>
 </ol>
 <pre tabindex="0"><code>root@linuxrouter:~# vtysh
 linuxrouter# configure terminal
 linuxrouter(config)# interface ens3
-linuxrouter(config-if)# ip address 1.1.1.2/24
-</code></pre><ol start="3">
+linuxrouter(config-if)# ip address 1.1.1.2/24</code></pre><ol start="3">
 <li>Проверим ping с двух сторон</li>
 </ol>
 <pre tabindex="0"><code>CiscoRouter#ping 1.1.1.2
 Type escape sequence to abort.
 Sending 5, 100-byte ICMP Echos to 1.1.1.2, timeout is 2 seconds:
 !!!!!
-Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
-</code></pre><pre tabindex="0"><code>linuxrouter# ping 1.1.1.1
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms</code></pre><pre tabindex="0"><code>linuxrouter# ping 1.1.1.1
 PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.
 64 bytes from 1.1.1.1: icmp_seq=1 ttl=255 time=0.940 ms
 64 bytes from 1.1.1.1: icmp_seq=2 ttl=255 time=0.655 ms
 64 bytes from 1.1.1.1: icmp_seq=3 ttl=255 time=0.954 ms
 --- 1.1.1.1 ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss, time 2004ms
-rtt min/avg/max/mdev = 0.655/0.849/0.954/0.137 ms
-</code></pre><p>Как видим образ работает. В <a href="https://welqd.github.io/posts/linux-cisco-vti-ipsec/">следующей статье</a> установим ipsec туннель между Cisco и Linux роутером и настроим OSPF.</p>
+rtt min/avg/max/mdev = 0.655/0.849/0.954/0.137 ms</code></pre><p>Как видим образ работает. В <a href="https://welqd.github.io/posts/linux-cisco-vti-ipsec/">следующей статье</a> установим ipsec туннель между Cisco и Linux роутером и настроим OSPF.</p>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -302,7 +295,7 @@ rtt min/avg/max/mdev = 0.655/0.849/0.954/0.137 ms
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2022-09-15&#32;14:46:00>Updated on 2022-09-15&nbsp;</span>
+        <span title="Updated on 2022-09-15 14:46:00">Updated on 2022-09-15&nbsp;</span>
       </div><div class="post-info-license">
           <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
         </div></div>
@@ -327,7 +320,12 @@ rtt min/avg/max/mdev = 0.655/0.849/0.954/0.137 ms
   <div class="post-nav"><a href="/posts/eve-ng-arch-i3/" class="post-nav-item" rel="prev" title="EVE-NG установка &#43; интеграция в Arch Linux с i3wm"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>EVE-NG установка &#43; интеграция в Arch Linux с i3wm</a>
       <a href="/posts/linux-cisco-vti-ipsec/" class="post-nav-item" rel="next" title="IPSec между Cisco и Linux, при помощи systemd-networkd и VTI">IPSec между Cisco и Linux, при помощи systemd-networkd и VTI<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
-<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+<div class="post-reward">
+    <div class="comment">Buy me a coffee</div>
+    <input type="checkbox" class="reward-input" name="reward" id="fi-reward" hidden />
+    <label class="reward-button" for="fi-reward">Donate</label>
+    <div class="reward-ways" data-mode="static"></div>
+  </div><div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
         Please enable JavaScript to view the comments powered by <a href="https://comments.app/" rel="external nofollow noopener noreferrer">Telegram Comments</a>.
       </noscript></div></article></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
@@ -337,5 +335,5 @@ rtt min/avg/max/mdev = 0.655/0.849/0.954/0.137 ms
         </div><div class="fixed-button view-comments d-none" role="button" aria-label="View Comments"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><noscript>
     <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
   </noscript>
-</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="https://comments.app/js/widget.js?2" defer data-comments-app-website="TU_iWUfW" data-limit="5" data-height="10" data-color="#fffff" data-colorful="1"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script src="/js/theme.min.js" defer></script></body>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="https://comments.app/js/widget.js?2" defer data-comments-app-website="TU_iWUfW" data-limit="5" data-height="150" data-colorful="1"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script src="/js/theme.min.js" defer></script></body>
 </html>

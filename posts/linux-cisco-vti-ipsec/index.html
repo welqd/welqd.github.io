@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html itemscope itemtype="http://schema.org/WebPage" lang="">
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
   <head>
     
     <meta charset="utf-8">
@@ -14,7 +14,7 @@ Policy-based - трафик, который должен отправлятьс�
 Существуют несколько методов организации IPSec туннеля между двумя точками:
 Policy-based - трафик, который должен отправляться в туннель, определяется на основе политик в процессе конфигурации IPSec&rsquo;а. Route-based - трафик, который должен отправляться в туннель, определяется с помощью маршрута по адресу назначения и конфигурируется с помощью протоколов маршрутизации (либо статических маршрутов), обычно поверх VTI или GRE туннельных интерфейсов."><meta itemprop="datePublished" content="2022-09-17T17:41:36+03:00" />
 <meta itemprop="dateModified" content="2022-09-17T17:41:36+03:00" />
-<meta itemprop="wordCount" content="1650">
+<meta itemprop="wordCount" content="1619">
 <meta itemprop="keywords" content="networking,linux,cisco," /><meta property="og:title" content="IPSec между Cisco и Linux, при помощи systemd-networkd и VTI" />
 <meta property="og:description" content="В предыдущей статье был создан образ роутера на Linux для EVE-NG на основе Debian 11. Теперь, используя данный образ, настроим популярный сценарий - IPSec между роутером Cisco и роутером с Linux.
 Существуют несколько методов организации IPSec туннеля между двумя точками:
@@ -36,11 +36,11 @@ Policy-based - трафик, который должен отправлятьс�
     "@context": "http://schema.org",
     "@type": "BlogPosting",
     "headline": "IPSec между Cisco и Linux, при помощи systemd-networkd и VTI",
-    "inLanguage": "",
+    "inLanguage": "en",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/welqd.github.io\/posts\/linux-cisco-vti-ipsec\/"
-    },"genre": "posts","keywords": "networking, linux, cisco","wordcount":  1650 ,
+    },"genre": "posts","keywords": "networking, linux, cisco","wordcount":  1619 ,
     "url": "https:\/\/welqd.github.io\/posts\/linux-cisco-vti-ipsec\/","datePublished": "2022-09-17T17:41:36+03:00","dateModified": "2022-09-17T17:41:36+03:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -65,7 +65,7 @@ Policy-based - трафик, который должен отправлятьс�
 <noscript><div><img src="https://mc.yandex.ru/watch/90794846" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 
 </head>
-  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper"><header class="desktop animate__faster" id="header-desktop">
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
   <div class="header-wrapper">
     <div class="header-title">
       <a href="/" title="welqd&#39;s blog"><span class="header-title-text">Блог о сетях, Linux и о чем-нибудь ещё</span></a><span class="header-subtitle"></span></div>
@@ -76,16 +76,21 @@ Policy-based - трафик, который должен отправлятьс�
                 href="/posts/"
                 
                 
-              ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Posts</a></li><li class="menu-item">
+              ><i class="fa-solid fa-newspaper fa-fw fa-sm" aria-hidden="true"></i> Все статьи</a></li><li class="menu-item">
               <a
                 class="menu-link"
                 href="/tags/"
                 
                 
-              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme">
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Тeги</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> Обо мне</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme">
           <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
-        </li>
-      </ul>
+        </li></ul>
     </nav>
   </div>
 </header><header class="mobile animate__faster" id="header-mobile">
@@ -105,31 +110,37 @@ Policy-based - трафик, который должен отправлятьс�
                   href="/posts/"
                   
                   
-                ><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden="true"></i> Posts</a></li><li
+                ><i class="fa-solid fa-newspaper fa-fw fa-sm" aria-hidden="true"></i> Все статьи</a></li><li
               class="menu-item"
             ><a
                   class="menu-link"
                   href="/tags/"
                   
                   
-                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Tags</a></li><li class="menu-item theme-switch" title="Switch Theme">
-          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
-        </li></ul>
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Тeги</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> Обо мне</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
     </nav>
   </div>
-</header><main class="container" data-page-style="normal"><aside class="toc" id="toc-auto"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+</header><main class="container"><aside class="toc" id="toc-auto"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
       <div class="toc-content" id="toc-content-auto"></div></aside>
 
   <aside class="aside-custom">
     </aside>
 
   <article class="page single">
-    <div class="header"><h1 class="single-title animate__animated animate__flipInX">
-        <span>IPSec между Cisco и Linux, при помощи systemd-networkd и VTI</span>
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>IPSec между Cisco и Linux, при помощи systemd-networkd и VTI</span>
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       Vadim Aleshin</span></span></div>
-      <div class="post-meta-line"><span title=2022-09-17&#32;17:41:36><i class="fa-regular fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-09-17">2022-09-17</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i> 1650 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw" aria-hidden="true"></i> 8 minutes</span>&nbsp;</div>
+      <div class="post-meta-line"><span title="published on 2022-09-17 17:41:36"><i class="fa-regular fa-calendar-alt fa-fw me-1" aria-hidden="true"></i><time datetime="2022-09-17">2022-09-17</time></span>&nbsp;<span title="Updated on 2022-09-17 17:41:36"><i class="fa-regular fa-edit fa-fw me-1" aria-hidden="true"></i><time datetime="2022-09-17">2022-09-17</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>1619 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>8 minutes</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>Contents</span>
@@ -184,17 +195,14 @@ Policy-based - трафик, который должен отправлятьс�
 </blockquote>
 <pre tabindex="0"><code>mv /etc/network/interfaces /etc/network/interfaces.save
 systemctl disable networking.service
-systemctl stop networking.service
-</code></pre><p>Далее включим и запустим сервис:</p>
+systemctl stop networking.service</code></pre><p>Далее включим и запустим сервис:</p>
 <pre tabindex="0"><code>systemctl enable systemd-networkd
-systemctl start systemd-networkd
-</code></pre><p>Конфигурационные файлы хранятся в <strong>/etc/systemd/network/</strong>, т.к. директория по умолчанию пустая, то нам необходимо создать файлы с расширениями: <strong>.network</strong> - для конфигурации сетевых параметров, <strong>.netdev</strong> - для создания виртуальных интерфейсов.</p>
+systemctl start systemd-networkd</code></pre><p>Конфигурационные файлы хранятся в <strong>/etc/systemd/network/</strong>, т.к. директория по умолчанию пустая, то нам необходимо создать файлы с расширениями: <strong>.network</strong> - для конфигурации сетевых параметров, <strong>.netdev</strong> - для создания виртуальных интерфейсов.</p>
 <h4 id="настройка-wan-интерфейса">Настройка WAN интерфейса</h4>
 <ol>
 <li>Создадим файл с любым названием и расширением .network (systemd проверяет файлы по алфавитному порядку, поэтому удобней использовать число в названии, для управления последовательностью запуска)</li>
 </ol>
-<pre tabindex="0"><code>touch 10-wan.network
-</code></pre><ol start="2">
+<pre tabindex="0"><code>touch 10-wan.network</code></pre><ol start="2">
 <li>Зададим настройки подключения (т.к. в текущей лабораторной нет DNS-сервера, то строку с настройкой закомментирую)</li>
 </ol>
 <pre tabindex="0"><code>[Match]
@@ -206,8 +214,7 @@ Gateway=2.2.2.254
 #DNS=2.2.2.254
 IPForward=ipv4
 IPMasquerade=ipv4
-Tunnel=vti0
-</code></pre><blockquote>
+Tunnel=vti0</code></pre><blockquote>
 <p><strong>ens3</strong> - имя интерфейса, который смотрит в сторону провайдера (на топологии в EVE-NG он e0, но это неверно, нумерация, в моем случае, начинается с ens3), в другом образе имя может быть другим.</p>
 </blockquote>
 <blockquote>
@@ -217,28 +224,22 @@ Tunnel=vti0
 <p>В реальном мире настройка NAT будет производиться с помощью nftables или iptables, в этом примере будет использоваться IPMasquerade=ipv4 (хотя в этой лабораторной NAT не нужен вообще)</p>
 </blockquote>
 <p>Перезагрузим сервис, после чего доступ в интернет (в нашем случае до loopback интерфейса на роутере ISP) должен появиться.</p>
-<pre tabindex="0"><code>networkctl reload
-</code></pre><pre tabindex="0"><code>ping 3.3.3.3
+<pre tabindex="0"><code>networkctl reload</code></pre><pre tabindex="0"><code>ping 3.3.3.3
 PING 3.3.3.3 (3.3.3.3) 56(84) bytes of data.
 64 bytes from 3.3.3.3: icmp_seq=1 ttl=254 time=1.27 ms
 64 bytes from 3.3.3.3: icmp_seq=2 ttl=254 time=1.92 ms
-64 bytes from 3.3.3.3: icmp_seq=3 ttl=254 time=1.58 ms
-</code></pre><h4 id="настройка-lan-интерфейса">Настройка LAN интерфейса</h4>
+64 bytes from 3.3.3.3: icmp_seq=3 ttl=254 time=1.58 ms</code></pre><h4 id="настройка-lan-интерфейса">Настройка LAN интерфейса</h4>
 <p>Настройка для LAN интерфейса проста. Создадим файл с расширением .network и просто назначим IP адрес на интерфейс, смотрящий в сторону ПК (ens4).</p>
-<pre tabindex="0"><code>touch 15-lan.network
-</code></pre><pre tabindex="0"><code>[Match]
+<pre tabindex="0"><code>touch 15-lan.network</code></pre><pre tabindex="0"><code>[Match]
 Name=ens4
 
 [Network]
-Address=192.168.200.1/24
-</code></pre><pre tabindex="0"><code>networkctl reload
-</code></pre><h4 id="настройка-vti-интерфейса">Настройка VTI интерфейса</h4>
+Address=192.168.200.1/24</code></pre><pre tabindex="0"><code>networkctl reload</code></pre><h4 id="настройка-vti-интерфейса">Настройка VTI интерфейса</h4>
 <p>Для использования в Route-based VPN нам необходимо создать VTI интерфейс, для этого:</p>
 <ol>
 <li>Создадим файл виртуального устройства, с расширением .netdev</li>
 </ol>
-<pre tabindex="0"><code>touch 25-vti0.netdev
-</code></pre><p>Зададим следующую конфигурацию, в секции [NetDev] укажем название, тип интерфейса и MTU.<br>
+<pre tabindex="0"><code>touch 25-vti0.netdev</code></pre><p>Зададим следующую конфигурацию, в секции [NetDev] укажем название, тип интерфейса и MTU.<br>
 В секции [Tunnel] - адрес локального интерфейса, удаленного роутера и ключ (данный ключ будет использоваться в настройках strongswan, для определения трафика, который пойдет через vti интерфейс).</p>
 <pre tabindex="0"><code>[NetDev]
 Name=vti0
@@ -248,28 +249,24 @@ MTUBytes=1400
 [Tunnel]
 Local=2.2.2.2
 Remote=1.1.1.1
-Key=69
-</code></pre><blockquote>
+Key=69</code></pre><blockquote>
 <p>Имя vti0 используется выше в конфигурации wan интерфейса, эти имена должны совпадать</p>
 </blockquote>
 <ol start="2">
 <li>Создадим .network файл, отвечающий за конфигурацию vti интерфейса</li>
 </ol>
-<pre tabindex="0"><code>touch 25-vti0.network
-</code></pre><p>Просто задаём IP адрес для интерфейса vti0.</p>
+<pre tabindex="0"><code>touch 25-vti0.network</code></pre><p>Просто задаём IP адрес для интерфейса vti0.</p>
 <pre tabindex="0"><code>[Match]
 Name=vti0
 
 [Network]
-Address=10.10.10.2/30
-</code></pre><h3 id="настройка-ipsec">Настройка IPSec</h3>
+Address=10.10.10.2/30</code></pre><h3 id="настройка-ipsec">Настройка IPSec</h3>
 <p>Для настройки необходим установленный пакет <strong>strongswan</strong>.</p>
 <ol>
 <li>Отключаем установку маршрутов при помощи IKE демона, т.к. маршрутизацию мы настроим далее, с помощью пакета frr.<br>
 Для этого в  файле <strong>/etc/strongswan.d/charon.conf</strong> находим строку с параметром <strong>install_routes</strong>, раскомментируем ее и установим значение в no.</li>
 </ol>
-<pre tabindex="0"><code>install_routes = no
-</code></pre><ol start="2">
+<pre tabindex="0"><code>install_routes = no</code></pre><ol start="2">
 <li>В файле <strong>/etc/ipsec.conf</strong> настроим параметры IPSec, значения left и leftsubnet используются для локальных адресов, right и rightsubnet - для удаленных.</li>
 </ol>
 <pre tabindex="0"><code>conn vti-to-cisco
@@ -284,22 +281,18 @@ Address=10.10.10.2/30
         keyexchange=ikev2
         lifetime=1440m
         mark=69
-        type=transport
-</code></pre><ol start="3">
+        type=transport</code></pre><ol start="3">
 <li>В файле <strong>/etc/ipsec.secrets</strong> укажем пароль для данного туннеля.</li>
 </ol>
-<pre tabindex="0"><code>2.2.2.2 : PSK &#39;IPSEC_KEY&#39;
-</code></pre><ol start="4">
+<pre tabindex="0"><code>2.2.2.2 : PSK &#39;IPSEC_KEY&#39;</code></pre><ol start="4">
 <li>В файле <strong>/etc/sysctl.conf</strong> необходимо добавить строку для отключения поиска политик для vti интерфейса, т.к. данный интерфейс используется в route-based, а не policy-based VPN.<br>
 Необходимо обратить внимание на имя интерфейса в данной строке (<strong>vti0</strong>), оно должно совпадать с ранее созданным именем vti.</li>
 </ol>
-<pre tabindex="0"><code>net.ipv4.conf.vti0.disable_policy=1
-</code></pre><ol start="5">
+<pre tabindex="0"><code>net.ipv4.conf.vti0.disable_policy=1</code></pre><ol start="5">
 <li>Перезагрузим сервисы и на этом настройка на роутере с Linux заканчивается (маршрутизацию настроим позже).</li>
 </ol>
 <pre tabindex="0"><code>systemctl restart systemd-networkd.service
-ipsec restart
-</code></pre><h2 id="настройка-роутера-cisco">Настройка роутера Cisco</h2>
+ipsec restart</code></pre><h2 id="настройка-роутера-cisco">Настройка роутера Cisco</h2>
 <p>Вдаваться в детальные настройки не будем, просто приведу последовательность.</p>
 <ol>
 <li>Настройка WAN и LAN интерфейсов и маршрута по умолчанию</li>
@@ -312,16 +305,13 @@ exit
  interface Ethernet0/0
  ip address 192.168.100.1 255.255.255.0
  ip nat inside
- exit
-</code></pre><pre tabindex="0"><code>ip route 0.0.0.0 0.0.0.0 1.1.1.254
-</code></pre><ol start="2">
+ exit</code></pre><pre tabindex="0"><code>ip route 0.0.0.0 0.0.0.0 1.1.1.254</code></pre><ol start="2">
 <li>Настройка NAT (в лабораторной он не нужен, просто для полноты картины)</li>
 </ol>
 <pre tabindex="0"><code>ip access-list extended NAT
  permit ip 192.168.100.0 0.0.0.255 any
  exit
-ip nat inside source list NAT interface Ethernet0/1 overload
-</code></pre><ol start="3">
+ip nat inside source list NAT interface Ethernet0/1 overload</code></pre><ol start="3">
 <li>Настройка IPSec</li>
 </ol>
 <pre tabindex="0"><code>crypto ikev2 proposal LINUX_PROPOSAL
@@ -348,8 +338,7 @@ crypto ipsec transform-set TSET esp-aes esp-sha256-hmac
 
 crypto ipsec profile LINUX_IPSEC
  set transform-set TSET
- set ikev2-profile LINUX_PROFILE
-</code></pre><ol start="4">
+ set ikev2-profile LINUX_PROFILE</code></pre><ol start="4">
 <li>Настройка VTI интерфейса</li>
 </ol>
 <pre tabindex="0"><code>interface Tunnel0
@@ -358,8 +347,7 @@ crypto ipsec profile LINUX_IPSEC
  tunnel source Ethernet0/1
  tunnel mode ipsec ipv4
  tunnel destination 2.2.2.2
- tunnel protection ipsec profile LINUX_IPSEC
-</code></pre><h2 id="проверка-работы-ipsec">Проверка работы IPSec</h2>
+ tunnel protection ipsec profile LINUX_IPSEC</code></pre><h2 id="проверка-работы-ipsec">Проверка работы IPSec</h2>
 <p>На Linux роутере:</p>
 <pre tabindex="0"><code>root@linuxrouter# ipsec status
 Security Associations (1 up, 0 connecting):
@@ -367,94 +355,77 @@ vti-to-cisco[1]: ESTABLISHED 117 minutes ago, 2.2.2.2[2.2.2.2]...1.1.1.1[1.1.1.1
 vti-to-cisco{5}:  INSTALLED, TUNNEL, reqid 2, ESP SPIs: c87f9062_i 080e098c_o
 vti-to-cisco{5}:   0.0.0.0/0 === 0.0.0.0/0
 vti-to-cisco{6}:  INSTALLED, TRANSPORT, reqid 1, ESP SPIs: c3a18c45_i 6489ad73_o
-vti-to-cisco{6}:   2.2.2.2/32 === 1.1.1.1/32
-</code></pre><pre tabindex="0"><code>root@linuxrouter# ip tunnel show vti0
-vti0: ip/ip remote 1.1.1.1 local 2.2.2.2 dev ens3 ttl inherit nopmtudisc key 69
-</code></pre><pre tabindex="0"><code>root@linuxrouter# ping -c 2 10.10.10.1
+vti-to-cisco{6}:   2.2.2.2/32 === 1.1.1.1/32</code></pre><pre tabindex="0"><code>root@linuxrouter# ip tunnel show vti0
+vti0: ip/ip remote 1.1.1.1 local 2.2.2.2 dev ens3 ttl inherit nopmtudisc key 69</code></pre><pre tabindex="0"><code>root@linuxrouter# ping -c 2 10.10.10.1
 PING 10.10.10.1 (10.10.10.1) 56(84) bytes of data.
 64 bytes from 10.10.10.1: icmp_seq=1 ttl=255 time=0.930 ms
 64 bytes from 10.10.10.1: icmp_seq=2 ttl=255 time=0.865 ms
 --- 10.10.10.1 ping statistics ---
 2 packets transmitted, 2 received, 0% packet loss, time 1001ms
-rtt min/avg/max/mdev = 0.865/0.897/0.930/0.032 ms
-</code></pre><p>На роутере Cisco:</p>
+rtt min/avg/max/mdev = 0.865/0.897/0.930/0.032 ms</code></pre><p>На роутере Cisco:</p>
 <pre tabindex="0"><code>CiscoRouter#show crypto ikev2 sa remote 2.2.2.2
 Tunnel-id Local                 Remote                fvrf/ivrf            Status
 1         1.1.1.1/4500          2.2.2.2/4500          none/none            READY
       Encr: AES-CBC, keysize: 256, PRF: SHA256, Hash: SHA256, DH Grp:2, Auth sign: PSK, Auth verify: PSK
-      Life/Active Time: 86400/7232 sec
-</code></pre><pre tabindex="0"><code>CiscoRouter#show ip int br tu0
+      Life/Active Time: 86400/7232 sec</code></pre><pre tabindex="0"><code>CiscoRouter#show ip int br tu0
 Interface                  IP-Address      OK? Method Status                Protocol
-Tunnel0                    10.10.10.1      YES NVRAM  up                    up
-</code></pre><pre tabindex="0"><code>CiscoRouter#ping 10.10.10.2
+Tunnel0                    10.10.10.1      YES NVRAM  up                    up</code></pre><pre tabindex="0"><code>CiscoRouter#ping 10.10.10.2
 Type escape sequence to abort.
 Sending 5, 100-byte ICMP Echos to 10.10.10.2, timeout is 2 seconds:
 !!!!!
-Success rate is 100 percent (5/5), round-trip min/avg/max = 6/6/7 ms
-</code></pre><h2 id="настройка-ospf">Настройка OSPF</h2>
+Success rate is 100 percent (5/5), round-trip min/avg/max = 6/6/7 ms</code></pre><h2 id="настройка-ospf">Настройка OSPF</h2>
 <pre><code>На Linux роутере будет использоваться пакет frr, он должен быть установлен (в собранном для EVE-NG образе он уже присутствует).  
 </code></pre>
 <p>Первым делом необходимо включить демон ospf. Для этого в файле <strong>/etc/frr/daemons</strong> выставить значение <strong>ospfd=yes</strong>, после чего перезапустить frr.service.</p>
-<pre tabindex="0"><code>systemctl restart frr.service
-</code></pre><p>Теперь перейдем в интерактивный shell пакета frr, который имеет Cisco-like синтаксис. Для этого наберем <strong>vtysh</strong>.<br>
+<pre tabindex="0"><code>systemctl restart frr.service</code></pre><p>Теперь перейдем в интерактивный shell пакета frr, который имеет Cisco-like синтаксис. Для этого наберем <strong>vtysh</strong>.<br>
 Детальной настройки делать не будем, просто укажем сети, которые используются в OSPF процессе:</p>
 <pre tabindex="0"><code>configure terminal
 router ospf
  network 10.10.10.0/24 area 0
  network 192.168.200.0/24 area 0
  end
-write memory
-</code></pre><p>Настройки на роутере Cisco:</p>
+write memory</code></pre><p>Настройки на роутере Cisco:</p>
 <pre tabindex="0"><code>configure terminal
  router ospf 1
  network 10.10.10.0 0.0.0.3 area 0
  network 192.168.100.0 0.0.0.255 area 0
  end
-write memory
-</code></pre><p>Проверим доступность не directly connected сетей.<br>
+write memory</code></pre><p>Проверим доступность не directly connected сетей.<br>
 Со стороны Linux-роутера:</p>
 <pre tabindex="0"><code>linuxrouter# sh ip ospf neighbor
 Neighbor ID     Pri State           Dead Time Address         Interface                        RXmtL RqstL DBsmL
-192.168.100.1     1 Full/DROther      37.158s 10.10.10.1      vti0:10.10.10.2                      0     0     0
-</code></pre><pre tabindex="0"><code>linuxrouter# show ip route ospf
+192.168.100.1     1 Full/DROther      37.158s 10.10.10.1      vti0:10.10.10.2                      0     0     0</code></pre><pre tabindex="0"><code>linuxrouter# show ip route ospf
 ...
 O   10.10.10.0/24 [110/10] is directly connected, vti0, weight 1, 00:17:04
 O   10.10.10.0/30 [110/1010] via 10.10.10.1, vti0 inactive, weight 1, 00:15:12
 O&gt;* 192.168.100.0/24 [110/20] via 10.10.10.1, vti0, weight 1, 00:15:03
-O   192.168.200.0/24 [110/1] is directly connected, ens4, weight 1, 00:16:53
-</code></pre><pre tabindex="0"><code>linuxrouter# ping 192.168.100.1
+O   192.168.200.0/24 [110/1] is directly connected, ens4, weight 1, 00:16:53</code></pre><pre tabindex="0"><code>linuxrouter# ping 192.168.100.1
 PING 192.168.100.1 (192.168.100.1) 56(84) bytes of data.
 64 bytes from 192.168.100.1: icmp_seq=1 ttl=255 time=2.95 ms
 64 bytes from 192.168.100.1: icmp_seq=2 ttl=255 time=0.927 ms
 64 bytes from 192.168.100.1: icmp_seq=3 ttl=255 time=1.46 ms
 --- 192.168.100.1 ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss, time 2003ms
-rtt min/avg/max/mdev = 0.927/1.779/2.954/0.858 ms
-</code></pre><p>Со стороны Cisco:</p>
+rtt min/avg/max/mdev = 0.927/1.779/2.954/0.858 ms</code></pre><p>Со стороны Cisco:</p>
 <pre tabindex="0"><code>CiscoRouter#show ip ospf neighbor
 Neighbor ID     Pri   State           Dead Time   Address         Interface
-192.168.200.1     0   FULL/  -        00:00:32    10.10.10.2      Tunnel0
-</code></pre><pre tabindex="0"><code>CiscoRouter#show ip route ospf
+192.168.200.1     0   FULL/  -        00:00:32    10.10.10.2      Tunnel0</code></pre><pre tabindex="0"><code>CiscoRouter#show ip route ospf
 ...
       10.0.0.0/8 is variably subnetted, 3 subnets, 3 masks
 O        10.10.10.0/24 [110/1010] via 10.10.10.2, 00:18:32, Tunnel0
-O     192.168.200.0/24 [110/1001] via 10.10.10.2, 00:18:32, Tunnel0
-</code></pre><pre tabindex="0"><code>CiscoRouter#ping 192.168.200.1
+O     192.168.200.0/24 [110/1001] via 10.10.10.2, 00:18:32, Tunnel0</code></pre><pre tabindex="0"><code>CiscoRouter#ping 192.168.200.1
 Type escape sequence to abort.
 Sending 5, 100-byte ICMP Echos to 192.168.200.1, timeout is 2 seconds:
 !!!!!
-Success rate is 100 percent (5/5), round-trip min/avg/max = 3/5/7 ms
-</code></pre><h2 id="проверка-доступности-между-пк">Проверка доступности между ПК</h2>
+Success rate is 100 percent (5/5), round-trip min/avg/max = 3/5/7 ms</code></pre><h2 id="проверка-доступности-между-пк">Проверка доступности между ПК</h2>
 <p>В качестве образа для ПК будет использоваться встроенный в EVE-NG образ Virtual PC.</p>
 <p>Настроим ПК в сети 192.168.100.0/24.</p>
 <pre tabindex="0"><code>VPCS&gt; set pcname PC-1
 PC-1&gt; ip 192.168.100.100/24 192.168.100.1
-PC-1&gt; save
-</code></pre><p>Такая же конфигурация для ПК в сети 192.168.200.0/24.</p>
+PC-1&gt; save</code></pre><p>Такая же конфигурация для ПК в сети 192.168.200.0/24.</p>
 <pre tabindex="0"><code>VPCS&gt; set pcname PC-2
 PC-2&gt; ip 192.168.200.200/24 192.168.200.1
-PC-2&gt; save
-</code></pre><p>Проверим доступность с PC-1 до PC-2 и наоборот, как видно все работает.</p>
+PC-2&gt; save</code></pre><p>Проверим доступность с PC-1 до PC-2 и наоборот, как видно все работает.</p>
 <pre tabindex="0"><code>PC-1&gt; ping 192.168.200.200
 84 bytes from 192.168.200.200 icmp_seq=1 ttl=62 time=2.765 ms
 84 bytes from 192.168.200.200 icmp_seq=2 ttl=62 time=1.810 ms
@@ -466,8 +437,7 @@ PC-1&gt; trace 192.168.200.200
 trace to 192.168.200.200, 8 hops max, press Ctrl+C to stop
  1   192.168.100.1   0.606 ms  0.350 ms  0.871 ms
  2   10.10.10.2   2.068 ms  0.916 ms  0.961 ms
- 3   *192.168.200.200   1.975 ms (ICMP type:3, code:3, Destination port unreachable
-</code></pre><pre tabindex="0"><code>PC-2&gt; ping 192.168.100.100
+ 3   *192.168.200.200   1.975 ms (ICMP type:3, code:3, Destination port unreachable</code></pre><pre tabindex="0"><code>PC-2&gt; ping 192.168.100.100
 84 bytes from 192.168.100.100 icmp_seq=1 ttl=62 time=1.832 ms
 84 bytes from 192.168.100.100 icmp_seq=2 ttl=62 time=2.061 ms
 84 bytes from 192.168.100.100 icmp_seq=3 ttl=62 time=2.307 ms
@@ -478,12 +448,11 @@ PC-2&gt; trace 192.168.100.100
 trace to 192.168.100.100, 8 hops max, press Ctrl+C to stop
  1   192.168.200.1   0.639 ms  0.237 ms  0.218 ms
  2   10.10.10.1   1.875 ms  1.319 ms  1.065 ms
- 3   *192.168.100.100   1.133 ms (ICMP type:3, code:3, Destination port unreachable
-</code></pre></div><div class="post-footer" id="post-footer">
+ 3   *192.168.100.100   1.133 ms (ICMP type:3, code:3, Destination port unreachable</code></pre></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title=2022-09-17&#32;17:41:36>Updated on 2022-09-17&nbsp;</span>
+        <span title="Updated on 2022-09-17 17:41:36">Updated on 2022-09-17&nbsp;</span>
       </div><div class="post-info-license">
           <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
         </div></div>
@@ -508,7 +477,12 @@ trace to 192.168.100.100, 8 hops max, press Ctrl+C to stop
   <div class="post-nav"><a href="/posts/eve-ng-linux-iso/" class="post-nav-item" rel="prev" title="Образ роутера на Linux для EVE-NG"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Образ роутера на Linux для EVE-NG</a>
       <a href="/posts/eve-ng-to-external-network/" class="post-nav-item" rel="next" title="Proxmox. Организация доступа лабы в EVE-NG в локальную сеть и/или Интернет">Proxmox. Организация доступа лабы в EVE-NG в локальную сеть и/или Интернет<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
-<div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
+<div class="post-reward">
+    <div class="comment">Buy me a coffee</div>
+    <input type="checkbox" class="reward-input" name="reward" id="fi-reward" hidden />
+    <label class="reward-button" for="fi-reward">Donate</label>
+    <div class="reward-ways" data-mode="static"></div>
+  </div><div id="comments"><div id="telegram-comments" class="comment"></div><noscript>
         Please enable JavaScript to view the comments powered by <a href="https://comments.app/" rel="external nofollow noopener noreferrer">Telegram Comments</a>.
       </noscript></div></article></main><footer class="footer">
     <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
@@ -518,5 +492,5 @@ trace to 192.168.100.100, 8 hops max, press Ctrl+C to stop
         </div><div class="fixed-button view-comments d-none" role="button" aria-label="View Comments"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><noscript>
     <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
   </noscript>
-</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="https://comments.app/js/widget.js?2" defer data-comments-app-website="TU_iWUfW" data-limit="5" data-height="10" data-color="#fffff" data-colorful="1"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script src="/js/theme.min.js" defer></script></body>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="https://comments.app/js/widget.js?2" defer data-comments-app-website="TU_iWUfW" data-limit="5" data-height="150" data-colorful="1"></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script src="/js/theme.min.js" defer></script></body>
 </html>
