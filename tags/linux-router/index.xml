@@ -1,0 +1,18 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>linux router - Tag - welqd&#39;s blog</title>
+    <link>https://welqd.github.io/tags/linux-router/</link>
+    <description>linux router - Tag - welqd&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 05 Aug 2023 20:16:17 &#43;0300</lastBuildDate><atom:link href="https://welqd.github.io/tags/linux-router/" rel="self" type="application/rss+xml" /><item>
+  <title>Настройка роутера на Linux. Часть 1. Установка ПО и настройка интерфейсов</title>
+  <link>https://welqd.github.io/posts/2023-08-06-linux_router_p1_basics/</link>
+  <pubDate>Sat, 05 Aug 2023 20:16:17 &#43;0300</pubDate>
+  <author>Author</author>
+  <guid>https://welqd.github.io/posts/2023-08-06-linux_router_p1_basics/</guid>
+  <description><![CDATA[Предисловие Это первая статья из цикла, в котором попытаемся превратить ПК в полнофункциональный роутер.
+На этой странице, ниже по тексту, будут рассмотрена базовая конфигурация интерфейсов (используя systemd-networkd).
+В последующих публикациях совершим базовую настройку:
+nftables, в качестве firewall&rsquo;а; DHCP (kea) и DNS (bind9) серверов; Wireguard, для организации Remote access и Site-to-Site VPN&rsquo;ов; FRR, для создания простого сценария с установлением BGP-сессии и перенаправления интересующих нас префиксов в wg-туннель. Рассматривать настройку WiFi Access Point не будем, т.]]></description>
+</item>
+</channel>
+</rss>

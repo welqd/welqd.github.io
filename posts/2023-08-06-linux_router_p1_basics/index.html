@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Настройка роутера на Linux. Часть 1. Установка ПО и настройка интерфейсов - welqd&#39;s blog</title><meta name="author" content="">
+<meta name="author-link" content="">
+<meta name="description" content="Предисловие Это первая статья из цикла, в котором попытаемся превратить ПК в полнофункциональный роутер.
+На этой странице, ниже по тексту, будут рассмотрена базовая конфигурация интерфейсов (используя systemd-networkd).
+В последующих публикациях совершим базовую настройку:
+nftables, в качестве firewall&rsquo;а; DHCP (kea) и DNS (bind9) серверов; Wireguard, для организации Remote access и Site-to-Site VPN&rsquo;ов; FRR, для создания простого сценария с установлением BGP-сессии и перенаправления интересующих нас префиксов в wg-туннель. Рассматривать настройку WiFi Access Point не будем, т." /><meta name="keywords" content='networking, linux, linux router' /><meta itemprop="name" content="Настройка роутера на Linux. Часть 1. Установка ПО и настройка интерфейсов">
+<meta itemprop="description" content="Предисловие Это первая статья из цикла, в котором попытаемся превратить ПК в полнофункциональный роутер.
+На этой странице, ниже по тексту, будут рассмотрена базовая конфигурация интерфейсов (используя systemd-networkd).
+В последующих публикациях совершим базовую настройку:
+nftables, в качестве firewall&rsquo;а; DHCP (kea) и DNS (bind9) серверов; Wireguard, для организации Remote access и Site-to-Site VPN&rsquo;ов; FRR, для создания простого сценария с установлением BGP-сессии и перенаправления интересующих нас префиксов в wg-туннель. Рассматривать настройку WiFi Access Point не будем, т."><meta itemprop="datePublished" content="2023-08-05T20:16:17+03:00" />
+<meta itemprop="dateModified" content="2023-08-05T20:16:17+03:00" />
+<meta itemprop="wordCount" content="1031">
+<meta itemprop="keywords" content="networking,linux,linux router," /><meta property="og:title" content="Настройка роутера на Linux. Часть 1. Установка ПО и настройка интерфейсов" />
+<meta property="og:description" content="Предисловие Это первая статья из цикла, в котором попытаемся превратить ПК в полнофункциональный роутер.
+На этой странице, ниже по тексту, будут рассмотрена базовая конфигурация интерфейсов (используя systemd-networkd).
+В последующих публикациях совершим базовую настройку:
+nftables, в качестве firewall&rsquo;а; DHCP (kea) и DNS (bind9) серверов; Wireguard, для организации Remote access и Site-to-Site VPN&rsquo;ов; FRR, для создания простого сценария с установлением BGP-сессии и перенаправления интересующих нас префиксов в wg-туннель. Рассматривать настройку WiFi Access Point не будем, т." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://welqd.github.io/posts/2023-08-06-linux_router_p1_basics/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-08-05T20:16:17+03:00" />
+<meta property="article:modified_time" content="2023-08-05T20:16:17+03:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Настройка роутера на Linux. Часть 1. Установка ПО и настройка интерфейсов"/>
+<meta name="twitter:description" content="Предисловие Это первая статья из цикла, в котором попытаемся превратить ПК в полнофункциональный роутер.
+На этой странице, ниже по тексту, будут рассмотрена базовая конфигурация интерфейсов (используя systemd-networkd).
+В последующих публикациях совершим базовую настройку:
+nftables, в качестве firewall&rsquo;а; DHCP (kea) и DNS (bind9) серверов; Wireguard, для организации Remote access и Site-to-Site VPN&rsquo;ов; FRR, для создания простого сценария с установлением BGP-сессии и перенаправления интересующих нас префиксов в wg-туннель. Рассматривать настройку WiFi Access Point не будем, т."/>
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/img/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://welqd.github.io/posts/2023-08-06-linux_router_p1_basics/" /><link rel="prev" href="https://welqd.github.io/posts/2023-04-16-eve-ng-to-external-network/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Настройка роутера на Linux. Часть 1. Установка ПО и настройка интерфейсов",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/welqd.github.io\/posts\/2023-08-06-linux_router_p1_basics\/"
+    },"genre": "posts","keywords": "networking, linux, linux router","wordcount":  1031 ,
+    "url": "https:\/\/welqd.github.io\/posts\/2023-08-06-linux_router_p1_basics\/","datePublished": "2023-08-05T20:16:17+03:00","dateModified": "2023-08-05T20:16:17+03:00","publisher": {
+      "@type": "Organization",
+      "name": "sss"},"author": {
+        "@type": "Person",
+        "name": "Vadim Aleshin"
+      },"description": ""
+  }
+  </script>
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(90794846, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/90794846" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+</head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="welqd&#39;s blog"><img loading="lazy" src="/img/main-logo.png" srcset="/img/main-logo.png, /img/main-logo.png 1.5x, /img/main-logo.png 2x" sizes="auto" data-title="welqd&#39;s blog" data-alt="welqd&#39;s blog" class="logo" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/><span class="header-title-text">Блог о сетях, Linux</span></a><span class="header-subtitle">и, возможно, о чём-нибудь ещё</span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-newspaper fa-fw fa-sm" aria-hidden="true"></i> Все статьи</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Тeги</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> Обо мне</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="welqd&#39;s blog"><img loading="lazy" src="/img/main-logo.png" srcset="/img/main-logo.png, /img/main-logo.png 1.5x, /img/main-logo.png 2x" sizes="auto" data-title="/img/main-logo.png" data-alt="/img/main-logo.png" class="logo" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/><span class="header-title-text">Блог о сетях, Linux</span></a><span class="header-subtitle">и, возможно, о чём-нибудь ещё</span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-newspaper fa-fw fa-sm" aria-hidden="true"></i> Все статьи</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Тeги</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> Обо мне</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><main class="container"><aside class="toc" id="toc-auto"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>Настройка роутера на Linux. Часть 1. Установка ПО и настройка интерфейсов</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      Vadim Aleshin</span></span></div>
+      <div class="post-meta-line"><span title="published on 2023-08-05 20:16:17"><i class="fa-regular fa-calendar-alt fa-fw me-1" aria-hidden="true"></i><time datetime="2023-08-05">2023-08-05</time></span>&nbsp;<span title="Updated on 2023-08-05 20:16:17"><i class="fa-regular fa-edit fa-fw me-1" aria-hidden="true"></i><time datetime="2023-08-05">2023-08-05</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>1031 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>5 minutes</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#предисловие">Предисловие</a></li>
+    <li><a href="#выбор-аппаратной-платформы">Выбор аппаратной платформы</a></li>
+    <li><a href="#выбор-linux-дистрибутива-и-почему-systemd-networkd">Выбор Linux-дистрибутива и почему systemd-networkd?</a></li>
+    <li><a href="#установка-пакетов">Установка пакетов</a></li>
+    <li><a href="#переименование-интефрейсов">Переименование интефрейсов</a></li>
+    <li><a href="#включение-маршрутизации-между-интерфейсами">Включение маршрутизации между интерфейсами</a></li>
+    <li><a href="#настройка-интерфейсов">Настройка интерфейсов</a>
+      <ul>
+        <li><a href="#настройка-wan-интерфейса">Настройка WAN-интерфейса</a></li>
+        <li><a href="#настройка-bridge-в-качестве-lan-интерфейса">Настройка BRIDGE, в качестве LAN-интерфейса</a></li>
+        <li><a href="#добавление-vlan-интерфейса">Добавление VLAN-интерфейса</a></li>
+      </ul>
+    </li>
+    <li><a href="#заключение">Заключение</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 id="предисловие">Предисловие</h2>
+<p>Это первая статья из цикла, в котором попытаемся превратить ПК в полнофункциональный роутер.<br>
+На этой странице, ниже по тексту, будут рассмотрена базовая конфигурация интерфейсов (используя systemd-networkd).<br>
+В последующих публикациях совершим базовую настройку:</p>
+<ol>
+<li><strong>nftables</strong>, в качестве firewall&rsquo;а;</li>
+<li><strong>DHCP (kea)</strong> и <strong>DNS (bind9)</strong> серверов;</li>
+<li><strong>Wireguard</strong>, для организации Remote access и Site-to-Site VPN&rsquo;ов;</li>
+<li><strong>FRR</strong>, для создания простого сценария с установлением BGP-сессии и перенаправления интересующих нас префиксов в wg-туннель.</li>
+</ol>
+<p>Рассматривать настройку WiFi Access Point не будем, т.к. у меня нет подходящих компонентов.</p>
+<h2 id="выбор-аппаратной-платформы">Выбор аппаратной платформы</h2>
+<p>Для роутера подойдёт любой компьютер с двумя сетевыми интерфейсами, на который можно установить Linux.<br>
+Я использую <a href="https://aliexpress.ru/item/1005004360072281.html?spm=a2g0o.store_pc_allProduct.8148356.2.308f8567B7O1zS&amp;pdp_npi=3%40dis%21RUB%2121%C2%A0664%2C02%20%D1%80%D1%83%D0%B1.%2112%C2%A0131%2C38%20%D1%80%D1%83%D0%B1.%21%21%21%21%21%40211675cb16913534392938867e24bb%2112000033748352257%21sh%21RU%21738398751&amp;sku_id=12000033748352284"target="_blank" rel="external nofollow noopener noreferrer">данный мини ПК</a> с Aliexpress. За более чем год работы в режиме 24/7 каких-либо проблем не нашёл.<br>
+Отличными кандидатами являются <strong>Orange Pi 5 plus</strong> на ARM-архитектуре, либо <strong>VisionFive 2</strong> на RISC-V (обе платы имеют по два интерфейса). На обе архитектуры доступен Debian, так что особых различий от x64_86 быть не должно, хотя я этого не проверял.</p>
+<h2 id="выбор-linux-дистрибутива-и-почему-systemd-networkd">Выбор Linux-дистрибутива и почему systemd-networkd?</h2>
+<p>В принципе, подойдёт любой дистрибутив (так как в этой статье будет использоваться <strong>systemd-networkd</strong> для назначения адресов на интерфейсы, то дистрибутив должен быть с ним), но стоит обратить внимание на наличие драйверов для сетевых карт, в моем случае необходимый драйвер появился в ядре 5.7.<br>
+В данной статье будет использоваться Debian 12.<br>
+Почему <strong>systemd-networkd</strong>? Удобно организовывать конфигурационные файлы, не нужно ставить дополнительных пакетов для работы с интерфейсами, таких как bridge-utils, vlan, даже wireguard встроен в ядро и пакет нужен только для генерации ключей.  Также конфигурация легко переносится на любой дистрибутив, вне зависимости от используемого метода для сетевых настроек. Да и просто хотелось с ним немного больше разобраться.</p>
+<h2 id="установка-пакетов">Установка пакетов</h2>
+<p>Необходимо определиться с ПО, которое будет использоваться для обеспечения всех необходим функций.<br>
+В этой серии, как было указано в предисловии, будем использовать nftables (firewall), kea (dhcp сервер), bind (dns сервер), wireguard (все, относящееся к vpn), frr (для динамической машрутизации).<br>
+Также добавим несколько пакетов для диагностики (tcpdump, ethtool и т.д.)</p>
+<p>Итого, для работы с сетью:</p>
+<pre tabindex="0"><code>apt install nftables bind9 bind9-doc kea-dhcp4-server kea-doc wireguard frr tcpdump conntrack ethtool whois nmap ssh snmp snmpd</code></pre><p>Для удобства администрирования ещё поставим:</p>
+<pre tabindex="0"><code>apt install vim htop lm-sensors curl</code></pre><h2 id="переименование-интефрейсов">Переименование интефрейсов</h2>
+<p>В моем случае один из сетевых интерфейсов именовался eno1, что отличалось от схемы остальных интерфейсов.</p>
+<pre tabindex="0"><code>1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: enp1s0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000
+    link/ether 00:e2:69:53:be:35 brd ff:ff:ff:ff:ff:ff
+3: enp2s0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000
+    link/ether 00:e2:69:53:be:36 brd ff:ff:ff:ff:ff:ff
+4: eno1: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether 00:e2:69:53:be:37 brd ff:ff:ff:ff:ff:ff
+    altname enp3s0
+5: enp4s0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether 00:e2:69:53:be:38 brd ff:ff:ff:ff:ff:ff</code></pre><p>Имена назначаются по приоритету из файла <strong>/usr/lib/systemd/network/99-default.link</strong>, который содержит данные в секции Link</p>
+<pre tabindex="0"><code>[Link]
+NamePolicy=keep kernel database onboard slot path</code></pre><p>Проверить, какие значение имеет конкретный интерфейс можно командой:</p>
+<pre tabindex="0"><code>udevadm test-builtin net_id /sys/class/net/eno1 2&gt;/dev/null</code></pre><p>В моем случае на 3-ем порту есть значение <strong>onboard</strong>, что является приоритетным значением относительно <strong>path</strong>, при этом на других портах оно отсутствует.</p>
+<pre tabindex="0"><code>ID_NET_NAMING_SCHEME=v247
+ID_NET_NAME_MAC=enx00e26953be37
+ID_NET_NAME_ONBOARD=eno1
+ID_NET_LABEL_ONBOARD=Onboard - RTK Ethernet
+ID_NET_NAME_PATH=enp3s0</code></pre><p>Для изменения имени:</p>
+<ol>
+<li>Смотрим MAC-адрес интересующего нас интерфейса:</li>
+</ol>
+<pre tabindex="0"><code>ip link show
+4: enp3s0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc mq master br0 state DOWN mode DEFAULT group default qlen 1000
+    link/ether 00:e2:69:53:be:37 brd ff:ff:ff:ff:ff:ff</code></pre><ol start="2">
+<li>Создадим файл в <strong>/etc/systemd/network/</strong> и назовем его <strong>90-enp3s0.link</strong> (для того, чтобы systemd-networkd вообще посмотрел внутрь файла, его имя должно стоять ранее в алфавитном порядке, чем стандартное имя 99-default.link).<br>
+В секции Match указываем MAC, в секции Link - имя.</li>
+</ol>
+<pre tabindex="0"><code>[Match]
+MACAddress=00:e2:69:53:be:37
+[Link]
+Name=enp3s0</code></pre><p>После чего необходимо обновить образ и перезагрузить систему <strong>update-initramfs -u &amp;&amp; reboot</strong></p>
+<h2 id="включение-маршрутизации-между-интерфейсами">Включение маршрутизации между интерфейсами</h2>
+<p>Для использования ОС в качестве роутера, нам необходимо включить маршрутизацию между интерфейсами.
+В файле <strong>/etc/sysctl.conf</strong> находим строку <strong>net.ipv4.ip_forward=1</strong> и раскомментируем её.</p>
+<h2 id="настройка-интерфейсов">Настройка интерфейсов</h2>
+<p>Т.к. мы используем <strong>systemd-networkd</strong>, то все настройки будут храниться в текстовых файлах в директории <strong>/etc/systemd/network</strong>
+Для настройки используются 3 типа файлов:</p>
+<ol>
+<li>.network -  применения конфигурации на интерфейсах</li>
+<li>.netdev -  создания виртуальных сетевых интерфейсов</li>
+<li>.link - в данный файл смотрит udev, при обнаружении интерфейсов</li>
+</ol>
+<p>В моем примере будет использоваться 3 порта:</p>
+<ol>
+<li>enp1s0 - смотрит в сторону провайдера</li>
+<li>enp2s0, enp3s0 - для создания bridge интерфейса для подключения LAN-сегмента.</li>
+</ol>
+<p>Имена файлов можно использовать произвольные, только необходимо помнить, что конфигурация из них читается в алфавитном порядке, т.е., к примеру, чтобы настроить IP-адрес на bridge интерфейсе, необходимо чтобы к моменту чтения конфигурационного .network файла, данный интерфейс уже был создан .netdev файлом.</p>
+<p>По умолчанию Debian использует файлы из директории <strong>/etc/network</strong> для конфигурации сети.
+Т.к. мы будем использовать systemd-networkd, то первым делом переименуем стандартный конфигурационный файл и отключим соответствующий сервис:</p>
+<blockquote>
+<p><strong><em>NOTE:</em></strong> Если данное действие делать удалённо, то, очевидно, доступ к устройству пропадёт. Поэтому либо сначала полностью создаём все конфигурационные systemd-networkd файлы, после чего отключаем networking, либо необходим локальный доступ.</p>
+</blockquote>
+<pre tabindex="0"><code>mv /etc/network/interfaces /etc/network/interfaces.save
+systemctl disable networking.service
+systemctl stop networking.service</code></pre><h3 id="настройка-wan-интерфейса">Настройка WAN-интерфейса</h3>
+<p>Мне провайдер предоставляет настройки по DHCP (IPoE с привязкой по MAC-адресу), конфигурационный 30-enp1s0.network файл будет выглядеть примерно так (т.к. ipv6 в данной статье не используется, то запретим создание Link Local адресов на интерфейсах):</p>
+<pre tabindex="0"><code>[Match]
+Name = enp1s0
+
+[Network]
+DHCP = ipv4
+LinkLocalAddressing = no
+IPv6AcceptRA = no
+KeepConfiguration = dhcp
+IgnoreCarrierLoss = yes
+
+[DHCPv4]
+SendRelease = no</code></pre><p>Для более подробной информации по каждому параметру:</p>
+<pre tabindex="0"><code>man systemd.network</code></pre><h3 id="настройка-bridge-в-качестве-lan-интерфейса">Настройка BRIDGE, в качестве LAN-интерфейса</h3>
+<p>В качестве интерфейса, смотрящего в локальную сеть будет использоваться Bridge-интерфейс, объединяющий порты enp2s0 и enp3s0.<br>
+Для создания бриджа нам потребуется 3 файла:</p>
+<ol>
+<li>20-bind.network, где указываем интерфейсы, которые будут использоваться в Bridge</li>
+</ol>
+<pre tabindex="0"><code>[Match]
+Name=enp[2,3]s0
+
+[Network]
+Bridge=br0</code></pre><ol start="2">
+<li>20-bridge.netdev, в данном файле создаем уже сам интерфейс</li>
+</ol>
+<pre tabindex="0"><code>[NetDev]
+Name=br0
+Kind=bridge</code></pre><ol start="3">
+<li>20-bridge.network, где указываем сетевые настройки интерфейса (в файле настроен ещё vlan69, его создание будет в следующем пункте)</li>
+</ol>
+<pre tabindex="0"><code>[Match]
+Name = br0
+
+[Network]
+Address = 10.222.21.1/24
+LinkLocalAddressing = no
+VLAN=vlan69</code></pre><h3 id="добавление-vlan-интерфейса">Добавление VLAN-интерфейса</h3>
+<p>Также создадим VLAN-интерфейс и добавим  на ранее созданнный br0-интерфейс.
+Для этого необходимы 2 файла:</p>
+<ol>
+<li>69-vlan69.netdev, для создания виртуального интерфейса</li>
+</ol>
+<pre tabindex="0"><code>[NetDev]
+Name=vlan69
+Kind=vlan
+
+[VLAN]
+Id=69</code></pre><ol start="2">
+<li>69-vlan69.network, для настроек на ранее созданном интерфейсе</li>
+</ol>
+<pre tabindex="0"><code>[Match]
+Name=vlan69
+Type=vlan
+
+[Network]
+Description=&#34;proxmox ve&#34;
+LinkLocalAddressing = no
+
+[Address]
+Address=10.69.69.1/24</code></pre><h2 id="заключение">Заключение</h2>
+<p>На данном этапе настроены интерфейсы для WAN и LAN подключений, но роутер ещё не имеет доступ в интернет, т.к. не настроен NAT, настройка которого рассматривается в следующей статье.
+Также отсутствуют локальные DNS и DHCP серверы, настройка которых рассматривается в третьей части.</p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 2023-08-05 20:16:17">Updated on 2023-08-05&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://welqd.github.io/posts/2023-08-06-linux_router_p1_basics/" data-title="Настройка роутера на Linux. Часть 1. Установка ПО и настройка интерфейсов" data-hashtags="networking,linux,linux router"><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="https://welqd.github.io/posts/2023-08-06-linux_router_p1_basics/"><i class="fa-brands fa-reddit fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on VK" data-sharer="vk" data-url="https://welqd.github.io/posts/2023-08-06-linux_router_p1_basics/" data-title="Настройка роутера на Linux. Часть 1. Установка ПО и настройка интерфейсов"><i class="fa-brands fa-vk fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/networking/' class="post-tag">networking</a><a href='/tags/linux/' class="post-tag">linux</a><a href='/tags/linux-router/' class="post-tag">linux router</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav"><a href="/posts/2023-04-16-eve-ng-to-external-network/" class="post-nav-item" rel="prev" title="Proxmox. Организация доступа лабы в EVE-NG в локальную сеть и/или Интернет"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Proxmox. Организация доступа лабы в EVE-NG в локальную сеть и/или Интернет</a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span></div><div class="footer-line statistics"></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":10},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

@@ -3,12 +3,23 @@
     <title>networking - Tag - welqd&#39;s blog</title>
     <link>https://welqd.github.io/tags/networking/</link>
     <description>networking - Tag - welqd&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 16 Apr 2023 12:11:11 &#43;0300</lastBuildDate><atom:link href="https://welqd.github.io/tags/networking/" rel="self" type="application/rss+xml" /><item>
+    <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 05 Aug 2023 20:16:17 &#43;0300</lastBuildDate><atom:link href="https://welqd.github.io/tags/networking/" rel="self" type="application/rss+xml" /><item>
+  <title>Настройка роутера на Linux. Часть 1. Установка ПО и настройка интерфейсов</title>
+  <link>https://welqd.github.io/posts/2023-08-06-linux_router_p1_basics/</link>
+  <pubDate>Sat, 05 Aug 2023 20:16:17 &#43;0300</pubDate>
+  <author>Author</author>
+  <guid>https://welqd.github.io/posts/2023-08-06-linux_router_p1_basics/</guid>
+  <description><![CDATA[Предисловие Это первая статья из цикла, в котором попытаемся превратить ПК в полнофункциональный роутер.
+На этой странице, ниже по тексту, будут рассмотрена базовая конфигурация интерфейсов (используя systemd-networkd).
+В последующих публикациях совершим базовую настройку:
+nftables, в качестве firewall&rsquo;а; DHCP (kea) и DNS (bind9) серверов; Wireguard, для организации Remote access и Site-to-Site VPN&rsquo;ов; FRR, для создания простого сценария с установлением BGP-сессии и перенаправления интересующих нас префиксов в wg-туннель. Рассматривать настройку WiFi Access Point не будем, т.]]></description>
+</item>
+<item>
   <title>Proxmox. Организация доступа лабы в EVE-NG в локальную сеть и/или Интернет</title>
-  <link>https://welqd.github.io/posts/eve-ng-to-external-network/</link>
+  <link>https://welqd.github.io/posts/2023-04-16-eve-ng-to-external-network/</link>
   <pubDate>Sun, 16 Apr 2023 12:11:11 &#43;0300</pubDate>
   <author>Author</author>
-  <guid>https://welqd.github.io/posts/eve-ng-to-external-network/</guid>
+  <guid>https://welqd.github.io/posts/2023-04-16-eve-ng-to-external-network/</guid>
   <description><![CDATA[Нередко необходимо иметь доступ к устройствам внутри лабораторной EVE-NG из домашней сети. К примеру: для использования локального DHCP или DNS сервера, либо для тестирования автоматизации/скриптов с рабочего ПК.
 Существует несколько вариантов добиться данной цели, рассмотрю, как по мне, наиболее удобный.
 Топология локальной сети Все виртуальные девайсы в EVE-NG будут в отдельной VLAN&rsquo;е 69 и подсети 10.69.69.0/24, для удобства.
@@ -17,20 +28,20 @@
 </item>
 <item>
   <title>IPSec между Cisco и Linux, при помощи systemd-networkd и VTI</title>
-  <link>https://welqd.github.io/posts/linux-cisco-vti-ipsec/</link>
+  <link>https://welqd.github.io/posts/2022-09-17-linux-cisco-vti-ipsec/</link>
   <pubDate>Sat, 17 Sep 2022 17:41:36 &#43;0300</pubDate>
   <author>Author</author>
-  <guid>https://welqd.github.io/posts/linux-cisco-vti-ipsec/</guid>
+  <guid>https://welqd.github.io/posts/2022-09-17-linux-cisco-vti-ipsec/</guid>
   <description><![CDATA[В предыдущей статье был создан образ роутера на Linux для EVE-NG на основе Debian 11. Теперь, используя данный образ, настроим популярный сценарий - IPSec между роутером Cisco и роутером с Linux.
 Существуют несколько методов организации IPSec туннеля между двумя точками:
 Policy-based - трафик, который должен отправляться в туннель, определяется на основе политик в процессе конфигурации IPSec&rsquo;а. Route-based - трафик, который должен отправляться в туннель, определяется с помощью маршрута по адресу назначения и конфигурируется с помощью протоколов маршрутизации (либо статических маршрутов), обычно поверх VTI или GRE туннельных интерфейсов.]]></description>
 </item>
 <item>
   <title>Образ роутера на Linux для EVE-NG</title>
-  <link>https://welqd.github.io/posts/eve-ng-linux-iso/</link>
+  <link>https://welqd.github.io/posts/2022-09-15-eve-ng-linux-iso/</link>
   <pubDate>Thu, 15 Sep 2022 14:46:00 &#43;0300</pubDate>
   <author>Author</author>
-  <guid>https://welqd.github.io/posts/eve-ng-linux-iso/</guid>
+  <guid>https://welqd.github.io/posts/2022-09-15-eve-ng-linux-iso/</guid>
   <description><![CDATA[В предыдущей публикации был установлен образ EVE-NG и настроена базовая конфигурация. Теперь создадим образ Linux-роутера на основе Debian 11 и добавим его в EVE-NG.
 Создание виртуальной машины Скачиваем образ с официального сайта.
 Создаем виртуальную машину, для этих целей будет использоваться VMware Workstation. В процессе настройки ВМ на этапе указания объема диска обязательно выбрать Store virtual disk as a single file.
@@ -38,10 +49,10 @@ Policy-based - трафик, который должен отправлятьс�
 </item>
 <item>
   <title>EVE-NG установка &#43; интеграция в Arch Linux с i3wm</title>
-  <link>https://welqd.github.io/posts/eve-ng-arch-i3/</link>
+  <link>https://welqd.github.io/posts/2022-09-13-eve-ng-arch-i3/</link>
   <pubDate>Tue, 13 Sep 2022 20:16:17 &#43;0300</pubDate>
   <author>Author</author>
-  <guid>https://welqd.github.io/posts/eve-ng-arch-i3/</guid>
+  <guid>https://welqd.github.io/posts/2022-09-13-eve-ng-arch-i3/</guid>
   <description><![CDATA[Установка EVE-NG в VMware Предполагается, что уже есть установленная VMware workstation, для Arch Linux можно установить из AUR.
 Для установки EVE Community Edition Version:
 Скачиваем архив с образом с официального сайта Распаковываем архив и добавляем в VMware workstation (File -&gt; Open -&gt; EVE-COM-5.ovf) Запускаем VM и входим в ОС под пользователем root, пароль eve Задаем первичные параметры в появившемся диалоге настроек (root пароль, ip адрес и т.д.) После этого можно зайти в web-интерфейс по ip-адресу (в этой статье примеры будут с адресом 192.]]></description>
