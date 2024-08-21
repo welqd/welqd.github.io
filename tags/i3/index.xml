@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>i3 - Tag - welqd&#39;s blog</title>
+    <title>I3 - Tag - welqd&#39;s blog</title>
     <link>https://welqd.github.io/tags/i3/</link>
-    <description>i3 - Tag - welqd&#39;s blog</description>
+    <description>I3 - Tag - welqd&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 13 Sep 2022 20:16:17 &#43;0300</lastBuildDate><atom:link href="https://welqd.github.io/tags/i3/" rel="self" type="application/rss+xml" /><item>
   <title>EVE-NG установка &#43; интеграция в Arch Linux с i3wm</title>
   <link>https://welqd.github.io/posts/2022-09-13-eve-ng-arch-i3/</link>

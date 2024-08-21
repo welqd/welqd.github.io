@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title> - welqd&#39;s blog</title><meta name="author" content="">
+<meta name="author-link" content="">
+<meta name="description" content="Данная статья является прежде всего предшественником статьи по настройке FreeRADIUS на работу с Active Directoty.
+Для работы необходим ввод сервера в домен, что и будет рассмотрено в в данном тексте.
+Сервер в домен можно заводить с помощью sssd, но будем использовать связку samba &#43; winbind
+Информация по настройке AD Установка и настройка Windows-сервера рассматриваться не будет.
+Для простоты был создан Domain Controller на Windows Server 2022 с 2 пользователями: ivanov и petrov, и 1 группой CiscoAccess(в которой есть только пользователь petrov)." /><meta name="keywords" content='Linux, Computer Networks, Компьютерные сети' />
+  <meta itemprop="name" content="welqd&#39;s blog">
+  <meta itemprop="description" content="Данная статья является прежде всего предшественником статьи по настройке FreeRADIUS на работу с Active Directoty.
+Для работы необходим ввод сервера в домен, что и будет рассмотрено в в данном тексте.
+Сервер в домен можно заводить с помощью sssd, но будем использовать связку samba &#43; winbind
+Информация по настройке AD Установка и настройка Windows-сервера рассматриваться не будет.
+Для простоты был создан Domain Controller на Windows Server 2022 с 2 пользователями: ivanov и petrov, и 1 группой CiscoAccess(в которой есть только пользователь petrov).">
+  <meta itemprop="wordCount" content="743"><meta property="og:url" content="http://localhost:1313/posts/2024-06-02-ubuntu_ad/">
+  <meta property="og:site_name" content="welqd&#39;s blog">
+  <meta property="og:title" content="welqd&#39;s blog">
+  <meta property="og:description" content="Данная статья является прежде всего предшественником статьи по настройке FreeRADIUS на работу с Active Directoty.
+Для работы необходим ввод сервера в домен, что и будет рассмотрено в в данном тексте.
+Сервер в домен можно заводить с помощью sssd, но будем использовать связку samba &#43; winbind
+Информация по настройке AD Установка и настройка Windows-сервера рассматриваться не будет.
+Для простоты был создан Domain Controller на Windows Server 2022 с 2 пользователями: ivanov и petrov, и 1 группой CiscoAccess(в которой есть только пользователь petrov).">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="welqd&#39;s blog">
+  <meta name="twitter:description" content="Данная статья является прежде всего предшественником статьи по настройке FreeRADIUS на работу с Active Directoty.
+Для работы необходим ввод сервера в домен, что и будет рассмотрено в в данном тексте.
+Сервер в домен можно заводить с помощью sssd, но будем использовать связку samba &#43; winbind
+Информация по настройке AD Установка и настройка Windows-сервера рассматриваться не будет.
+Для простоты был создан Domain Controller на Windows Server 2022 с 2 пользователями: ivanov и petrov, и 1 группой CiscoAccess(в которой есть только пользователь petrov).">
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/img/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="http://localhost:1313/posts/2024-06-02-ubuntu_ad/" /><link rel="next" href="http://localhost:1313/posts/2022-09-13-eve-ng-arch-i3/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "",
+    "inLanguage": "en",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/posts\/2024-06-02-ubuntu_ad\/"
+    },"genre": "posts","wordcount":  743 ,
+    "url": "http:\/\/localhost:1313\/posts\/2024-06-02-ubuntu_ad\/","publisher": {
+      "@type": "Organization",
+      "name": "sss"},"author": {
+        "@type": "Person",
+        "name": "Author"
+      },"description": ""
+  }
+  </script>
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(90794846, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/90794846" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+</head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><script>(window.localStorage?.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('data-theme', 'dark');</script><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="welqd&#39;s blog"><img loading="lazy" src="/img/main-logo.png" srcset="/img/main-logo.png, /img/main-logo.png 1.5x, /img/main-logo.png 2x" sizes="auto" data-title="welqd&#39;s blog" data-alt="welqd&#39;s blog" class="logo" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/><span class="header-title-text">Блог о сетях, Linux</span></a><span class="header-subtitle">и, возможно, о чём-нибудь ещё</span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/posts/"
+                
+                
+              ><i class="fa-solid fa-newspaper fa-fw fa-sm" aria-hidden="true"></i> Все статьи</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/tags/"
+                
+                
+              ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Тeги</a></li><li class="menu-item">
+              <a
+                class="menu-link"
+                href="/about/"
+                
+                
+              ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> Обо мне</a></li><li class="menu-item delimiter"></li><li class="menu-item theme-switch" title="Switch Theme">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="welqd&#39;s blog"><img loading="lazy" src="/img/main-logo.png" srcset="/img/main-logo.png, /img/main-logo.png 1.5x, /img/main-logo.png 2x" sizes="auto" data-title="/img/main-logo.png" data-alt="/img/main-logo.png" class="logo" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/><span class="header-title-text">Блог о сетях, Linux</span></a><span class="header-subtitle">и, возможно, о чём-нибудь ещё</span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/posts/"
+                  
+                  
+                ><i class="fa-solid fa-newspaper fa-fw fa-sm" aria-hidden="true"></i> Все статьи</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/tags/"
+                  
+                  
+                ><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden="true"></i> Тeги</a></li><li
+              class="menu-item"
+            ><a
+                  class="menu-link"
+                  href="/about/"
+                  
+                  
+                ><i class="fa-solid fa-info-circle fa-fw fa-sm" aria-hidden="true"></i> Обо мне</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="Switch Theme"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><main class="container"><aside class="toc" id="toc-auto"><h2 class="toc-title">Contents&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside>
+
+  <aside class="aside-custom">
+    </aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span></span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      Anonymous</span></span></div>
+      <div class="post-meta-line"><span title="published on 0001-01-01 00:00:00"><i class="fa-regular fa-calendar-alt fa-fw me-1" aria-hidden="true"></i><time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span title="Updated on 0001-01-01 00:00:00"><i class="fa-regular fa-edit fa-fw me-1" aria-hidden="true"></i><time datetime="0001-01-01">0001-01-01</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>743 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>4 minutes</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>Contents</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#информация-по-настройке-ad">Информация по настройке AD</a></li>
+    <li><a href="#первоначальная-настройка-ubuntu-сервера">Первоначальная настройка Ubuntu-сервера</a>
+      <ul>
+        <li><a href="#настройка-времени">Настройка времени</a></li>
+        <li><a href="#установка-пароля-для-root">Установка пароля для root</a></li>
+      </ul>
+    </li>
+    <li><a href="#ввод-сервера-в-домен">Ввод сервера в домен</a>
+      <ul>
+        <li><a href="#установка-необходимых-пакетов">Установка необходимых пакетов</a></li>
+        <li><a href="#настройка-samba">Настройка Samba</a></li>
+        <li><a href="#настройка-krb5">Настройка Krb5</a></li>
+      </ul>
+    </li>
+    <li><a href="#настройка-ssh-доступа-в-тч-пользователям-ad">Настройка SSH-доступа (в т.ч. пользователям AD)</a>
+      <ul>
+        <li><a href="#донастройка-для-логина-ad-пользователей">Донастройка для логина AD пользователей</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>Данная статья является прежде всего предшественником статьи по настройке
+FreeRADIUS на работу с Active Directoty.<br>
+Для работы необходим ввод сервера в домен, что и будет рассмотрено в
+в данном тексте.</p>
+<blockquote>
+<p>Сервер в домен можно заводить с помощью <a href="https://ubuntu.com/server/docs/how-to-set-up-sssd-with-active-directory"target="_blank" rel="external nofollow noopener noreferrer">sssd</a>,
+но будем использовать связку samba + winbind</p>
+</blockquote>
+<h2 id="информация-по-настройке-ad">Информация по настройке AD</h2>
+<p>Установка и настройка Windows-сервера рассматриваться не будет.</p>
+<p>Для простоты был создан Domain Controller на Windows Server 2022 с 2 пользователями:
+<strong>ivanov</strong> и <strong>petrov</strong>, и 1 группой <strong>CiscoAccess</strong>(в которой есть только пользователь petrov).
+Т.к. с Windows вселенной я не знаком, то для таких как я, советую ознакомиться с
+терминологией.
+Также для более наглядного представления групп/пользователей я использовал
+<a href="https://learn.microsoft.com/en-us/sysinternals/downloads/adexplorer"target="_blank" rel="external nofollow noopener noreferrer">AdExplorer</a>,
+что сильно облегчило просмотр структуры AD.</p>
+<h2 id="первоначальная-настройка-ubuntu-сервера">Первоначальная настройка Ubuntu-сервера</h2>
+<p>Некоторые действия, которые необходимо сделать сразу после установки операционной
+системы (в данном случае - это Ubuntu 24.04).</p>
+<h3 id="настройка-времени">Настройка времени</h3>
+<p>Точное время во вселенных AD и FreeRADIUS очень важно, поэтому настроем часовой
+пояс и NTP</p>
+<ol>
+<li>Изменить часовой пояс</li>
+</ol>
+<div class="highlight" id="id-1"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aiio@co-freeradius:~$ timedatectl list-timezones | grep Moscow
+</span></span><span style="display:flex;"><span>Europe/Moscow
+</span></span><span style="display:flex;"><span>aiio@co-freeradius:~$ sudo timedatectl set-timezone <span style="color:#e6db74">&#34;Europe/Moscow&#34;</span></span></span></code></pre></div><ol start="2">
+<li>Изменить NTP-серверы, отредактировав файл:</li>
+</ol>
+<div class="highlight" id="id-2"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aiio@co-freeradius:~$ sudo vim /etc/systemd/timesyncd.conf</span></span></code></pre></div><ul>
+<li>Необходимо установить параметры NTP и, при необходимости, FallbackNTP</li>
+</ul>
+<div class="highlight" id="id-3"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[Time]
+</span></span><span style="display:flex;"><span>NTP=ntp.sgc.local
+</span></span><span style="display:flex;"><span>FallbackNTP=ntp-ub.sgc.local</span></span></code></pre></div><div class="highlight" id="id-4"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aiio@co-freeradius:~$ sudo systemctl restart systemd-timesyncd.service</span></span></code></pre></div><h3 id="установка-пароля-для-root">Установка пароля для root</h3>
+<p>Т.к. в процессе установки Ubuntu 24.04 пароль для root не устанавливается,
+то установим его после:</p>
+<div class="highlight" id="id-5"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aiio@co-freeradius:~$ sudo passwd root</span></span></code></pre></div><h2 id="ввод-сервера-в-домен">Ввод сервера в домен</h2>
+<h3 id="установка-необходимых-пакетов">Установка необходимых пакетов</h3>
+<div class="highlight" id="id-6"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aiio@co-freeradius:~$ sudo apt install winbind libnss-winbind krb5-user ldap-utils samba libpam-winbind</span></span></code></pre></div><h3 id="настройка-samba">Настройка Samba</h3>
+<ol>
+<li>Сделаем копию стандартной конфигурации:</li>
+</ol>
+<div class="highlight" id="id-7"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aiio@co-freeradius:~$ sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bak</span></span></code></pre></div><ol start="2">
+<li>
+<p>Укажем настройки в файле <strong>/etc/samba/smb.conf</strong>:</p>
+<div class="highlight" id="id-8"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[global]
+</span></span><span style="display:flex;"><span>workgroup = SGC
+</span></span><span style="display:flex;"><span>security = ads
+</span></span><span style="display:flex;"><span>password server = srv-co-dc00.sgc.local, srv-co-dc01.sgc.local
+</span></span><span style="display:flex;"><span>realm = SGC.LOCAL
+</span></span><span style="display:flex;"><span>ntlm auth = mschapv2-and-ntlmv2-only
+</span></span><span style="display:flex;"><span>log file = /var/log/samba/log.%m
+</span></span><span style="display:flex;"><span>max log size = 1000
+</span></span><span style="display:flex;"><span>panic action = /usr/share/samba/panic-action %d
+</span></span><span style="display:flex;"><span>winbind enum users = yes
+</span></span><span style="display:flex;"><span>winbind enum groups = yes
+</span></span><span style="display:flex;"><span>winbind separator = /
+</span></span><span style="display:flex;"><span>winbind use default domain = yes
+</span></span><span style="display:flex;"><span>winbind nss info = rfc2307
+</span></span><span style="display:flex;"><span>template shell = /bin/bash
+</span></span><span style="display:flex;"><span>template homedir = /home/%D/%U
+</span></span><span style="display:flex;"><span>idmap config * : backend = tdb
+</span></span><span style="display:flex;"><span>idmap config * : range = 1000-9999
+</span></span><span style="display:flex;"><span>idmap config SGC : backend = rid
+</span></span><span style="display:flex;"><span>idmap config SGC : range   = 100000-999999</span></span></code></pre></div></li>
+</ol>
+<p>Для работы конвертации из SID, полученного из AD в UID - необходимо
+использовать backend = <a href="https://wiki.samba.org/index.php/Idmap_config_rid"target="_blank" rel="external nofollow noopener noreferrer">rid</a></p>
+<div class="highlight" id="id-9"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aiio@co-freeradius:~$ sudo systemctl restart smbd.service</span></span></code></pre></div><h3 id="настройка-krb5">Настройка Krb5</h3>
+<ol>
+<li>
+<p>Настройки в файле <strong>/etc/krb5.conf</strong></p>
+<div class="highlight" id="id-10"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[libdefaults]
+</span></span><span style="display:flex;"><span>     default_realm = SGC.LOCAL
+</span></span><span style="display:flex;"><span>[realms]
+</span></span><span style="display:flex;"><span>     SGC.LOCAL = {
+</span></span><span style="display:flex;"><span>         kdc = srv-co-dc-00.sgc.local
+</span></span><span style="display:flex;"><span>         kdc = srv-co-dc-01.sgc.local
+</span></span><span style="display:flex;"><span>         admin_server = srv-co-dc-00.sgc.local
+</span></span><span style="display:flex;"><span>         default_domain = sgc.local
+</span></span><span style="display:flex;"><span>     }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[domain_realm]
+</span></span><span style="display:flex;"><span>     .sgc.local = SGC.LOCAL
+</span></span><span style="display:flex;"><span>     sgc.local = SGC.LOCAL</span></span></code></pre></div></li>
+<li>
+<p>Заходим в домен</p>
+</li>
+</ol>
+<blockquote>
+<p>Перед тем, как вводить устройство в домен, необходимо сделать DNS-запись,
+чтобы имя машины резолвилось</p>
+<p>Автоматом в файле <strong>/etc/hosts</strong> добавляется запись:</p>
+<div class="highlight" id="id-11"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>127.0.1.1 co-freeradius</span></span></code></pre></div><p>Из-за чего при входе в домен возникает ошибка <strong>DNS update failed: NT_STATUS_INVALID_PARAMETER</strong></p>
+<p>Необходимо эту строку закоментировать, после чего вводить в домен.</p>
+</blockquote>
+<div class="highlight" id="id-12"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aiio@co-freeradius:~$ sudo net join -U avakov
+</span></span><span style="display:flex;"><span>Password <span style="color:#66d9ef">for</span> <span style="color:#f92672">[</span>SGC<span style="color:#ae81ff">\a</span>vakov<span style="color:#f92672">]</span>:
+</span></span><span style="display:flex;"><span>Using short domain name -- SGC
+</span></span><span style="display:flex;"><span>Joined <span style="color:#e6db74">&#39;CO-FREERADIUS&#39;</span> to dns domain <span style="color:#e6db74">&#39;sgc.local&#39;</span></span></span></code></pre></div><p>Проверим, что пользователь в домене может быть аутентифицирован:</p>
+<div class="highlight" id="id-13"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aiio@co-freeradius:~$ wbinfo -a aleshin%PASSOWRD
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Обращаем внимание на строку с plaintext</span>
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>plaintext password authentication succeeded</span></span></code></pre></div><ol start="3">
+<li>Далее необходимо проверить аутентификацию с модулем ntlm_auth,
+который будет использовать в работе FreeRADIUS:</li>
+</ol>
+<div class="highlight" id="id-14"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aiio@co-freeradius:~# ntlm_auth --request-nt-key --domain<span style="color:#f92672">=</span>SGC.LOCAL --username<span style="color:#f92672">=</span>aleshin
+</span></span><span style="display:flex;"><span>Password:
+</span></span><span style="display:flex;"><span>:  <span style="color:#f92672">(</span>0x0<span style="color:#f92672">)</span></span></span></code></pre></div><p><strong>0x0</strong> значит, что аутентификация прошла успешно.</p>
+<h2 id="настройка-ssh-доступа-в-тч-пользователям-ad">Настройка SSH-доступа (в т.ч. пользователям AD)</h2>
+<p>После ввода в домен  все группы доступны <strong>локально</strong>, поэтому доступ
+по ssh можно ограничить в <strong>/etc/ssh/sshd_config</strong></p>
+<blockquote>
+<p>Перед дальнейшими действиями сервер должен быть в домене.</p>
+</blockquote>
+<p>Для работы данной схемы также необходим пакет <strong>libpam-winbind</strong>
+(установленный в предыдущем разделе)</p>
+<h3 id="донастройка-для-логина-ad-пользователей">Донастройка для логина AD пользователей</h3>
+<ol>
+<li>Добавим группу <strong>netadmins</strong> в файл <strong>/etc/sudoers</strong>, для этого воспользуемся
+командой <strong>visudo</strong></li>
+</ol>
+<div class="highlight" id="id-15"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aiio@co-freeradius:~$ sudo EDITOR<span style="color:#f92672">=</span>vim visudo</span></span></code></pre></div><p>И добавим запись:</p>
+<div class="highlight" id="id-16"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>%netadmins      ALL=(ALL:ALL) ALL</span></span></code></pre></div><p>Это позволит пользователям доменной группы <strong>netadmins</strong> выполнять sudo-команды</p>
+<ol start="2">
+<li>Проверим, что данные о пользователе из AD действительно можно получить локально:</li>
+</ol>
+<div class="highlight" id="id-17"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aiio@co-freeradius:~$ sudo getent passwd aleshin
+</span></span><span style="display:flex;"><span>aleshin:*:117767:100513:Алешин Вадим Геннадьевич:/home/SGC/aleshin:/bin/bash</span></span></code></pre></div><p>Тоже самое, только для данные по группам:</p>
+<div class="highlight" id="id-18"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aiio@co-freeradius:~$ sudo getent group netadmins
+</span></span><span style="display:flex;"><span>netadmins:x:120780:</span></span></code></pre></div><ol start="3">
+<li>В <strong>/etc/ssh/sshd_config</strong> (в конец файла) добавим ограничение
+для локальных пользователей <strong>aiio</strong> и <strong>root</strong>, а также для членов группы
+AD - <strong>netadmins</strong>:</li>
+</ol>
+<blockquote>
+<p>Если требуется разрешить доступ на сервер под пользователем <strong>root</strong>
+(не рекомендуется), то ещё в конфиг добавим <strong>PermitRootLogin yes</strong>,
+в примере ниже строка закомментирована</p>
+</blockquote>
+<div class="highlight" id="id-19"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span># Authentication:
+</span></span><span style="display:flex;"><span>AllowUsers      aiio root
+</span></span><span style="display:flex;"><span># PermitRootLogin yes
+</span></span><span style="display:flex;"><span>Match group netadmins
+</span></span><span style="display:flex;"><span>        AllowUsers *</span></span></code></pre></div><blockquote>
+<p>Если будут нужны другие группы, то просто добавим блоков Match group
+PS: Конструкция <strong>Match group</strong> используется, т.к. одновременное использование
+<strong>AllowUsers</strong> и <strong>AllowGroups</strong> даёт доступ только пересекающимся
+пользователям</p>
+</blockquote>
+<ol start="4">
+<li>Далее, для того, чтобы после логина создавались home-директории, в конец
+файла <strong>/etc/pam.d/common-session</strong> добавляем:</li>
+</ol>
+<div class="highlight" id="id-20"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>session optional    pam_mkhomedir.so</span></span></code></pre></div><ol start="5">
+<li>В конце концов перезапустим сервис</li>
+</ol>
+<div class="highlight" id="id-21"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aiio@co-freeradius:~$ sudo systemctl restart ssh.service</span></span></code></pre></div><ol start="6">
+<li>Если необходимо пользователя добавить в локальные группы, то добавляем
+как обычного unix-пользователя:</li>
+</ol>
+<div class="highlight" id="id-22"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aiio@co-freeradius:~$ sudo usermod -aG freerad aleshin</span></span></code></pre></div><p>Далее можно работать по ssh под пользователем домена.</p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="Updated on 0001-01-01 00:00:00">Updated on 0001-01-01&nbsp;</span>
+      </div><div class="post-info-license">
+          <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
+        </div></div>
+    <div class="post-info-line">
+      <div class="post-info-md"></div>
+      <div class="post-info-share">
+        <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/2024-06-02-ubuntu_ad/" data-title=""><i class="fa-brands fa-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on Reddit" data-sharer="reddit" data-url="http://localhost:1313/posts/2024-06-02-ubuntu_ad/"><i class="fa-brands fa-reddit fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="Share on VK" data-sharer="vk" data-url="http://localhost:1313/posts/2024-06-02-ubuntu_ad/" data-title=""><i class="fa-brands fa-vk fa-fw" aria-hidden="true"></i></a>
+  </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="post-info-more">
+    <section class="post-tags"></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+    </section>
+  </div>
+
+  <div class="post-nav">
+      <a href="/posts/2022-09-13-eve-ng-arch-i3/" class="post-nav-item" rel="next" title="EVE-NG установка &#43; интеграция в Arch Linux с i3wm">EVE-NG установка &#43; интеграция в Arch Linux с i3wm<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="/"></a></span></div><div class="footer-line statistics"></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="Back to Top"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">Theme FixIt works best with JavaScript enabled.</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","editLockTitle":"Lock editable code block","editUnLockTitle":"Unlock editable code block","editable":true,"maxShownLines":10},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"Got it!","link":"Learn more","message":"This website uses Cookies to improve your experience."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script src="/js/theme.min.js" defer></script></body>
+</html>

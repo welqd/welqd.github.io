@@ -7,27 +7,40 @@
     <meta name="robots" content="noodp" />
     <title>IPSec между Cisco и Linux, при помощи systemd-networkd и VTI - welqd&#39;s blog</title><meta name="author" content="">
 <meta name="author-link" content="">
-<meta name="description" content="В предыдущей статье был создан образ роутера на Linux для EVE-NG на основе Debian 11. Теперь, используя данный образ, настроим популярный сценарий - IPSec между роутером Cisco и роутером с Linux.
+<meta name="description" content="В предыдущей статье был создан образ роутера на Linux для EVE-NG на основе Debian 11.
+Теперь, используя данный образ, настроим популярный сценарий - IPSec между роутером Cisco и роутером с Linux.
 Существуют несколько методов организации IPSec туннеля между двумя точками:
-Policy-based - трафик, который должен отправляться в туннель, определяется на основе политик в процессе конфигурации IPSec&rsquo;а. Route-based - трафик, который должен отправляться в туннель, определяется с помощью маршрута по адресу назначения и конфигурируется с помощью протоколов маршрутизации (либо статических маршрутов), обычно поверх VTI или GRE туннельных интерфейсов." /><meta name="keywords" content='networking, linux, cisco' /><meta itemprop="name" content="IPSec между Cisco и Linux, при помощи systemd-networkd и VTI">
-<meta itemprop="description" content="В предыдущей статье был создан образ роутера на Linux для EVE-NG на основе Debian 11. Теперь, используя данный образ, настроим популярный сценарий - IPSec между роутером Cisco и роутером с Linux.
+Policy-based - трафик, который должен отправляться в туннель, определяется на основе политик в процессе конфигурации IPSec&rsquo;а. Route-based - трафик, который должен отправляться в туннель, определяется с помощью маршрута по адресу назначения и конфигурируется с помощью протоколов маршрутизации (либо статических маршрутов), обычно поверх VTI или GRE туннельных интерфейсов." /><meta name="keywords" content='networking, linux, cisco' />
+  <meta itemprop="name" content="IPSec между Cisco и Linux, при помощи systemd-networkd и VTI">
+  <meta itemprop="description" content="В предыдущей статье был создан образ роутера на Linux для EVE-NG на основе Debian 11.
+Теперь, используя данный образ, настроим популярный сценарий - IPSec между роутером Cisco и роутером с Linux.
 Существуют несколько методов организации IPSec туннеля между двумя точками:
-Policy-based - трафик, который должен отправляться в туннель, определяется на основе политик в процессе конфигурации IPSec&rsquo;а. Route-based - трафик, который должен отправляться в туннель, определяется с помощью маршрута по адресу назначения и конфигурируется с помощью протоколов маршрутизации (либо статических маршрутов), обычно поверх VTI или GRE туннельных интерфейсов."><meta itemprop="datePublished" content="2022-09-17T17:41:36+03:00" />
-<meta itemprop="dateModified" content="2024-01-14T23:05:55+03:00" />
-<meta itemprop="wordCount" content="1619">
-<meta itemprop="keywords" content="networking,linux,cisco," /><meta property="og:title" content="IPSec между Cisco и Linux, при помощи systemd-networkd и VTI" />
-<meta property="og:description" content="В предыдущей статье был создан образ роутера на Linux для EVE-NG на основе Debian 11. Теперь, используя данный образ, настроим популярный сценарий - IPSec между роутером Cisco и роутером с Linux.
+Policy-based - трафик, который должен отправляться в туннель, определяется на основе политик в процессе конфигурации IPSec’а. Route-based - трафик, который должен отправляться в туннель, определяется с помощью маршрута по адресу назначения и конфигурируется с помощью протоколов маршрутизации (либо статических маршрутов), обычно поверх VTI или GRE туннельных интерфейсов.">
+  <meta itemprop="datePublished" content="2022-09-17T17:41:36+03:00">
+  <meta itemprop="dateModified" content="2024-08-21T21:37:34+03:00">
+  <meta itemprop="wordCount" content="1610">
+  <meta itemprop="keywords" content="Networking,Linux,Cisco"><meta property="og:url" content="https://welqd.github.io/posts/2022-09-17-linux-cisco-vti-ipsec/">
+  <meta property="og:site_name" content="welqd&#39;s blog">
+  <meta property="og:title" content="IPSec между Cisco и Linux, при помощи systemd-networkd и VTI">
+  <meta property="og:description" content="В предыдущей статье был создан образ роутера на Linux для EVE-NG на основе Debian 11.
+Теперь, используя данный образ, настроим популярный сценарий - IPSec между роутером Cisco и роутером с Linux.
 Существуют несколько методов организации IPSec туннеля между двумя точками:
-Policy-based - трафик, который должен отправляться в туннель, определяется на основе политик в процессе конфигурации IPSec&rsquo;а. Route-based - трафик, который должен отправляться в туннель, определяется с помощью маршрута по адресу назначения и конфигурируется с помощью протоколов маршрутизации (либо статических маршрутов), обычно поверх VTI или GRE туннельных интерфейсов." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://welqd.github.io/posts/2022-09-17-linux-cisco-vti-ipsec/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-09-17T17:41:36+03:00" />
-<meta property="article:modified_time" content="2024-01-14T23:05:55+03:00" />
+Policy-based - трафик, который должен отправляться в туннель, определяется на основе политик в процессе конфигурации IPSec’а. Route-based - трафик, который должен отправляться в туннель, определяется с помощью маршрута по адресу назначения и конфигурируется с помощью протоколов маршрутизации (либо статических маршрутов), обычно поверх VTI или GRE туннельных интерфейсов.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2022-09-17T17:41:36+03:00">
+    <meta property="article:modified_time" content="2024-08-21T21:37:34+03:00">
+    <meta property="article:tag" content="Networking">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Cisco">
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="IPSec между Cisco и Linux, при помощи systemd-networkd и VTI"/>
-<meta name="twitter:description" content="В предыдущей статье был создан образ роутера на Linux для EVE-NG на основе Debian 11. Теперь, используя данный образ, настроим популярный сценарий - IPSec между роутером Cisco и роутером с Linux.
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="IPSec между Cisco и Linux, при помощи systemd-networkd и VTI">
+  <meta name="twitter:description" content="В предыдущей статье был создан образ роутера на Linux для EVE-NG на основе Debian 11.
+Теперь, используя данный образ, настроим популярный сценарий - IPSec между роутером Cisco и роутером с Linux.
 Существуют несколько методов организации IPSec туннеля между двумя точками:
-Policy-based - трафик, который должен отправляться в туннель, определяется на основе политик в процессе конфигурации IPSec&rsquo;а. Route-based - трафик, который должен отправляться в туннель, определяется с помощью маршрута по адресу назначения и конфигурируется с помощью протоколов маршрутизации (либо статических маршрутов), обычно поверх VTI или GRE туннельных интерфейсов."/>
+Policy-based - трафик, который должен отправляться в туннель, определяется на основе политик в процессе конфигурации IPSec’а. Route-based - трафик, который должен отправляться в туннель, определяется с помощью маршрута по адресу назначения и конфигурируется с помощью протоколов маршрутизации (либо статических маршрутов), обычно поверх VTI или GRE туннельных интерфейсов.">
 <meta name="application-name" content="FixIt">
 <meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/img/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://welqd.github.io/posts/2022-09-17-linux-cisco-vti-ipsec/" /><link rel="prev" href="https://welqd.github.io/posts/2022-09-15-eve-ng-linux-iso/" /><link rel="next" href="https://welqd.github.io/posts/2023-04-16-eve-ng-to-external-network/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
@@ -38,8 +51,8 @@ Policy-based - трафик, который должен отправлятьс�
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/welqd.github.io\/posts\/2022-09-17-linux-cisco-vti-ipsec\/"
-    },"genre": "posts","keywords": "networking, linux, cisco","wordcount":  1619 ,
-    "url": "https:\/\/welqd.github.io\/posts\/2022-09-17-linux-cisco-vti-ipsec\/","datePublished": "2022-09-17T17:41:36+03:00","dateModified": "2024-01-14T23:05:55+03:00","publisher": {
+    },"genre": "posts","keywords": "networking, linux, cisco","wordcount":  1610 ,
+    "url": "https:\/\/welqd.github.io\/posts\/2022-09-17-linux-cisco-vti-ipsec\/","datePublished": "2022-09-17T17:41:36+03:00","dateModified": "2024-08-21T21:37:34+03:00","publisher": {
       "@type": "Organization",
       "name": "sss"},"author": {
         "@type": "Person",
@@ -138,7 +151,7 @@ Policy-based - трафик, который должен отправлятьс�
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       Vadim Aleshin</span></span></div>
-      <div class="post-meta-line"><span title="published on 2022-09-17 17:41:36"><i class="fa-regular fa-calendar-alt fa-fw me-1" aria-hidden="true"></i><time datetime="2022-09-17">2022-09-17</time></span>&nbsp;<span title="Updated on 2024-01-14 23:05:55"><i class="fa-regular fa-edit fa-fw me-1" aria-hidden="true"></i><time datetime="2024-01-14">2024-01-14</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>1619 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>8 minutes</span>&nbsp;</div>
+      <div class="post-meta-line"><span title="published on 2022-09-17 17:41:36"><i class="fa-regular fa-calendar-alt fa-fw me-1" aria-hidden="true"></i><time datetime="2022-09-17">2022-09-17</time></span>&nbsp;<span title="Updated on 2024-08-21 21:37:34"><i class="fa-regular fa-edit fa-fw me-1" aria-hidden="true"></i><time datetime="2024-08-21">2024-08-21</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>1610 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>8 minutes</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>Contents</span>
@@ -159,21 +172,28 @@ Policy-based - трафик, который должен отправлятьс�
     <li><a href="#проверка-доступности-между-пк">Проверка доступности между ПК</a></li>
   </ul>
 </nav></div>
-      </div><div class="content" id="content"><p>В <a href="https://welqd.github.io/posts/2022-09-15-eve-ng-linux-iso/">предыдущей</a> статье был создан образ роутера на Linux для EVE-NG на основе Debian 11. Теперь, используя данный образ, настроим популярный сценарий - IPSec между роутером Cisco и роутером с Linux.</p>
+      </div><div class="content" id="content"><p>В <a href="https://welqd.github.io/posts/2022-09-15-eve-ng-linux-iso/">предыдущей</a> статье был
+создан образ роутера на Linux для EVE-NG на основе Debian 11.<br>
+Теперь, используя данный образ, настроим популярный сценарий - IPSec между
+роутером Cisco и роутером с Linux.</p>
 <p>Существуют несколько методов организации IPSec туннеля между двумя точками:</p>
 <ol>
-<li>Policy-based - трафик, который должен отправляться в туннель, определяется на основе политик в процессе конфигурации IPSec&rsquo;а.</li>
-<li>Route-based - трафик, который должен отправляться в туннель, определяется с помощью маршрута по адресу назначения и конфигурируется с помощью протоколов маршрутизации (либо статических маршрутов), обычно поверх VTI или GRE туннельных интерфейсов.</li>
+<li>Policy-based - трафик, который должен отправляться в туннель, определяется
+на основе политик в процессе конфигурации IPSec&rsquo;а.</li>
+<li>Route-based - трафик, который должен отправляться в туннель, определяется с
+помощью маршрута по адресу назначения и конфигурируется с помощью протоколов
+маршрутизации (либо статических маршрутов), обычно поверх VTI или GRE туннельных
+интерфейсов.</li>
 </ol>
-<p>В этой статье будет использоваться Route-based IPSec VPN с VTI интерфейсами.</p>
+<p>В этой статье будет использоваться <em>Route-based</em> IPSec VPN с VTI интерфейсами.</p>
 <h2 id="топология-и-устройства">Топология и устройства</h2>
-<p>Соберем простую топологию, как на изображении ниже.</p>
+<p>Соберём простую топологию, как на изображении ниже.</p>
 <p><img loading="lazy" src="/img/2022-09-17-linux-cisco-vti-ipsec/ipsec-topology.png" srcset="/img/2022-09-17-linux-cisco-vti-ipsec/ipsec-topology.png, /img/2022-09-17-linux-cisco-vti-ipsec/ipsec-topology.png 1.5x, /img/2022-09-17-linux-cisco-vti-ipsec/ipsec-topology.png 2x" sizes="auto" data-title="ipsec-topology" data-alt="ipsec-topology" style="background: url(/svg/loading.min.svg) no-repeat center;" onload="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}this.dataset.lazyloaded='';" onerror="this.title=this.dataset.title;this.alt=this.dataset.alt;for(const a of ['style','data-title','data-alt','onerror','onload']){this.removeAttribute(a);}"/></p>
 <p>Адресация:</p>
 <ol>
 <li>1.1.1.0/24 - сеть провайдера для точки с роутером Cisco</li>
 <li>2.2.2.0/24 - сеть провайдера для точки с роутером Linux</li>
-<li>3.3.3.3/32 - loopback интерфейс, имитирующий удаленную сеть</li>
+<li>3.3.3.3/32 - loopback интерфейс, имитирующий удалённую сеть</li>
 <li>10.10.10.0/30 - сеть для туннельных интерфейсов</li>
 <li>192.168.100.0/24 - локальная сеть за роутером Cisco</li>
 <li>192.168.200.0/24 - локальная сеть за роутером Linux</li>
@@ -186,271 +206,301 @@ Policy-based - трафик, который должен отправлятьс�
 <li>Для настройки OSPF - <strong>frr</strong></li>
 </ol>
 <h3 id="настройка-сети-с-systemd-networkd">Настройка сети с systemd-networkd</h3>
-<p>По умолчанию Debian 11 использует файлы из директории <strong>/etc/network</strong> для конфигурации сети.<br>
-Т.к. мы будем использовать systemd-networkd, то первым делом переименуем стандартный конфигурационный файл и отключим соответствующий сервис:</p>
+<p>По умолчанию Debian 11 использует файлы из директории <strong>/etc/network</strong> для
+конфигурации сети.<br>
+Т.к. мы будем использовать systemd-networkd, то первым делом переименуем
+стандартный конфигурационный файл и отключим соответствующий сервис:</p>
 <blockquote>
-<p>Необходимо не забывать, что после этого пропадет удаленный доступ, если он был. Так что все действия необходимо делать, имея локальный доступ.</p>
+<p>Необходимо не забывать, что после этого пропадёт удалённый доступ,
+если он был. Так что все действия необходимо делать, имея локальный доступ.</p>
 </blockquote>
-<pre tabindex="0"><code>mv /etc/network/interfaces /etc/network/interfaces.save
-systemctl disable networking.service
-systemctl stop networking.service</code></pre><p>Далее включим и запустим сервис:</p>
-<pre tabindex="0"><code>systemctl enable systemd-networkd
-systemctl start systemd-networkd</code></pre><p>Конфигурационные файлы хранятся в <strong>/etc/systemd/network/</strong>, т.к. директория по умолчанию пустая, то нам необходимо создать файлы с расширениями: <strong>.network</strong> - для конфигурации сетевых параметров, <strong>.netdev</strong> - для создания виртуальных интерфейсов.</p>
+<div class="highlight" id="id-1"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>mv /etc/network/interfaces /etc/network/interfaces.save
+</span></span><span style="display:flex;"><span>systemctl disable networking.service
+</span></span><span style="display:flex;"><span>systemctl stop networking.service</span></span></code></pre></div><p>Далее включим и запустим сервис:</p>
+<div class="highlight" id="id-2"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>systemctl enable systemd-networkd
+</span></span><span style="display:flex;"><span>systemctl start systemd-networkd</span></span></code></pre></div><p>Конфигурационные файлы хранятся в <strong>/etc/systemd/network/</strong>, т.к. директория по
+умолчанию пустая, то нам необходимо создать файлы с расширениями:
+<strong>.network</strong> - для конфигурации сетевых параметров,
+<strong>.netdev</strong> - для создания виртуальных интерфейсов.</p>
 <h4 id="настройка-wan-интерфейса">Настройка WAN интерфейса</h4>
 <ol>
-<li>Создадим файл с любым названием и расширением .network (systemd проверяет файлы по алфавитному порядку, поэтому удобней использовать число в названии, для управления последовательностью запуска)</li>
+<li>Создадим файл с любым названием и расширением .network (systemd проверяет
+файлы по алфавитному порядку, поэтому удобней использовать число в названии,
+для управления последовательностью запуска)</li>
 </ol>
-<pre tabindex="0"><code>touch 10-wan.network</code></pre><ol start="2">
-<li>Зададим настройки подключения (т.к. в текущей лабораторной нет DNS-сервера, то строку с настройкой закомментирую)</li>
+<div class="highlight" id="id-3"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>touch 10-wan.network</span></span></code></pre></div><ol start="2">
+<li>Зададим настройки подключения (т.к. в текущей лабораторной нет DNS-сервера,
+то строку с настройкой закомментирую)</li>
 </ol>
-<pre tabindex="0"><code>[Match]
-Name=ens3
-
-[Network]
-Address=2.2.2.2/24
-Gateway=2.2.2.254
-#DNS=2.2.2.254
-IPForward=ipv4
-IPMasquerade=ipv4
-Tunnel=vti0</code></pre><blockquote>
-<p><strong>ens3</strong> - имя интерфейса, который смотрит в сторону провайдера (на топологии в EVE-NG он e0, но это неверно, нумерация, в моем случае, начинается с ens3), в другом образе имя может быть другим.</p>
+<div class="highlight" id="id-4"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[Match]
+</span></span><span style="display:flex;"><span>Name=ens3
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[Network]
+</span></span><span style="display:flex;"><span>Address=2.2.2.2/24
+</span></span><span style="display:flex;"><span>Gateway=2.2.2.254
+</span></span><span style="display:flex;"><span>#DNS=2.2.2.254
+</span></span><span style="display:flex;"><span>IPForward=ipv4
+</span></span><span style="display:flex;"><span>IPMasquerade=ipv4
+</span></span><span style="display:flex;"><span>Tunnel=vti0</span></span></code></pre></div><blockquote>
+<p><strong>ens3</strong> - имя интерфейса, который смотрит в сторону провайдера
+(на топологии в EVE-NG он e0, но это неверно, нумерация, в моем случае,
+начинается с ens3), в другом образе имя может быть другим.</p>
 </blockquote>
 <blockquote>
-<p><strong>Tunnel=vti0</strong> - имя туннельного интерфейса, который создадим следующим шагом</p>
+<p><strong>Tunnel=vti0</strong> - имя туннельного интерфейса, который создадим следующим шагом.</p>
 </blockquote>
 <blockquote>
-<p>В реальном мире настройка NAT будет производиться с помощью nftables или iptables, в этом примере будет использоваться IPMasquerade=ipv4 (хотя в этой лабораторной NAT не нужен вообще)</p>
+<p>В реальном мире настройка NAT будет производиться с помощью nftables или
+iptables, в этом примере будет использоваться IPMasquerade=ipv4 (хотя в этой
+лабораторной NAT не нужен вообще)</p>
 </blockquote>
-<p>Перезагрузим сервис, после чего доступ в интернет (в нашем случае до loopback интерфейса на роутере ISP) должен появиться.</p>
-<pre tabindex="0"><code>networkctl reload</code></pre><pre tabindex="0"><code>ping 3.3.3.3
-PING 3.3.3.3 (3.3.3.3) 56(84) bytes of data.
-64 bytes from 3.3.3.3: icmp_seq=1 ttl=254 time=1.27 ms
-64 bytes from 3.3.3.3: icmp_seq=2 ttl=254 time=1.92 ms
-64 bytes from 3.3.3.3: icmp_seq=3 ttl=254 time=1.58 ms</code></pre><h4 id="настройка-lan-интерфейса">Настройка LAN интерфейса</h4>
-<p>Настройка для LAN интерфейса проста. Создадим файл с расширением .network и просто назначим IP адрес на интерфейс, смотрящий в сторону ПК (ens4).</p>
-<pre tabindex="0"><code>touch 15-lan.network</code></pre><pre tabindex="0"><code>[Match]
-Name=ens4
-
-[Network]
-Address=192.168.200.1/24</code></pre><pre tabindex="0"><code>networkctl reload</code></pre><h4 id="настройка-vti-интерфейса">Настройка VTI интерфейса</h4>
-<p>Для использования в Route-based VPN нам необходимо создать VTI интерфейс, для этого:</p>
+<p>Перезагрузим сервис, после чего доступ в интернет (в нашем случае до loopback
+интерфейса на роутере ISP) должен появиться.</p>
+<div class="highlight" id="id-5"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>networkctl reload</span></span></code></pre></div><div class="highlight" id="id-6"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ping 3.3.3.3
+</span></span><span style="display:flex;"><span>PING 3.3.3.3 (3.3.3.3) 56(84) bytes of data.
+</span></span><span style="display:flex;"><span>64 bytes from 3.3.3.3: icmp_seq=1 ttl=254 time=1.27 ms
+</span></span><span style="display:flex;"><span>64 bytes from 3.3.3.3: icmp_seq=2 ttl=254 time=1.92 ms
+</span></span><span style="display:flex;"><span>64 bytes from 3.3.3.3: icmp_seq=3 ttl=254 time=1.58 ms</span></span></code></pre></div><h4 id="настройка-lan-интерфейса">Настройка LAN интерфейса</h4>
+<p>Настройка для LAN интерфейса проста. Создадим файл с расширением <strong>.network</strong>
+и просто назначим IP адрес на интерфейс, смотрящий в сторону ПК (ens4).</p>
+<div class="highlight" id="id-7"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>touch 15-lan.network</span></span></code></pre></div><div class="highlight" id="id-8"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[Match]
+</span></span><span style="display:flex;"><span>Name=ens4
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[Network]
+</span></span><span style="display:flex;"><span>Address=192.168.200.1/24</span></span></code></pre></div><div class="highlight" id="id-9"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>networkctl reload</span></span></code></pre></div><h4 id="настройка-vti-интерфейса">Настройка VTI интерфейса</h4>
+<p>Для использования в Route-based VPN нам необходимо создать VTI интерфейс,
+для этого:</p>
 <ol>
 <li>Создадим файл виртуального устройства, с расширением .netdev</li>
 </ol>
-<pre tabindex="0"><code>touch 25-vti0.netdev</code></pre><p>Зададим следующую конфигурацию, в секции [NetDev] укажем название, тип интерфейса и MTU.<br>
-В секции [Tunnel] - адрес локального интерфейса, удаленного роутера и ключ (данный ключ будет использоваться в настройках strongswan, для определения трафика, который пойдет через vti интерфейс).</p>
-<pre tabindex="0"><code>[NetDev]
-Name=vti0
-Kind=vti
-MTUBytes=1400
-
-[Tunnel]
-Local=2.2.2.2
-Remote=1.1.1.1
-Key=69</code></pre><blockquote>
+<div class="highlight" id="id-10"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>touch 25-vti0.netdev</span></span></code></pre></div><p>Зададим следующую конфигурацию, в секции [NetDev] укажем название,
+тип интерфейса и MTU.<br>
+В секции [Tunnel] - адрес локального интерфейса, удалённого роутера и ключ
+(данный ключ будет использоваться в настройках strongswan,
+для определения трафика, который пойдёт через vti интерфейс).</p>
+<div class="highlight" id="id-11"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[NetDev]
+</span></span><span style="display:flex;"><span>Name=vti0
+</span></span><span style="display:flex;"><span>Kind=vti
+</span></span><span style="display:flex;"><span>MTUBytes=1400
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[Tunnel]
+</span></span><span style="display:flex;"><span>Local=2.2.2.2
+</span></span><span style="display:flex;"><span>Remote=1.1.1.1
+</span></span><span style="display:flex;"><span>Key=69</span></span></code></pre></div><blockquote>
 <p>Имя vti0 используется выше в конфигурации wan интерфейса, эти имена должны совпадать</p>
 </blockquote>
 <ol start="2">
 <li>Создадим .network файл, отвечающий за конфигурацию vti интерфейса</li>
 </ol>
-<pre tabindex="0"><code>touch 25-vti0.network</code></pre><p>Просто задаём IP адрес для интерфейса vti0.</p>
-<pre tabindex="0"><code>[Match]
-Name=vti0
-
-[Network]
-Address=10.10.10.2/30</code></pre><h3 id="настройка-ipsec">Настройка IPSec</h3>
+<div class="highlight" id="id-12"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>touch 25-vti0.network</span></span></code></pre></div><p>Просто задаём IP адрес для интерфейса vti0.</p>
+<div class="highlight" id="id-13"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[Match]
+</span></span><span style="display:flex;"><span>Name=vti0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[Network]
+</span></span><span style="display:flex;"><span>Address=10.10.10.2/30</span></span></code></pre></div><h3 id="настройка-ipsec">Настройка IPSec</h3>
 <p>Для настройки необходим установленный пакет <strong>strongswan</strong>.</p>
 <ol>
-<li>Отключаем установку маршрутов при помощи IKE демона, т.к. маршрутизацию мы настроим далее, с помощью пакета frr.<br>
-Для этого в  файле <strong>/etc/strongswan.d/charon.conf</strong> находим строку с параметром <strong>install_routes</strong>, раскомментируем ее и установим значение в no.</li>
+<li>Отключаем установку маршрутов при помощи IKE демона, т.к. маршрутизацию
+мы настроим далее, с помощью пакета frr.<br>
+Для этого в  файле <strong>/etc/strongswan.d/charon.conf</strong> находим строку с параметром
+<strong>install_routes</strong>, раскомментируем её и установим значение в <strong>no</strong>.</li>
 </ol>
-<pre tabindex="0"><code>install_routes = no</code></pre><ol start="2">
-<li>В файле <strong>/etc/ipsec.conf</strong> настроим параметры IPSec, значения left и leftsubnet используются для локальных адресов, right и rightsubnet - для удаленных.</li>
+<div class="highlight" id="id-14"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>install_routes = no</span></span></code></pre></div><ol start="2">
+<li>В файле <strong>/etc/ipsec.conf</strong> настроим параметры IPSec: значения <strong>left</strong> и
+<strong>leftsubnet</strong> используются для локальных адресов, <strong>right</strong> и
+<strong>rightsubnet</strong> - для удалённых.</li>
 </ol>
-<pre tabindex="0"><code>conn vti-to-cisco
-        left=2.2.2.2
-        leftsubnet=0.0.0.0/0
-        right=1.1.1.1
-        rightsubnet=0.0.0.0/0
-        ike=aes256-sha2_256-modp1024
-        esp=aes-sha2_256
-        authby=secret
-        auto=start
-        keyexchange=ikev2
-        lifetime=1440m
-        mark=69
-        type=transport</code></pre><ol start="3">
+<div class="highlight" id="id-15"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>conn vti-to-cisco
+</span></span><span style="display:flex;"><span>        left=2.2.2.2
+</span></span><span style="display:flex;"><span>        leftsubnet=0.0.0.0/0
+</span></span><span style="display:flex;"><span>        right=1.1.1.1
+</span></span><span style="display:flex;"><span>        rightsubnet=0.0.0.0/0
+</span></span><span style="display:flex;"><span>        ike=aes256-sha2_256-modp1024
+</span></span><span style="display:flex;"><span>        esp=aes-sha2_256
+</span></span><span style="display:flex;"><span>        authby=secret
+</span></span><span style="display:flex;"><span>        auto=start
+</span></span><span style="display:flex;"><span>        keyexchange=ikev2
+</span></span><span style="display:flex;"><span>        lifetime=1440m
+</span></span><span style="display:flex;"><span>        mark=69
+</span></span><span style="display:flex;"><span>        type=tunnel</span></span></code></pre></div><ol start="3">
 <li>В файле <strong>/etc/ipsec.secrets</strong> укажем пароль для данного туннеля.</li>
 </ol>
-<pre tabindex="0"><code>2.2.2.2 : PSK &#39;IPSEC_KEY&#39;</code></pre><ol start="4">
-<li>В файле <strong>/etc/sysctl.conf</strong> необходимо добавить строку для отключения поиска политик для vti интерфейса, т.к. данный интерфейс используется в route-based, а не policy-based VPN.<br>
-Необходимо обратить внимание на имя интерфейса в данной строке (<strong>vti0</strong>), оно должно совпадать с ранее созданным именем vti.</li>
+<div class="highlight" id="id-16"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>2.2.2.2 : PSK &#39;IPSEC_KEY&#39;</span></span></code></pre></div><ol start="4">
+<li>В файле <strong>/etc/sysctl.conf</strong> необходимо добавить строку для отключения
+поиска политик для vti интерфейса, т.к. данный интерфейс используется
+в route-based, а не policy-based VPN.\</li>
 </ol>
-<pre tabindex="0"><code>net.ipv4.conf.vti0.disable_policy=1</code></pre><ol start="5">
-<li>Перезагрузим сервисы и на этом настройка на роутере с Linux заканчивается (маршрутизацию настроим позже).</li>
+<p>Необходимо обратить внимание на имя интерфейса в данной строке (<strong>vti0</strong>), оно должно совпадать с ранее созданным именем vti.</p>
+<div class="highlight" id="id-17"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>net.ipv4.conf.vti0.disable_policy=1</span></span></code></pre></div><ol start="5">
+<li>Перезагрузим сервисы и на этом настройка на роутере с Linux заканчивается
+(маршрутизацию настроим позже).</li>
 </ol>
-<pre tabindex="0"><code>systemctl restart systemd-networkd.service
-ipsec restart</code></pre><h2 id="настройка-роутера-cisco">Настройка роутера Cisco</h2>
+<div class="highlight" id="id-18"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>systemctl restart systemd-networkd.service
+</span></span><span style="display:flex;"><span>ipsec restart</span></span></code></pre></div><h2 id="настройка-роутера-cisco">Настройка роутера Cisco</h2>
 <p>Вдаваться в детальные настройки не будем, просто приведу последовательность.</p>
 <ol>
-<li>Настройка WAN и LAN интерфейсов и маршрута по умолчанию</li>
+<li>Настройка WAN и LAN интерфейсов и маршрута по умолчанию:</li>
 </ol>
-<pre tabindex="0"><code>configure terminal
- interface Ethernet0/1
- ip address 1.1.1.1 255.255.255.0
- ip nat outside
-exit
- interface Ethernet0/0
- ip address 192.168.100.1 255.255.255.0
- ip nat inside
- exit</code></pre><pre tabindex="0"><code>ip route 0.0.0.0 0.0.0.0 1.1.1.254</code></pre><ol start="2">
-<li>Настройка NAT (в лабораторной он не нужен, просто для полноты картины)</li>
+<div class="highlight" id="id-19"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>configure terminal
+</span></span><span style="display:flex;"><span> interface Ethernet0/1
+</span></span><span style="display:flex;"><span> ip address 1.1.1.1 255.255.255.0
+</span></span><span style="display:flex;"><span> ip nat outside
+</span></span><span style="display:flex;"><span> no shutdown
+</span></span><span style="display:flex;"><span>exit
+</span></span><span style="display:flex;"><span>interface Ethernet0/0
+</span></span><span style="display:flex;"><span> ip address 192.168.100.1 255.255.255.0
+</span></span><span style="display:flex;"><span> ip nat inside
+</span></span><span style="display:flex;"><span> no shutdown
+</span></span><span style="display:flex;"><span> exit</span></span></code></pre></div><div class="highlight" id="id-20"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ip route 0.0.0.0 0.0.0.0 1.1.1.254</span></span></code></pre></div><ol start="2">
+<li>Настройка NAT (в лабораторной он не нужен, просто для полноты картины):</li>
 </ol>
-<pre tabindex="0"><code>ip access-list extended NAT
- permit ip 192.168.100.0 0.0.0.255 any
- exit
-ip nat inside source list NAT interface Ethernet0/1 overload</code></pre><ol start="3">
-<li>Настройка IPSec</li>
+<div class="highlight" id="id-21"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ip access-list extended NAT
+</span></span><span style="display:flex;"><span> permit ip 192.168.100.0 0.0.0.255 any
+</span></span><span style="display:flex;"><span> exit
+</span></span><span style="display:flex;"><span>ip nat inside source list NAT interface Ethernet0/1 overload</span></span></code></pre></div><ol start="3">
+<li>Настройка IPSec:</li>
 </ol>
-<pre tabindex="0"><code>crypto ikev2 proposal LINUX_PROPOSAL
- encryption aes-cbc-256
- integrity sha256
- group 2
-
-crypto ikev2 policy LINUX_POLICY
- proposal LINUX_PROPOSAL
-
-crypto ikev2 keyring LINUX_KEYRING
- peer LINUX
-  address 2.2.2.2
-  pre-shared-key IPSEC_KEY
- 
-crypto ikev2 profile LINUX_PROFILE
- match identity remote address 2.2.2.2 255.255.255.255
- authentication remote pre-share
- authentication local pre-share
- keyring local LINUX_KEYRING
-
-crypto ipsec transform-set TSET esp-aes esp-sha256-hmac
- mode transport
-
-crypto ipsec profile LINUX_IPSEC
- set transform-set TSET
- set ikev2-profile LINUX_PROFILE</code></pre><ol start="4">
-<li>Настройка VTI интерфейса</li>
+<div class="highlight" id="id-22"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>crypto ikev2 proposal LINUX_PROPOSAL
+</span></span><span style="display:flex;"><span> encryption aes-cbc-256
+</span></span><span style="display:flex;"><span> integrity sha256
+</span></span><span style="display:flex;"><span> group 2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>crypto ikev2 policy LINUX_POLICY
+</span></span><span style="display:flex;"><span> proposal LINUX_PROPOSAL
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>crypto ikev2 keyring LINUX_KEYRING
+</span></span><span style="display:flex;"><span> peer LINUX
+</span></span><span style="display:flex;"><span>  address 2.2.2.2
+</span></span><span style="display:flex;"><span>  pre-shared-key IPSEC_KEY
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>crypto ikev2 profile LINUX_PROFILE
+</span></span><span style="display:flex;"><span> match identity remote address 2.2.2.2 255.255.255.255
+</span></span><span style="display:flex;"><span> authentication remote pre-share
+</span></span><span style="display:flex;"><span> authentication local pre-share
+</span></span><span style="display:flex;"><span> keyring local LINUX_KEYRING
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>crypto ipsec transform-set TSET esp-aes esp-sha256-hmac
+</span></span><span style="display:flex;"><span> mode tunnel
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>crypto ipsec profile LINUX_IPSEC
+</span></span><span style="display:flex;"><span> set transform-set TSET
+</span></span><span style="display:flex;"><span> set ikev2-profile LINUX_PROFILE</span></span></code></pre></div><ol start="4">
+<li>Настройка VTI интерфейса:</li>
 </ol>
-<pre tabindex="0"><code>interface Tunnel0
- ip address 10.10.10.1 255.255.255.252
- ip mtu 1400
- tunnel source Ethernet0/1
- tunnel mode ipsec ipv4
- tunnel destination 2.2.2.2
- tunnel protection ipsec profile LINUX_IPSEC</code></pre><h2 id="проверка-работы-ipsec">Проверка работы IPSec</h2>
+<div class="highlight" id="id-23"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>interface Tunnel0
+</span></span><span style="display:flex;"><span> ip address 10.10.10.1 255.255.255.252
+</span></span><span style="display:flex;"><span> ip mtu 1400
+</span></span><span style="display:flex;"><span> tunnel source Ethernet0/1
+</span></span><span style="display:flex;"><span> tunnel mode ipsec ipv4
+</span></span><span style="display:flex;"><span> tunnel destination 2.2.2.2
+</span></span><span style="display:flex;"><span> tunnel protection ipsec profile LINUX_IPSEC</span></span></code></pre></div><h2 id="проверка-работы-ipsec">Проверка работы IPSec</h2>
 <p>На Linux роутере:</p>
-<pre tabindex="0"><code>root@linuxrouter# ipsec status
-Security Associations (1 up, 0 connecting):
-vti-to-cisco[1]: ESTABLISHED 117 minutes ago, 2.2.2.2[2.2.2.2]...1.1.1.1[1.1.1.1]
-vti-to-cisco{5}:  INSTALLED, TUNNEL, reqid 2, ESP SPIs: c87f9062_i 080e098c_o
-vti-to-cisco{5}:   0.0.0.0/0 === 0.0.0.0/0
-vti-to-cisco{6}:  INSTALLED, TRANSPORT, reqid 1, ESP SPIs: c3a18c45_i 6489ad73_o
-vti-to-cisco{6}:   2.2.2.2/32 === 1.1.1.1/32</code></pre><pre tabindex="0"><code>root@linuxrouter# ip tunnel show vti0
-vti0: ip/ip remote 1.1.1.1 local 2.2.2.2 dev ens3 ttl inherit nopmtudisc key 69</code></pre><pre tabindex="0"><code>root@linuxrouter# ping -c 2 10.10.10.1
-PING 10.10.10.1 (10.10.10.1) 56(84) bytes of data.
-64 bytes from 10.10.10.1: icmp_seq=1 ttl=255 time=0.930 ms
-64 bytes from 10.10.10.1: icmp_seq=2 ttl=255 time=0.865 ms
---- 10.10.10.1 ping statistics ---
-2 packets transmitted, 2 received, 0% packet loss, time 1001ms
-rtt min/avg/max/mdev = 0.865/0.897/0.930/0.032 ms</code></pre><p>На роутере Cisco:</p>
-<pre tabindex="0"><code>CiscoRouter#show crypto ikev2 sa remote 2.2.2.2
-Tunnel-id Local                 Remote                fvrf/ivrf            Status
-1         1.1.1.1/4500          2.2.2.2/4500          none/none            READY
-      Encr: AES-CBC, keysize: 256, PRF: SHA256, Hash: SHA256, DH Grp:2, Auth sign: PSK, Auth verify: PSK
-      Life/Active Time: 86400/7232 sec</code></pre><pre tabindex="0"><code>CiscoRouter#show ip int br tu0
-Interface                  IP-Address      OK? Method Status                Protocol
-Tunnel0                    10.10.10.1      YES NVRAM  up                    up</code></pre><pre tabindex="0"><code>CiscoRouter#ping 10.10.10.2
-Type escape sequence to abort.
-Sending 5, 100-byte ICMP Echos to 10.10.10.2, timeout is 2 seconds:
-!!!!!
-Success rate is 100 percent (5/5), round-trip min/avg/max = 6/6/7 ms</code></pre><h2 id="настройка-ospf">Настройка OSPF</h2>
-<pre><code>На Linux роутере будет использоваться пакет frr, он должен быть установлен (в собранном для EVE-NG образе он уже присутствует).  
-</code></pre>
-<p>Первым делом необходимо включить демон ospf. Для этого в файле <strong>/etc/frr/daemons</strong> выставить значение <strong>ospfd=yes</strong>, после чего перезапустить frr.service.</p>
-<pre tabindex="0"><code>systemctl restart frr.service</code></pre><p>Теперь перейдем в интерактивный shell пакета frr, который имеет Cisco-like синтаксис. Для этого наберем <strong>vtysh</strong>.<br>
-Детальной настройки делать не будем, просто укажем сети, которые используются в OSPF процессе:</p>
-<pre tabindex="0"><code>configure terminal
-router ospf
- network 10.10.10.0/24 area 0
- network 192.168.200.0/24 area 0
- end
-write memory</code></pre><p>Настройки на роутере Cisco:</p>
-<pre tabindex="0"><code>configure terminal
- router ospf 1
- network 10.10.10.0 0.0.0.3 area 0
- network 192.168.100.0 0.0.0.255 area 0
- end
-write memory</code></pre><p>Проверим доступность не directly connected сетей.<br>
+<div class="highlight" id="id-24"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>root@linuxrouter:~# ipsec status
+</span></span><span style="display:flex;"><span>Security Associations (1 up, 0 connecting):
+</span></span><span style="display:flex;"><span>vti-to-cisco[1]: ESTABLISHED 103 seconds ago, 2.2.2.2[2.2.2.2]...1.1.1.1[1.1.1.1]
+</span></span><span style="display:flex;"><span>vti-to-cisco{1}:  INSTALLED, TUNNEL, reqid 1, ESP SPIs: c0b60312_i 3a106abb_o
+</span></span><span style="display:flex;"><span>vti-to-cisco{1}:   0.0.0.0/0 === 0.0.0.0/0</span></span></code></pre></div><div class="highlight" id="id-25"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>root@linuxrouter:~# ip tunnel show vti0
+</span></span><span style="display:flex;"><span>vti0: ip/ip remote 1.1.1.1 local 2.2.2.2 dev ens3 ttl inherit nopmtudisc key 69</span></span></code></pre></div><div class="highlight" id="id-26"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>root@linuxrouter# ping -c 2 10.10.10.1
+</span></span><span style="display:flex;"><span>PING 10.10.10.1 (10.10.10.1) 56(84) bytes of data.
+</span></span><span style="display:flex;"><span>64 bytes from 10.10.10.1: icmp_seq=1 ttl=255 time=0.930 ms
+</span></span><span style="display:flex;"><span>64 bytes from 10.10.10.1: icmp_seq=2 ttl=255 time=0.865 ms
+</span></span><span style="display:flex;"><span>--- 10.10.10.1 ping statistics ---
+</span></span><span style="display:flex;"><span>2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+</span></span><span style="display:flex;"><span>rtt min/avg/max/mdev = 0.865/0.897/0.930/0.032 ms</span></span></code></pre></div><p>На роутере Cisco:</p>
+<div class="highlight" id="id-27"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>CiscoRouter#show crypto ikev2 sa remote 2.2.2.2
+</span></span><span style="display:flex;"><span>Tunnel-id Local                 Remote                fvrf/ivrf            Status
+</span></span><span style="display:flex;"><span>1         1.1.1.1/4500          2.2.2.2/4500          none/none            READY
+</span></span><span style="display:flex;"><span>      Encr: AES-CBC, keysize: 256, PRF: SHA256, Hash: SHA256, DH Grp:2, Auth sign: PSK, Auth verify: PSK
+</span></span><span style="display:flex;"><span>      Life/Active Time: 86400/223 sec</span></span></code></pre></div><div class="highlight" id="id-28"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>CiscoRouter#show ip int br tu0
+</span></span><span style="display:flex;"><span>Interface                  IP-Address      OK? Method Status                Protocol
+</span></span><span style="display:flex;"><span>Tunnel0                    10.10.10.1      YES NVRAM  up                    up</span></span></code></pre></div><div class="highlight" id="id-29"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>CiscoRouter#ping 10.10.10.2
+</span></span><span style="display:flex;"><span>Type escape sequence to abort.
+</span></span><span style="display:flex;"><span>Sending 5, 100-byte ICMP Echos to 10.10.10.2, timeout is 2 seconds:
+</span></span><span style="display:flex;"><span>!!!!!
+</span></span><span style="display:flex;"><span>Success rate is 100 percent (5/5), round-trip min/avg/max = 6/6/7 ms</span></span></code></pre></div><h2 id="настройка-ospf">Настройка OSPF</h2>
+<p>На Linux роутере будет использоваться пакет frr, он должен быть установлен
+(в собранном для EVE-NG образе он уже присутствует).</p>
+<p>Первым делом необходимо включить демон ospf.
+Для этого в файле <strong>/etc/frr/daemons</strong> выставить значение <strong>ospfd=yes</strong>,
+после чего перезапустить frr.service.</p>
+<div class="highlight" id="id-30"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>systemctl restart frr.service</span></span></code></pre></div><p>Теперь перейдём в интерактивный shell пакета frr, который имеет Cisco-like
+синтаксис. Для этого наберем <strong>vtysh</strong>.<br>
+Детальной настройки делать не будем, просто укажем сети, которые используются
+в OSPF процессе:</p>
+<div class="highlight" id="id-31"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>configure terminal
+</span></span><span style="display:flex;"><span>router ospf
+</span></span><span style="display:flex;"><span> network 10.10.10.0/30 area 0
+</span></span><span style="display:flex;"><span> network 192.168.200.0/24 area 0
+</span></span><span style="display:flex;"><span> end
+</span></span><span style="display:flex;"><span>write memory</span></span></code></pre></div><p>Настройки на роутере Cisco:</p>
+<div class="highlight" id="id-32"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>configure terminal
+</span></span><span style="display:flex;"><span> router ospf 1
+</span></span><span style="display:flex;"><span> network 10.10.10.0 0.0.0.3 area 0
+</span></span><span style="display:flex;"><span> network 192.168.100.0 0.0.0.255 area 0
+</span></span><span style="display:flex;"><span> end
+</span></span><span style="display:flex;"><span>write memory</span></span></code></pre></div><p>Проверим доступность не directly connected сетей.<br>
 Со стороны Linux-роутера:</p>
-<pre tabindex="0"><code>linuxrouter# sh ip ospf neighbor
-Neighbor ID     Pri State           Dead Time Address         Interface                        RXmtL RqstL DBsmL
-192.168.100.1     1 Full/DROther      37.158s 10.10.10.1      vti0:10.10.10.2                      0     0     0</code></pre><pre tabindex="0"><code>linuxrouter# show ip route ospf
-...
-O   10.10.10.0/24 [110/10] is directly connected, vti0, weight 1, 00:17:04
-O   10.10.10.0/30 [110/1010] via 10.10.10.1, vti0 inactive, weight 1, 00:15:12
-O&gt;* 192.168.100.0/24 [110/20] via 10.10.10.1, vti0, weight 1, 00:15:03
-O   192.168.200.0/24 [110/1] is directly connected, ens4, weight 1, 00:16:53</code></pre><pre tabindex="0"><code>linuxrouter# ping 192.168.100.1
-PING 192.168.100.1 (192.168.100.1) 56(84) bytes of data.
-64 bytes from 192.168.100.1: icmp_seq=1 ttl=255 time=2.95 ms
-64 bytes from 192.168.100.1: icmp_seq=2 ttl=255 time=0.927 ms
-64 bytes from 192.168.100.1: icmp_seq=3 ttl=255 time=1.46 ms
---- 192.168.100.1 ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 2003ms
-rtt min/avg/max/mdev = 0.927/1.779/2.954/0.858 ms</code></pre><p>Со стороны Cisco:</p>
-<pre tabindex="0"><code>CiscoRouter#show ip ospf neighbor
-Neighbor ID     Pri   State           Dead Time   Address         Interface
-192.168.200.1     0   FULL/  -        00:00:32    10.10.10.2      Tunnel0</code></pre><pre tabindex="0"><code>CiscoRouter#show ip route ospf
-...
-      10.0.0.0/8 is variably subnetted, 3 subnets, 3 masks
-O        10.10.10.0/24 [110/1010] via 10.10.10.2, 00:18:32, Tunnel0
-O     192.168.200.0/24 [110/1001] via 10.10.10.2, 00:18:32, Tunnel0</code></pre><pre tabindex="0"><code>CiscoRouter#ping 192.168.200.1
-Type escape sequence to abort.
-Sending 5, 100-byte ICMP Echos to 192.168.200.1, timeout is 2 seconds:
-!!!!!
-Success rate is 100 percent (5/5), round-trip min/avg/max = 3/5/7 ms</code></pre><h2 id="проверка-доступности-между-пк">Проверка доступности между ПК</h2>
+<div class="highlight" id="id-33"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>linuxrouter# sh ip ospf neighbor
+</span></span><span style="display:flex;"><span>Neighbor ID     Pri State           Dead Time Address         Interface                        RXmtL RqstL DBsmL
+</span></span><span style="display:flex;"><span>192.168.100.1     1 Full/DROther      37.158s 10.10.10.1      vti0:10.10.10.2                      0     0     0</span></span></code></pre></div><div class="highlight" id="id-34"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>linuxrouter# show ip route ospf
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>O   10.10.10.0/24 [110/10] is directly connected, vti0, weight 1, 00:17:04
+</span></span><span style="display:flex;"><span>O   10.10.10.0/30 [110/1010] via 10.10.10.1, vti0 inactive, weight 1, 00:15:12
+</span></span><span style="display:flex;"><span>O&gt;* 192.168.100.0/24 [110/20] via 10.10.10.1, vti0, weight 1, 00:15:03
+</span></span><span style="display:flex;"><span>O   192.168.200.0/24 [110/1] is directly connected, ens4, weight 1, 00:16:53</span></span></code></pre></div><div class="highlight" id="id-35"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>linuxrouter# ping 192.168.100.1
+</span></span><span style="display:flex;"><span>PING 192.168.100.1 (192.168.100.1) 56(84) bytes of data.
+</span></span><span style="display:flex;"><span>64 bytes from 192.168.100.1: icmp_seq=1 ttl=255 time=2.95 ms
+</span></span><span style="display:flex;"><span>64 bytes from 192.168.100.1: icmp_seq=2 ttl=255 time=0.927 ms
+</span></span><span style="display:flex;"><span>64 bytes from 192.168.100.1: icmp_seq=3 ttl=255 time=1.46 ms
+</span></span><span style="display:flex;"><span>--- 192.168.100.1 ping statistics ---
+</span></span><span style="display:flex;"><span>3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+</span></span><span style="display:flex;"><span>rtt min/avg/max/mdev = 0.927/1.779/2.954/0.858 ms</span></span></code></pre></div><p>Со стороны Cisco:</p>
+<div class="highlight" id="id-36"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>CiscoRouter#show ip ospf neighbor
+</span></span><span style="display:flex;"><span>Neighbor ID     Pri   State           Dead Time   Address         Interface
+</span></span><span style="display:flex;"><span>192.168.200.1     0   FULL/  -        00:00:32    10.10.10.2      Tunnel0</span></span></code></pre></div><div class="highlight" id="id-37"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>CiscoRouter#show ip route ospf
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>      10.0.0.0/8 is variably subnetted, 3 subnets, 3 masks
+</span></span><span style="display:flex;"><span>O        10.10.10.0/24 [110/1010] via 10.10.10.2, 00:18:32, Tunnel0
+</span></span><span style="display:flex;"><span>O     192.168.200.0/24 [110/1001] via 10.10.10.2, 00:18:32, Tunnel0</span></span></code></pre></div><div class="highlight" id="id-38"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>CiscoRouter#ping 192.168.200.1
+</span></span><span style="display:flex;"><span>Type escape sequence to abort.
+</span></span><span style="display:flex;"><span>Sending 5, 100-byte ICMP Echos to 192.168.200.1, timeout is 2 seconds:
+</span></span><span style="display:flex;"><span>!!!!!
+</span></span><span style="display:flex;"><span>Success rate is 100 percent (5/5), round-trip min/avg/max = 3/5/7 ms</span></span></code></pre></div><h2 id="проверка-доступности-между-пк">Проверка доступности между ПК</h2>
 <p>В качестве образа для ПК будет использоваться встроенный в EVE-NG образ Virtual PC.</p>
 <p>Настроим ПК в сети 192.168.100.0/24.</p>
-<pre tabindex="0"><code>VPCS&gt; set pcname PC-1
-PC-1&gt; ip 192.168.100.100/24 192.168.100.1
-PC-1&gt; save</code></pre><p>Такая же конфигурация для ПК в сети 192.168.200.0/24.</p>
-<pre tabindex="0"><code>VPCS&gt; set pcname PC-2
-PC-2&gt; ip 192.168.200.200/24 192.168.200.1
-PC-2&gt; save</code></pre><p>Проверим доступность с PC-1 до PC-2 и наоборот, как видно все работает.</p>
-<pre tabindex="0"><code>PC-1&gt; ping 192.168.200.200
-84 bytes from 192.168.200.200 icmp_seq=1 ttl=62 time=2.765 ms
-84 bytes from 192.168.200.200 icmp_seq=2 ttl=62 time=1.810 ms
-84 bytes from 192.168.200.200 icmp_seq=3 ttl=62 time=2.045 ms
-84 bytes from 192.168.200.200 icmp_seq=4 ttl=62 time=2.146 ms
-84 bytes from 192.168.200.200 icmp_seq=5 ttl=62 time=2.854 ms
-
-PC-1&gt; trace 192.168.200.200
-trace to 192.168.200.200, 8 hops max, press Ctrl+C to stop
- 1   192.168.100.1   0.606 ms  0.350 ms  0.871 ms
- 2   10.10.10.2   2.068 ms  0.916 ms  0.961 ms
- 3   *192.168.200.200   1.975 ms (ICMP type:3, code:3, Destination port unreachable</code></pre><pre tabindex="0"><code>PC-2&gt; ping 192.168.100.100
-84 bytes from 192.168.100.100 icmp_seq=1 ttl=62 time=1.832 ms
-84 bytes from 192.168.100.100 icmp_seq=2 ttl=62 time=2.061 ms
-84 bytes from 192.168.100.100 icmp_seq=3 ttl=62 time=2.307 ms
-84 bytes from 192.168.100.100 icmp_seq=4 ttl=62 time=1.803 ms
-84 bytes from 192.168.100.100 icmp_seq=5 ttl=62 time=2.827 ms
-
-PC-2&gt; trace 192.168.100.100
-trace to 192.168.100.100, 8 hops max, press Ctrl+C to stop
- 1   192.168.200.1   0.639 ms  0.237 ms  0.218 ms
- 2   10.10.10.1   1.875 ms  1.319 ms  1.065 ms
- 3   *192.168.100.100   1.133 ms (ICMP type:3, code:3, Destination port unreachable</code></pre></div><div class="post-footer" id="post-footer">
+<div class="highlight" id="id-39"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>VPCS&gt; set pcname PC-1
+</span></span><span style="display:flex;"><span>PC-1&gt; ip 192.168.100.100/24 192.168.100.1
+</span></span><span style="display:flex;"><span>PC-1&gt; save</span></span></code></pre></div><p>Такая же конфигурация для ПК в сети 192.168.200.0/24.</p>
+<div class="highlight" id="id-40"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>VPCS&gt; set pcname PC-2
+</span></span><span style="display:flex;"><span>PC-2&gt; ip 192.168.200.200/24 192.168.200.1
+</span></span><span style="display:flex;"><span>PC-2&gt; save</span></span></code></pre></div><p>Проверим доступность с PC-1 до PC-2 и наоборот, как видно все работает.</p>
+<div class="highlight" id="id-41"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>PC-1&gt; ping 192.168.200.200
+</span></span><span style="display:flex;"><span>84 bytes from 192.168.200.200 icmp_seq=1 ttl=62 time=2.765 ms
+</span></span><span style="display:flex;"><span>84 bytes from 192.168.200.200 icmp_seq=2 ttl=62 time=1.810 ms
+</span></span><span style="display:flex;"><span>84 bytes from 192.168.200.200 icmp_seq=3 ttl=62 time=2.045 ms
+</span></span><span style="display:flex;"><span>84 bytes from 192.168.200.200 icmp_seq=4 ttl=62 time=2.146 ms
+</span></span><span style="display:flex;"><span>84 bytes from 192.168.200.200 icmp_seq=5 ttl=62 time=2.854 ms
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>PC-1&gt; trace 192.168.200.200
+</span></span><span style="display:flex;"><span>trace to 192.168.200.200, 8 hops max, press Ctrl+C to stop
+</span></span><span style="display:flex;"><span> 1   192.168.100.1   0.606 ms  0.350 ms  0.871 ms
+</span></span><span style="display:flex;"><span> 2   10.10.10.2   2.068 ms  0.916 ms  0.961 ms
+</span></span><span style="display:flex;"><span> 3   *192.168.200.200   1.975 ms (ICMP type:3, code:3, Destination port unreachable</span></span></code></pre></div><div class="highlight" id="id-42"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>PC-2&gt; ping 192.168.100.100
+</span></span><span style="display:flex;"><span>84 bytes from 192.168.100.100 icmp_seq=1 ttl=62 time=1.832 ms
+</span></span><span style="display:flex;"><span>84 bytes from 192.168.100.100 icmp_seq=2 ttl=62 time=2.061 ms
+</span></span><span style="display:flex;"><span>84 bytes from 192.168.100.100 icmp_seq=3 ttl=62 time=2.307 ms
+</span></span><span style="display:flex;"><span>84 bytes from 192.168.100.100 icmp_seq=4 ttl=62 time=1.803 ms
+</span></span><span style="display:flex;"><span>84 bytes from 192.168.100.100 icmp_seq=5 ttl=62 time=2.827 ms
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>PC-2&gt; trace 192.168.100.100
+</span></span><span style="display:flex;"><span>trace to 192.168.100.100, 8 hops max, press Ctrl+C to stop
+</span></span><span style="display:flex;"><span> 1   192.168.200.1   0.639 ms  0.237 ms  0.218 ms
+</span></span><span style="display:flex;"><span> 2   10.10.10.1   1.875 ms  1.319 ms  1.065 ms
+</span></span><span style="display:flex;"><span> 3   *192.168.100.100   1.133 ms (ICMP type:3, code:3, Destination port unreachable</span></span></code></pre></div></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title="Updated on 2024-01-14 23:05:55">Updated on 2024-01-14&nbsp;</span>
+        <span title="Updated on 2024-08-21 21:37:34">Updated on 2024-08-21&nbsp;</span>
       </div><div class="post-info-license">
           <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
         </div></div>
@@ -466,7 +516,7 @@ trace to 192.168.100.100, 8 hops max, press Ctrl+C to stop
   </div>
 
   <div class="post-info-more">
-    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/networking/' class="post-tag">networking</a><a href='/tags/linux/' class="post-tag">linux</a><a href='/tags/cisco/' class="post-tag">cisco</a></section>
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/networking/' class="post-tag">Networking</a><a href='/tags/linux/' class="post-tag">Linux</a><a href='/tags/cisco/' class="post-tag">Cisco</a></section>
     <section>
       <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
     </section>

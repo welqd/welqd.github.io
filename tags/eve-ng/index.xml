@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
   <channel>
-    <title>eve-ng - Tag - welqd&#39;s blog</title>
+    <title>Eve-Ng - Tag - welqd&#39;s blog</title>
     <link>https://welqd.github.io/tags/eve-ng/</link>
-    <description>eve-ng - Tag - welqd&#39;s blog</description>
+    <description>Eve-Ng - Tag - welqd&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 16 Apr 2023 12:11:11 &#43;0300</lastBuildDate><atom:link href="https://welqd.github.io/tags/eve-ng/" rel="self" type="application/rss+xml" /><item>
   <title>Proxmox. Организация доступа лабы в EVE-NG в локальную сеть и/или Интернет</title>
   <link>https://welqd.github.io/posts/2023-04-16-eve-ng-to-external-network/</link>

@@ -11,31 +11,41 @@
 Существует несколько вариантов добиться данной цели, рассмотрю, как по мне, наиболее удобный.
 Топология локальной сети Все виртуальные девайсы в EVE-NG будут в отдельной VLAN&rsquo;е 69 и подсети 10.69.69.0/24, для удобства.
 Идея в том, чтобы &ldquo;дотянуть&rdquo; VLAN 69 до виртуалки с EVE.
-В качестве VE у меня выступает Proxmox, но в VMware логика такая же." /><meta name="keywords" content='networking, linux, eve-ng, proxmox' /><meta itemprop="name" content="Proxmox. Организация доступа лабы в EVE-NG в локальную сеть и/или Интернет">
-<meta itemprop="description" content="Нередко необходимо иметь доступ к устройствам внутри лабораторной EVE-NG из домашней сети. К примеру: для использования локального DHCP или DNS сервера, либо для тестирования автоматизации/скриптов с рабочего ПК.
+В качестве VE у меня выступает Proxmox, но в VMware логика такая же." /><meta name="keywords" content='networking, linux, eve-ng, proxmox' />
+  <meta itemprop="name" content="Proxmox. Организация доступа лабы в EVE-NG в локальную сеть и/или Интернет">
+  <meta itemprop="description" content="Нередко необходимо иметь доступ к устройствам внутри лабораторной EVE-NG из домашней сети. К примеру: для использования локального DHCP или DNS сервера, либо для тестирования автоматизации/скриптов с рабочего ПК.
 Существует несколько вариантов добиться данной цели, рассмотрю, как по мне, наиболее удобный.
-Топология локальной сети Все виртуальные девайсы в EVE-NG будут в отдельной VLAN&rsquo;е 69 и подсети 10.69.69.0/24, для удобства.
-Идея в том, чтобы &ldquo;дотянуть&rdquo; VLAN 69 до виртуалки с EVE.
-В качестве VE у меня выступает Proxmox, но в VMware логика такая же."><meta itemprop="datePublished" content="2023-04-16T12:11:11+03:00" />
-<meta itemprop="dateModified" content="2024-01-14T23:05:55+03:00" />
-<meta itemprop="wordCount" content="733">
-<meta itemprop="keywords" content="networking,linux,eve-ng,proxmox," /><meta property="og:title" content="Proxmox. Организация доступа лабы в EVE-NG в локальную сеть и/или Интернет" />
-<meta property="og:description" content="Нередко необходимо иметь доступ к устройствам внутри лабораторной EVE-NG из домашней сети. К примеру: для использования локального DHCP или DNS сервера, либо для тестирования автоматизации/скриптов с рабочего ПК.
+Топология локальной сети Все виртуальные девайсы в EVE-NG будут в отдельной VLAN’е 69 и подсети 10.69.69.0/24, для удобства.
+Идея в том, чтобы “дотянуть” VLAN 69 до виртуалки с EVE.
+В качестве VE у меня выступает Proxmox, но в VMware логика такая же.">
+  <meta itemprop="datePublished" content="2023-04-16T12:11:11+03:00">
+  <meta itemprop="dateModified" content="2024-01-14T23:05:55+03:00">
+  <meta itemprop="wordCount" content="733">
+  <meta itemprop="keywords" content="Networking,Linux,Eve-Ng,Proxmox"><meta property="og:url" content="https://welqd.github.io/posts/2023-04-16-eve-ng-to-external-network/">
+  <meta property="og:site_name" content="welqd&#39;s blog">
+  <meta property="og:title" content="Proxmox. Организация доступа лабы в EVE-NG в локальную сеть и/или Интернет">
+  <meta property="og:description" content="Нередко необходимо иметь доступ к устройствам внутри лабораторной EVE-NG из домашней сети. К примеру: для использования локального DHCP или DNS сервера, либо для тестирования автоматизации/скриптов с рабочего ПК.
 Существует несколько вариантов добиться данной цели, рассмотрю, как по мне, наиболее удобный.
-Топология локальной сети Все виртуальные девайсы в EVE-NG будут в отдельной VLAN&rsquo;е 69 и подсети 10.69.69.0/24, для удобства.
-Идея в том, чтобы &ldquo;дотянуть&rdquo; VLAN 69 до виртуалки с EVE.
-В качестве VE у меня выступает Proxmox, но в VMware логика такая же." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://welqd.github.io/posts/2023-04-16-eve-ng-to-external-network/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-04-16T12:11:11+03:00" />
-<meta property="article:modified_time" content="2024-01-14T23:05:55+03:00" />
+Топология локальной сети Все виртуальные девайсы в EVE-NG будут в отдельной VLAN’е 69 и подсети 10.69.69.0/24, для удобства.
+Идея в том, чтобы “дотянуть” VLAN 69 до виртуалки с EVE.
+В качестве VE у меня выступает Proxmox, но в VMware логика такая же.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-04-16T12:11:11+03:00">
+    <meta property="article:modified_time" content="2024-01-14T23:05:55+03:00">
+    <meta property="article:tag" content="Networking">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Eve-Ng">
+    <meta property="article:tag" content="Proxmox">
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Proxmox. Организация доступа лабы в EVE-NG в локальную сеть и/или Интернет"/>
-<meta name="twitter:description" content="Нередко необходимо иметь доступ к устройствам внутри лабораторной EVE-NG из домашней сети. К примеру: для использования локального DHCP или DNS сервера, либо для тестирования автоматизации/скриптов с рабочего ПК.
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Proxmox. Организация доступа лабы в EVE-NG в локальную сеть и/или Интернет">
+  <meta name="twitter:description" content="Нередко необходимо иметь доступ к устройствам внутри лабораторной EVE-NG из домашней сети. К примеру: для использования локального DHCP или DNS сервера, либо для тестирования автоматизации/скриптов с рабочего ПК.
 Существует несколько вариантов добиться данной цели, рассмотрю, как по мне, наиболее удобный.
-Топология локальной сети Все виртуальные девайсы в EVE-NG будут в отдельной VLAN&rsquo;е 69 и подсети 10.69.69.0/24, для удобства.
-Идея в том, чтобы &ldquo;дотянуть&rdquo; VLAN 69 до виртуалки с EVE.
-В качестве VE у меня выступает Proxmox, но в VMware логика такая же."/>
+Топология локальной сети Все виртуальные девайсы в EVE-NG будут в отдельной VLAN’е 69 и подсети 10.69.69.0/24, для удобства.
+Идея в том, чтобы “дотянуть” VLAN 69 до виртуалки с EVE.
+В качестве VE у меня выступает Proxmox, но в VMware логика такая же.">
 <meta name="application-name" content="FixIt">
 <meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/img/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://welqd.github.io/posts/2023-04-16-eve-ng-to-external-network/" /><link rel="prev" href="https://welqd.github.io/posts/2022-09-17-linux-cisco-vti-ipsec/" /><link rel="next" href="https://welqd.github.io/posts/2023-08-06-linux_router_p1_basics/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
@@ -271,7 +281,7 @@ rtt min/avg/max/mdev = 1.314/1.346/1.379/0.032 ms</code></pre><p>Как видн
   </div>
 
   <div class="post-info-more">
-    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/networking/' class="post-tag">networking</a><a href='/tags/linux/' class="post-tag">linux</a><a href='/tags/eve-ng/' class="post-tag">eve-ng</a><a href='/tags/proxmox/' class="post-tag">proxmox</a></section>
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/networking/' class="post-tag">Networking</a><a href='/tags/linux/' class="post-tag">Linux</a><a href='/tags/eve-ng/' class="post-tag">Eve-Ng</a><a href='/tags/proxmox/' class="post-tag">Proxmox</a></section>
     <section>
       <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
     </section>

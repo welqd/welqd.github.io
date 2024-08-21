@@ -14,40 +14,49 @@ nftables, в качестве firewall&rsquo;а;
 DHCP (kea) и DNS (bind9) серверов;
 Wireguard, для организации Remote access и Site-to-Site VPN&rsquo;ов;
 FRR, для создания простого сценария с установлением BGP-сессии и перенаправления интересующих нас префиксов в wg-туннель.
-Рассматривать настройку WiFi Access Point не будем, т." /><meta name="keywords" content='networking, linux, linux router' /><meta itemprop="name" content="Настройка роутера на Linux. Часть 1. Установка ПО и настройка интерфейсов">
-<meta itemprop="description" content="Предисловие Это первая статья из цикла, в котором попытаемся превратить ПК в полнофункциональный роутер.
+Рассматривать настройку WiFi Access Point не будем, т." /><meta name="keywords" content='networking, linux, linux router' />
+  <meta itemprop="name" content="Настройка роутера на Linux. Часть 1. Установка ПО и настройка интерфейсов">
+  <meta itemprop="description" content="Предисловие Это первая статья из цикла, в котором попытаемся превратить ПК в полнофункциональный роутер.
 На этой странице, ниже по тексту, будет рассмотрена базовая конфигурация интерфейсов (используя systemd-networkd).
 В последующих публикациях совершим базовую настройку:
-nftables, в качестве firewall&rsquo;а;
+nftables, в качестве firewall’а;
 DHCP (kea) и DNS (bind9) серверов;
-Wireguard, для организации Remote access и Site-to-Site VPN&rsquo;ов;
+Wireguard, для организации Remote access и Site-to-Site VPN’ов;
 FRR, для создания простого сценария с установлением BGP-сессии и перенаправления интересующих нас префиксов в wg-туннель.
-Рассматривать настройку WiFi Access Point не будем, т."><meta itemprop="datePublished" content="2023-08-05T20:16:17+03:00" />
-<meta itemprop="dateModified" content="2024-01-14T23:05:55+03:00" />
-<meta itemprop="wordCount" content="1031">
-<meta itemprop="keywords" content="networking,linux,linux router," /><meta property="og:title" content="Настройка роутера на Linux. Часть 1. Установка ПО и настройка интерфейсов" />
-<meta property="og:description" content="Предисловие Это первая статья из цикла, в котором попытаемся превратить ПК в полнофункциональный роутер.
+Рассматривать настройку WiFi Access Point не будем, т.">
+  <meta itemprop="datePublished" content="2023-08-05T20:16:17+03:00">
+  <meta itemprop="dateModified" content="2024-01-14T23:05:55+03:00">
+  <meta itemprop="wordCount" content="1031">
+  <meta itemprop="keywords" content="Networking,Linux,Linux Router"><meta property="og:url" content="https://welqd.github.io/posts/2023-08-06-linux_router_p1_basics/">
+  <meta property="og:site_name" content="welqd&#39;s blog">
+  <meta property="og:title" content="Настройка роутера на Linux. Часть 1. Установка ПО и настройка интерфейсов">
+  <meta property="og:description" content="Предисловие Это первая статья из цикла, в котором попытаемся превратить ПК в полнофункциональный роутер.
 На этой странице, ниже по тексту, будет рассмотрена базовая конфигурация интерфейсов (используя systemd-networkd).
 В последующих публикациях совершим базовую настройку:
-nftables, в качестве firewall&rsquo;а;
+nftables, в качестве firewall’а;
 DHCP (kea) и DNS (bind9) серверов;
-Wireguard, для организации Remote access и Site-to-Site VPN&rsquo;ов;
+Wireguard, для организации Remote access и Site-to-Site VPN’ов;
 FRR, для создания простого сценария с установлением BGP-сессии и перенаправления интересующих нас префиксов в wg-туннель.
-Рассматривать настройку WiFi Access Point не будем, т." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://welqd.github.io/posts/2023-08-06-linux_router_p1_basics/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-08-05T20:16:17+03:00" />
-<meta property="article:modified_time" content="2024-01-14T23:05:55+03:00" />
+Рассматривать настройку WiFi Access Point не будем, т.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-08-05T20:16:17+03:00">
+    <meta property="article:modified_time" content="2024-01-14T23:05:55+03:00">
+    <meta property="article:tag" content="Networking">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Linux Router">
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Настройка роутера на Linux. Часть 1. Установка ПО и настройка интерфейсов"/>
-<meta name="twitter:description" content="Предисловие Это первая статья из цикла, в котором попытаемся превратить ПК в полнофункциональный роутер.
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Настройка роутера на Linux. Часть 1. Установка ПО и настройка интерфейсов">
+  <meta name="twitter:description" content="Предисловие Это первая статья из цикла, в котором попытаемся превратить ПК в полнофункциональный роутер.
 На этой странице, ниже по тексту, будет рассмотрена базовая конфигурация интерфейсов (используя systemd-networkd).
 В последующих публикациях совершим базовую настройку:
-nftables, в качестве firewall&rsquo;а;
+nftables, в качестве firewall’а;
 DHCP (kea) и DNS (bind9) серверов;
-Wireguard, для организации Remote access и Site-to-Site VPN&rsquo;ов;
+Wireguard, для организации Remote access и Site-to-Site VPN’ов;
 FRR, для создания простого сценария с установлением BGP-сессии и перенаправления интересующих нас префиксов в wg-туннель.
-Рассматривать настройку WiFi Access Point не будем, т."/>
+Рассматривать настройку WiFi Access Point не будем, т.">
 <meta name="application-name" content="FixIt">
 <meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/img/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://welqd.github.io/posts/2023-08-06-linux_router_p1_basics/" /><link rel="prev" href="https://welqd.github.io/posts/2023-04-16-eve-ng-to-external-network/" /><link rel="next" href="https://welqd.github.io/posts/2024-01-14-linux_router_p2_nftables/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
@@ -409,7 +418,7 @@ Address=10.69.69.1/24</code></pre><h2 id="заключение">Заключен
   </div>
 
   <div class="post-info-more">
-    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/networking/' class="post-tag">networking</a><a href='/tags/linux/' class="post-tag">linux</a><a href='/tags/linux-router/' class="post-tag">linux router</a></section>
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/networking/' class="post-tag">Networking</a><a href='/tags/linux/' class="post-tag">Linux</a><a href='/tags/linux-router/' class="post-tag">Linux Router</a></section>
     <section>
       <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
     </section>

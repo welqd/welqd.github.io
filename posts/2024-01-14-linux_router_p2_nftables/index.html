@@ -12,34 +12,43 @@
 Рассмотрим довольно простую конфигурацию, которую потом можно будет расширить при необходимости.
 Для реализации функционала Firewall будем использовать nftables.
 Описание работы Nftables/Netfilter Nftables - это преемник iptables (и других *tables, таких ip6tables, arptables, ebtables), объединяющий весь их функционал в одно приложение.
-Nftables, как и iptables, &ldquo;под капотом&rdquo; использует Netfilter." /><meta name="keywords" content='networking, linux, linux router' /><meta itemprop="name" content="Настройка роутера на Linux. Часть 2. NFTables: Firewall и NAT">
-<meta itemprop="description" content="В первой части была рассмотрена настройка интерфейсов, теперь донастроим Firewall и NAT, чтобы устройство могло полноценно работать.
+Nftables, как и iptables, &ldquo;под капотом&rdquo; использует Netfilter." /><meta name="keywords" content='networking, linux, linux router' />
+  <meta itemprop="name" content="Настройка роутера на Linux. Часть 2. NFTables: Firewall и NAT">
+  <meta itemprop="description" content="В первой части была рассмотрена настройка интерфейсов, теперь донастроим Firewall и NAT, чтобы устройство могло полноценно работать.
 Если сразу нужен готовый конфиг - он в конце статьи.
 Рассмотрим довольно простую конфигурацию, которую потом можно будет расширить при необходимости.
 Для реализации функционала Firewall будем использовать nftables.
 Описание работы Nftables/Netfilter Nftables - это преемник iptables (и других *tables, таких ip6tables, arptables, ebtables), объединяющий весь их функционал в одно приложение.
-Nftables, как и iptables, &ldquo;под капотом&rdquo; использует Netfilter."><meta itemprop="datePublished" content="2024-01-14T21:13:01+03:00" />
-<meta itemprop="dateModified" content="2024-01-14T23:05:55+03:00" />
-<meta itemprop="wordCount" content="1161">
-<meta itemprop="keywords" content="networking,linux,linux router," /><meta property="og:title" content="Настройка роутера на Linux. Часть 2. NFTables: Firewall и NAT" />
-<meta property="og:description" content="В первой части была рассмотрена настройка интерфейсов, теперь донастроим Firewall и NAT, чтобы устройство могло полноценно работать.
+Nftables, как и iptables, “под капотом” использует Netfilter.">
+  <meta itemprop="datePublished" content="2024-01-14T21:13:01+03:00">
+  <meta itemprop="dateModified" content="2024-04-20T11:40:20+03:00">
+  <meta itemprop="wordCount" content="1160">
+  <meta itemprop="keywords" content="Networking,Linux,Linux Router"><meta property="og:url" content="https://welqd.github.io/posts/2024-01-14-linux_router_p2_nftables/">
+  <meta property="og:site_name" content="welqd&#39;s blog">
+  <meta property="og:title" content="Настройка роутера на Linux. Часть 2. NFTables: Firewall и NAT">
+  <meta property="og:description" content="В первой части была рассмотрена настройка интерфейсов, теперь донастроим Firewall и NAT, чтобы устройство могло полноценно работать.
 Если сразу нужен готовый конфиг - он в конце статьи.
 Рассмотрим довольно простую конфигурацию, которую потом можно будет расширить при необходимости.
 Для реализации функционала Firewall будем использовать nftables.
 Описание работы Nftables/Netfilter Nftables - это преемник iptables (и других *tables, таких ip6tables, arptables, ebtables), объединяющий весь их функционал в одно приложение.
-Nftables, как и iptables, &ldquo;под капотом&rdquo; использует Netfilter." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://welqd.github.io/posts/2024-01-14-linux_router_p2_nftables/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2024-01-14T21:13:01+03:00" />
-<meta property="article:modified_time" content="2024-01-14T23:05:55+03:00" />
+Nftables, как и iptables, “под капотом” использует Netfilter.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-01-14T21:13:01+03:00">
+    <meta property="article:modified_time" content="2024-04-20T11:40:20+03:00">
+    <meta property="article:tag" content="Networking">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Linux Router">
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Настройка роутера на Linux. Часть 2. NFTables: Firewall и NAT"/>
-<meta name="twitter:description" content="В первой части была рассмотрена настройка интерфейсов, теперь донастроим Firewall и NAT, чтобы устройство могло полноценно работать.
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Настройка роутера на Linux. Часть 2. NFTables: Firewall и NAT">
+  <meta name="twitter:description" content="В первой части была рассмотрена настройка интерфейсов, теперь донастроим Firewall и NAT, чтобы устройство могло полноценно работать.
 Если сразу нужен готовый конфиг - он в конце статьи.
 Рассмотрим довольно простую конфигурацию, которую потом можно будет расширить при необходимости.
 Для реализации функционала Firewall будем использовать nftables.
 Описание работы Nftables/Netfilter Nftables - это преемник iptables (и других *tables, таких ip6tables, arptables, ebtables), объединяющий весь их функционал в одно приложение.
-Nftables, как и iptables, &ldquo;под капотом&rdquo; использует Netfilter."/>
+Nftables, как и iptables, “под капотом” использует Netfilter.">
 <meta name="application-name" content="FixIt">
 <meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/img/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://welqd.github.io/posts/2024-01-14-linux_router_p2_nftables/" /><link rel="prev" href="https://welqd.github.io/posts/2023-08-06-linux_router_p1_basics/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
   {
@@ -50,8 +59,8 @@ Nftables, как и iptables, &ldquo;под капотом&rdquo; использ
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/welqd.github.io\/posts\/2024-01-14-linux_router_p2_nftables\/"
-    },"genre": "posts","keywords": "networking, linux, linux router","wordcount":  1161 ,
-    "url": "https:\/\/welqd.github.io\/posts\/2024-01-14-linux_router_p2_nftables\/","datePublished": "2024-01-14T21:13:01+03:00","dateModified": "2024-01-14T23:05:55+03:00","publisher": {
+    },"genre": "posts","keywords": "networking, linux, linux router","wordcount":  1160 ,
+    "url": "https:\/\/welqd.github.io\/posts\/2024-01-14-linux_router_p2_nftables\/","datePublished": "2024-01-14T21:13:01+03:00","dateModified": "2024-04-20T11:40:20+03:00","publisher": {
       "@type": "Organization",
       "name": "sss"},"author": {
         "@type": "Person",
@@ -150,7 +159,7 @@ Nftables, как и iptables, &ldquo;под капотом&rdquo; использ
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
       Vadim Aleshin</span></span></div>
-      <div class="post-meta-line"><span title="published on 2024-01-14 21:13:01"><i class="fa-regular fa-calendar-alt fa-fw me-1" aria-hidden="true"></i><time datetime="2024-01-14">2024-01-14</time></span>&nbsp;<span title="Updated on 2024-01-14 23:05:55"><i class="fa-regular fa-edit fa-fw me-1" aria-hidden="true"></i><time datetime="2024-01-14">2024-01-14</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>1161 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>6 minutes</span>&nbsp;</div>
+      <div class="post-meta-line"><span title="published on 2024-01-14 21:13:01"><i class="fa-regular fa-calendar-alt fa-fw me-1" aria-hidden="true"></i><time datetime="2024-01-14">2024-01-14</time></span>&nbsp;<span title="Updated on 2024-04-20 11:40:20"><i class="fa-regular fa-edit fa-fw me-1" aria-hidden="true"></i><time datetime="2024-04-20">2024-04-20</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>1160 words</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>6 minutes</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>Contents</span>
@@ -213,7 +222,7 @@ Nftables, как и iptables, &ldquo;под капотом&rdquo; использ
 </li>
 </ol>
 <p>Подробный синтаксис в <a href="https://wiki.nftables.org/wiki-nftables/index.php/Quick_reference-nftables_in_10_minutes"target="_blank" rel="external nofollow noopener noreferrer">официальной документации</a></p>
-<p>Лично мне, такой способ кажется не удобным,
+<p>Лично мне, такой способ кажется неудобным,
 поэтому настройки будем производить сразу в конфигурационном файле <strong>/etc/nftables.conf</strong></p>
 <h3 id="настройка-правил-в-файле-etcnftablesconf">Настройка правил в файле /etc/nftables.conf</h3>
 <p>Далее по пунктам будут выделены &ldquo;логические&rdquo; куски конфигурации,
@@ -221,37 +230,37 @@ Nftables, как и iptables, &ldquo;под капотом&rdquo; использ
 <ol>
 <li>Файл должен начинаться с исполняемой программы nft и очистки правил:</li>
 </ol>
-<pre tabindex="0"><code>#!/usr/sbin/nft -f
-flush ruleset</code></pre><ol start="2">
+<div class="highlight" id="id-1"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#!/usr/sbin/nft -f
+</span></span><span style="display:flex;"><span>flush ruleset</span></span></code></pre></div><ol start="2">
 <li>Определим переменные с необходимыми интерфейсами,
 для удобства дальнейшей настройки.<br>
 По этому принципу можно организовать Zone Based Firewall,
 если несколько интерфейсов принадлежат одной зоне безопасности).</li>
 </ol>
-<pre tabindex="0"><code>define WAN_INT = enp1s0
-define LAN_INT = br0
-define VLAN69 = vlan69</code></pre><ol start="3">
+<div class="highlight" id="id-2"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>define WAN_INT = enp1s0
+</span></span><span style="display:flex;"><span>define LAN_INT = br0
+</span></span><span style="display:flex;"><span>define VLAN69 = vlan69</span></span></code></pre></div><ol start="3">
 <li>Определим переменную для немашрутизируемых глобально сетей,
 чтобы явно заблокировать поступающие на WAN-интерфейс пакеты.</li>
 </ol>
-<pre tabindex="0"><code>define BOGONS4 = {
-0.0.0.0/8,
-10.0.0.0/8,
-10.64.0.0/10,
-127.0.0.0/8,
-127.0.53.53,
-169.254.0.0/16,
-172.16.0.0/12,
-192.0.0.0/24,
-192.0.2.0/24,
-192.168.0.0/16,
-198.18.0.0/15,
-198.51.100.0/24,
-203.0.113.0/24,
-224.0.0.0/4,
-240.0.0.0/4,
-255.255.255.255/32,
-}</code></pre><ol start="4">
+<div class="highlight" id="id-3"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>define BOGONS4 = {
+</span></span><span style="display:flex;"><span>0.0.0.0/8,
+</span></span><span style="display:flex;"><span>10.0.0.0/8,
+</span></span><span style="display:flex;"><span>10.64.0.0/10,
+</span></span><span style="display:flex;"><span>127.0.0.0/8,
+</span></span><span style="display:flex;"><span>127.0.53.53,
+</span></span><span style="display:flex;"><span>169.254.0.0/16,
+</span></span><span style="display:flex;"><span>172.16.0.0/12,
+</span></span><span style="display:flex;"><span>192.0.0.0/24,
+</span></span><span style="display:flex;"><span>192.0.2.0/24,
+</span></span><span style="display:flex;"><span>192.168.0.0/16,
+</span></span><span style="display:flex;"><span>198.18.0.0/15,
+</span></span><span style="display:flex;"><span>198.51.100.0/24,
+</span></span><span style="display:flex;"><span>203.0.113.0/24,
+</span></span><span style="display:flex;"><span>224.0.0.0/4,
+</span></span><span style="display:flex;"><span>240.0.0.0/4,
+</span></span><span style="display:flex;"><span>255.255.255.255/32,
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><ol start="4">
 <li>Создадим таблицу ip с именем FILTER, в которой укажем цепочки:</li>
 </ol>
 <ul>
@@ -267,31 +276,31 @@ define VLAN69 = vlan69</code></pre><ol start="3">
 пришедшие с LAN-интерфейсов</p>
 </li>
 </ul>
-<pre tabindex="0"><code>table ip FILTER {
-  chain FROM_WAN {
-    ip saddr { $BOGONS4 } counter drop
-    counter drop
- }
-  chain FROM_LAN {
-    tcp dport { 22, 53, 179, 10050 } counter accept
-    udp dport { 67, 53, 161 } counter accept
-    counter drop
- }</code></pre><ol start="5">
+<div class="highlight" id="id-4"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>table ip FILTER {
+</span></span><span style="display:flex;"><span>  chain FROM_WAN {
+</span></span><span style="display:flex;"><span>    ip saddr { $BOGONS4 } counter drop
+</span></span><span style="display:flex;"><span>    counter drop
+</span></span><span style="display:flex;"><span> }
+</span></span><span style="display:flex;"><span>  chain FROM_LAN {
+</span></span><span style="display:flex;"><span>    tcp dport { 22, 53, 179, 10050 } counter accept
+</span></span><span style="display:flex;"><span>    udp dport { 67, 53, 161 } counter accept
+</span></span><span style="display:flex;"><span>    counter drop
+</span></span><span style="display:flex;"><span> }</span></span></code></pre></div><ol start="5">
 <li>Далее настройка цепочки input. Сразу приведу всю конфигурацию,
 а чуть ниже рассмотрим каждую строку отдельно.</li>
 </ol>
-<pre tabindex="0"><code>chain INPUT {
-    type filter hook input priority 0; policy accept;
-    ct state established,related counter accept
-    ct state invalid counter drop
-    icmp type echo-request meta length 1529-65535 counter drop
-    ip protocol icmp limit rate 10/minute counter accept
-    iifname lo ip daddr != 127.0.0.0/8 counter drop
-    iifname lo counter accept
-    iifname $WAN_INT counter jump FROM_WAN
-    iifname $LAN_INT counter jump FROM_LAN
-    counter drop
-}</code></pre><ul>
+<div class="highlight" id="id-5"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>chain INPUT {
+</span></span><span style="display:flex;"><span>    type filter hook input priority 0; policy accept;
+</span></span><span style="display:flex;"><span>    ct state established,related counter accept
+</span></span><span style="display:flex;"><span>    ct state invalid counter drop
+</span></span><span style="display:flex;"><span>    icmp type echo-request meta length 1529-65535 counter drop
+</span></span><span style="display:flex;"><span>    ip protocol icmp limit rate 10/minute counter accept
+</span></span><span style="display:flex;"><span>    iifname lo ip daddr != 127.0.0.0/8 counter drop
+</span></span><span style="display:flex;"><span>    iifname lo counter accept
+</span></span><span style="display:flex;"><span>    iifname $WAN_INT counter jump FROM_WAN
+</span></span><span style="display:flex;"><span>    iifname $LAN_INT counter jump FROM_LAN
+</span></span><span style="display:flex;"><span>    counter drop
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><ul>
 <li>Создаём цепочку с именем INPUT</li>
 <li>Указываем тип: filter, hook: input и правило по умолчанию: accept</li>
 <li>Принимаем пакеты, принадлежащие established и related соединениям:
@@ -300,7 +309,7 @@ define VLAN69 = vlan69</code></pre><ol start="3">
 принадлежащие уже существующему соединению,
 т.е. пакеты, адресованные обратно инициатору соединения будут приниматься
 автоматически, что делает наше устройство <strong>statefull</strong>-firewall&rsquo;ом.</li>
-<li><strong>retated</strong> - это состояние, в котором пакет инициирует новое соединение,
+<li><strong>related</strong> - это состояние, в котором пакет инициирует новое соединение,
 которое ассоциировано с уже существующим established-соединением.
 Как указано в man к iptables - это может быть, к примеру, FTP данные
 (т.к. каждый FTP-клиент становится также сервером для передачи данных),
@@ -335,104 +344,104 @@ define VLAN69 = vlan69</code></pre><ol start="3">
 Разрешаем пакеты на интерфейсах: LAN_INT (br0), VLAN69 (vlan69)<br>
 Остальное отбрасываем.</li>
 </ol>
-<pre tabindex="0"><code>chain FORWARD {
-    type filter hook forward priority 0; policy accept;
-    ct state established,related counter accept
-    ct state invalid counter drop
-    iifname { lo, $LAN_INT, $VLAN69 } counter accept
-    counter drop
-}</code></pre><h3 id="настройка-nat">Настройка NAT</h3>
+<div class="highlight" id="id-6"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>chain FORWARD {
+</span></span><span style="display:flex;"><span>    type filter hook forward priority 0; policy accept;
+</span></span><span style="display:flex;"><span>    ct state established,related counter accept
+</span></span><span style="display:flex;"><span>    ct state invalid counter drop
+</span></span><span style="display:flex;"><span>    iifname { lo, $LAN_INT, $VLAN69 } counter accept
+</span></span><span style="display:flex;"><span>    counter drop
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><h3 id="настройка-nat">Настройка NAT</h3>
 <p>Последним действием будет настройка NAT. Тут все просто:</p>
 <ul>
 <li>создаём таблицу с именем NAT (или любым другим)</li>
 <li>создаём цепочку с хуком postrouting и policy accept</li>
 <li>указываем oif (outgoing interface) - WAN_INT и действие masquerade</li>
 </ul>
-<pre tabindex="0"><code>table ip NAT {
-  chain POSTROUTING {
-    type nat hook postrouting priority 0; policy accept;
-    oif { $WAN_INT } masquerade
-  }
-}</code></pre><h3 id="итоговая-конфигурация">Итоговая конфигурация</h3>
+<div class="highlight" id="id-7"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>table ip NAT {
+</span></span><span style="display:flex;"><span>  chain POSTROUTING {
+</span></span><span style="display:flex;"><span>    type nat hook postrouting priority 0; policy accept;
+</span></span><span style="display:flex;"><span>    oif { $WAN_INT } masquerade
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><h3 id="итоговая-конфигурация">Итоговая конфигурация</h3>
 <p>Просто приведу итоговый конфиг, получившийся из ранее описанных действий.</p>
-<pre tabindex="0"><code>#!/usr/sbin/nft -f
-
-flush ruleset
-
-define WAN_INT = enp1s0
-define LAN_INT = br0
-define VLAN69 = vlan69
-
-define BOGONS4 = {
-0.0.0.0/8,
-10.0.0.0/8,
-10.64.0.0/10,
-127.0.0.0/8,
-127.0.53.53,
-169.254.0.0/16,
-172.16.0.0/12,
-192.0.0.0/24,
-192.0.2.0/24,
-192.168.0.0/16,
-198.18.0.0/15,
-198.51.100.0/24,
-203.0.113.0/24,
-224.0.0.0/4,
-240.0.0.0/4,
-255.255.255.255/32
-}
-
-table ip FILTER {
-    chain FROM_WAN {
-        ip saddr { $BOGONS4 } counter drop
-        counter drop
-    }
-    chain FROM_LAN {
-        tcp dport { 22, 53, 179, 10050 } counter accept
-        udp dport { 67, 53, 161 } counter accept
-        counter drop
-    }
-    chain INPUT {
-        type filter hook input priority 0; policy accept;
-        ct state established,related counter accept
-        ct state invalid counter drop
-        icmp type echo-request meta length 1529-65535 counter drop
-        ip protocol icmp limit rate 10/minute counter accept
-        iifname lo ip daddr != 127.0.0.0/8 counter drop
-        iifname lo counter accept
-        iifname $WAN_INT counter jump FROM_WAN
-        iifname $LAN_INT counter jump FROM_LAN
-        counter drop
-    }
-    chain FORWARD {
-        type filter hook forward priority 0; policy accept;
-        ct state established,related counter accept
-        ct state invalid counter drop
-        iifname { lo, $LAN_INT, $VLAN69 } counter accept
-        counter drop
-    }
-}
-
-table ip NAT {
-    chain POSTROUTING {
-        type nat hook postrouting priority 0; policy accept;
-        oif { $WAN_INT } masquerade
-    }
-}</code></pre><p>Ну и в завершении включаем (если не был включен) или перезагружаем сервис nftables</p>
-<pre tabindex="0"><code>systemctl enable --now nftables.service
-systemctl restart nftables.service</code></pre><p>Если ошибок нет, то сервис будет в состоянии active.</p>
-<pre tabindex="0"><code>● nftables.service - nftables
-     Loaded: loaded (/lib/systemd/system/nftables.service; enabled; preset: enabled)
-     Active: active (exited) since Sun 2024-01-14 15:04:32 MSK; 6h ago
-       Docs: man:nft(8)
-             http://wiki.nftables.org
-    Process: 5001 ExecStart=/usr/sbin/nft -f /etc/nftables.conf (code=exited, status=0/SUCCESS)
-   Main PID: 5001 (code=exited, status=0/SUCCESS)
-        CPU: 18ms</code></pre></div><div class="post-footer" id="post-footer">
+<div class="highlight" id="id-8"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#!/usr/sbin/nft -f
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>flush ruleset
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>define WAN_INT = enp1s0
+</span></span><span style="display:flex;"><span>define LAN_INT = br0
+</span></span><span style="display:flex;"><span>define VLAN69 = vlan69
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>define BOGONS4 = {
+</span></span><span style="display:flex;"><span>0.0.0.0/8,
+</span></span><span style="display:flex;"><span>10.0.0.0/8,
+</span></span><span style="display:flex;"><span>10.64.0.0/10,
+</span></span><span style="display:flex;"><span>127.0.0.0/8,
+</span></span><span style="display:flex;"><span>127.0.53.53,
+</span></span><span style="display:flex;"><span>169.254.0.0/16,
+</span></span><span style="display:flex;"><span>172.16.0.0/12,
+</span></span><span style="display:flex;"><span>192.0.0.0/24,
+</span></span><span style="display:flex;"><span>192.0.2.0/24,
+</span></span><span style="display:flex;"><span>192.168.0.0/16,
+</span></span><span style="display:flex;"><span>198.18.0.0/15,
+</span></span><span style="display:flex;"><span>198.51.100.0/24,
+</span></span><span style="display:flex;"><span>203.0.113.0/24,
+</span></span><span style="display:flex;"><span>224.0.0.0/4,
+</span></span><span style="display:flex;"><span>240.0.0.0/4,
+</span></span><span style="display:flex;"><span>255.255.255.255/32
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>table ip FILTER {
+</span></span><span style="display:flex;"><span>    chain FROM_WAN {
+</span></span><span style="display:flex;"><span>        ip saddr { $BOGONS4 } counter drop
+</span></span><span style="display:flex;"><span>        counter drop
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    chain FROM_LAN {
+</span></span><span style="display:flex;"><span>        tcp dport { 22, 53, 179, 10050 } counter accept
+</span></span><span style="display:flex;"><span>        udp dport { 67, 53, 161 } counter accept
+</span></span><span style="display:flex;"><span>        counter drop
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    chain INPUT {
+</span></span><span style="display:flex;"><span>        type filter hook input priority 0; policy accept;
+</span></span><span style="display:flex;"><span>        ct state established,related counter accept
+</span></span><span style="display:flex;"><span>        ct state invalid counter drop
+</span></span><span style="display:flex;"><span>        icmp type echo-request meta length 1529-65535 counter drop
+</span></span><span style="display:flex;"><span>        ip protocol icmp limit rate 10/minute counter accept
+</span></span><span style="display:flex;"><span>        iifname lo ip daddr != 127.0.0.0/8 counter drop
+</span></span><span style="display:flex;"><span>        iifname lo counter accept
+</span></span><span style="display:flex;"><span>        iifname $WAN_INT counter jump FROM_WAN
+</span></span><span style="display:flex;"><span>        iifname $LAN_INT counter jump FROM_LAN
+</span></span><span style="display:flex;"><span>        counter drop
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    chain FORWARD {
+</span></span><span style="display:flex;"><span>        type filter hook forward priority 0; policy accept;
+</span></span><span style="display:flex;"><span>        ct state established,related counter accept
+</span></span><span style="display:flex;"><span>        ct state invalid counter drop
+</span></span><span style="display:flex;"><span>        iifname { lo, $LAN_INT, $VLAN69 } counter accept
+</span></span><span style="display:flex;"><span>        counter drop
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>table ip NAT {
+</span></span><span style="display:flex;"><span>    chain POSTROUTING {
+</span></span><span style="display:flex;"><span>        type nat hook postrouting priority 0; policy accept;
+</span></span><span style="display:flex;"><span>        oif { $WAN_INT } masquerade
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div><p>Ну и в завершении включаем (если не был включен) или перезагружаем сервис nftables</p>
+<div class="highlight" id="id-9"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>systemctl enable --now nftables.service
+</span></span><span style="display:flex;"><span>systemctl restart nftables.service</span></span></code></pre></div><p>Если ошибок нет, то сервис будет в состоянии active.</p>
+<div class="highlight" id="id-10"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>● nftables.service - nftables
+</span></span><span style="display:flex;"><span>     Loaded: loaded (/lib/systemd/system/nftables.service; enabled; preset: enabled)
+</span></span><span style="display:flex;"><span>     Active: active (exited) since Sun 2024-01-14 15:04:32 MSK; 6h ago
+</span></span><span style="display:flex;"><span>       Docs: man:nft(8)
+</span></span><span style="display:flex;"><span>             http://wiki.nftables.org
+</span></span><span style="display:flex;"><span>    Process: 5001 ExecStart=/usr/sbin/nft -f /etc/nftables.conf (code=exited, status=0/SUCCESS)
+</span></span><span style="display:flex;"><span>   Main PID: 5001 (code=exited, status=0/SUCCESS)
+</span></span><span style="display:flex;"><span>        CPU: 18ms</span></span></code></pre></div></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title="Updated on 2024-01-14 23:05:55">Updated on 2024-01-14&nbsp;</span>
+        <span title="Updated on 2024-04-20 11:40:20">Updated on 2024-04-20&nbsp;</span>
       </div><div class="post-info-license">
           <span><a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span>
         </div></div>
@@ -448,7 +457,7 @@ systemctl restart nftables.service</code></pre><p>Если ошибок нет, 
   </div>
 
   <div class="post-info-more">
-    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/networking/' class="post-tag">networking</a><a href='/tags/linux/' class="post-tag">linux</a><a href='/tags/linux-router/' class="post-tag">linux router</a></section>
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href='/tags/networking/' class="post-tag">Networking</a><a href='/tags/linux/' class="post-tag">Linux</a><a href='/tags/linux-router/' class="post-tag">Linux Router</a></section>
     <section>
       <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
     </section>
